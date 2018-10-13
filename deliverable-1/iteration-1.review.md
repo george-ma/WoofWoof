@@ -64,7 +64,7 @@ List any process-related changes you are planning to make (if there are any)
 
 * Did not setup the Trello but will get that done before the next tutorial team meeting.
   * We did not set this up since it was not the priority at the time.
-* Did not figure out how we will get user feedback (dog owners/dog enthusiests).
+* Did not figure out how we will get user feedback (dog owners/dog enthusiasts).
   * We will figure this out near the end of building the MVP.
 
 ## Meeting Highlights
