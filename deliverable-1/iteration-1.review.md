@@ -71,12 +71,13 @@ List any process-related changes you are planning to make (if there are any)
 
 Going into the next iteration, our main insights are:
 
-* Since we now have a solid understanding of each members schedule, we have planned out how we want to breakdown our agile development practices.
-  * We will meet on our tutorial (Monday night) to review what each member did over the weekend. From there, we will assign new tasks, voice any problems members are having, talk to the TA, etc.
-  * On our Thursday afternoon meeting, we will all meet up to check in our progress since Monday, and assign new work as needed.
+* Now that the mockups have mostly all been made, our group now has a sense of how the final product will look like, and the number of views involved
+    * Each member can now roughly gauge the number of hours they will all need to put in to make the mockups a reality, and can schedule the calendars accordingly to make room for 301 development
 
-* 2 - 4 items
-* Short (no more than one short paragraph per item)
-* High-level concepts that should guide your work for the next iteration.
-* These concepts should help you decide on where to focus your efforts.
-* Can be related to product and/or process.
+* Since we now have a solid understanding of each members schedule, we have planned out how we want to breakdown our agile development practices.
+  * We will meet on our tutorial (Monday night) to review what each member did since last iteration. From there, we will assign new tasks 
+    * The assigned tasks will be assessed on a weekly sprint, as in group members must try best to finish their assigned tasks by the next tutorial meeting (next week).
+  * On our Thursday afternoon meeting, we will all meet up again externally to check in our progress since Monday. Team members can discuss what they have done, voice any problems they are having, etc. Additional work can be assigned if needed.
+
+* One of the first topics in tomorrow's tutorial we will need to discuss is how each sub group (frontend/backend) will split up the work.
+    * Does not need to be a perfect split of work just yet, (we can make changes as we see fit), but an initial idea of how we're going divide internal tasks should be determined by the end of the meeting.
