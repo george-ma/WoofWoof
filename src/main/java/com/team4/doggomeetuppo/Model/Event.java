@@ -1,8 +1,5 @@
 package com.team4.doggomeetuppo.Model;
 
-import java.time.LocalTime;
-import java.time.MonthDay;
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.data.annotation.Id;
@@ -13,10 +10,7 @@ public class Event {
     private String eventName;
     private List<String> pathsToPictures;
     private String eventInfo;
-    private Year year;
-    private MonthDay monthDay;
-    private LocalTime localTime;
-    private String location; //Not sure what the google maps API returns yet
+    private TimeLocation timeLocation;
     private boolean isPublic;
     private boolean isCanceled = false;
     private enum status {
@@ -32,12 +26,9 @@ public class Event {
 
     public Event() {}
 
-    public Event(String eventName, Year year, MonthDay monthDay, LocalTime localTime, String location, boolean isPublic, User host) {
+    public Event(String eventName, TimeLocation timeLocation, boolean isPublic, User host) {
         this.eventName = eventName;
-        this.year = year;
-        this.monthDay = monthDay;
-        this.localTime = localTime;
-        this.location = location;
+        this.timeLocation = timeLocation;
         this.isPublic = isPublic;
         this.host = host;
         this.eventStatus = status.PLANNED;
@@ -54,30 +45,6 @@ public class Event {
     }
     public void setEventInfo(String newEventInfo) {
         this.eventInfo = newEventInfo;
-    }
-    public Year getYear() {
-        return this.year;
-    }
-    public void setYear(Year newYear) {
-        this.year = newYear;
-    }
-    public MonthDay getMonthDay() {
-        return this.monthDay;
-    }
-    public void setMonthDay(MonthDay newMonthDay) {
-        this.monthDay = newMonthDay;
-    }
-    public LocalTime getLocalTime() {
-        return this.localTime;
-    }
-    public void setLocalTime(LocalTime newTime) {
-        this.localTime = newTime;
-    }
-    public String getLocation() {
-        return this.location;
-    }
-    public void setLocation(String newLocation) {
-        this.location = newLocation;
     }
     public boolean getIsPublic() {
         return this.isPublic;
