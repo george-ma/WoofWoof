@@ -26,11 +26,11 @@ public class EventController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public void saveEvent(@RequestBody Event event) {
-        userRepository.saveEvent(event);
+        eventRepository.saveEvent(event);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.PUT)
     public void addEvent(@RequestBody Event event) {
-        userRepository.addEvent(event);
+        eventRepository.addEvent(event);
     }
 }
