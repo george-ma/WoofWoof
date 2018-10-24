@@ -10,6 +10,7 @@ public class Event {
     private String eventName;
     private List<String> pathsToPictures;
     private String eventInfo;
+    private Location location;
     private TimeLocation timeLocation;
     private boolean isPublic;
     private boolean isCanceled = false;
@@ -26,14 +27,14 @@ public class Event {
 
     public Event() {}
 
-    public Event(String eventName, TimeLocation timeLocation, boolean isPublic, User host) {
+    public Event(Location location, String eventName, TimeLocation timeLocation, boolean isPublic, User host) {
+        this.location = location;
         this.eventName = eventName;
         this.timeLocation = timeLocation;
         this.isPublic = isPublic;
         this.host = host;
         this.eventStatus = status.PLANNED;
     }
-
     public String getEventName() {
         return this.eventName;
     }
