@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { Geolocation } from '@ionic-native/geolocation';
-import { } from 'google-maps';
+import {  } from '@types/googlemaps';
 
 @Component({
   selector: 'page-about',
