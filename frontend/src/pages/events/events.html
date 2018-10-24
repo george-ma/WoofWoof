@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="events">
+      <ion-segment-button value="My Events">
+        My Events
+      </ion-segment-button>
+      <ion-segment-button value="Other Events">
+        Other Events
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div [ngSwitch]="events" >
+    <ion-list *ngSwitchCase="'My Events'">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="img/thumbnail-puppy-1.jpg">
+        </ion-thumbnail>
+        <h2>Ruby</h2>
+      </ion-item>
+      ...
+    </ion-list>
+  
+    <ion-list *ngSwitchCase="'Other Events'">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="img/thumbnail-kitten-1.jpg">
+        </ion-thumbnail>
+        <h2>Luna</h2>
+      </ion-item>
+      ...
+    </ion-list>
+  </div>
+</ion-content>
