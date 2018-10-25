@@ -5,7 +5,6 @@ import java.time.MonthDay;
 import java.time.Year;
 
 public class TimeLocation {
-  private String location;
   private MonthDay monthDay;
   private Year year;
   private LocalTime localTime;
@@ -27,11 +26,5 @@ public class TimeLocation {
   }
   public void setLocalTime(LocalTime newTime) {
     this.localTime = newTime;
-  }
-  public String getLocation() {
-    return this.location;
-  }
-  public void setLocation(String newLocation) {
-    this.location = newLocation;
   }
 }
