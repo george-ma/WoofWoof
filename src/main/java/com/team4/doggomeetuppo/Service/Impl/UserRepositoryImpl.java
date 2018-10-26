@@ -22,6 +22,12 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public User findByUserId(String userID) {
+        Query query = new Query().addCriteria(Criteria.where("id").is(userID));
+        return mongoTemplate.findOne(query, User.class);
+    }
+
+    @Override
     public List<User> getAllUsers() {
         return mongoTemplate.findAll(User.class);
     }

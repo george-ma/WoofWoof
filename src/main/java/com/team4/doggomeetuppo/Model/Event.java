@@ -20,7 +20,7 @@ public class Event {
     private status eventStatus;
     private int capacity;
     private User host;
-    private ArrayList<User> attending;
+    private ArrayList<User> attending = new ArrayList<>();
     private ArrayList<User> invited;
     private ArrayList<Dog> expectedDogs;
     private ArrayList<Dog> checkedInDogs;
@@ -34,6 +34,8 @@ public class Event {
         this.isPublic = isPublic;
         this.host = host;
         this.eventStatus = status.PLANNED;
+        this.attending = new ArrayList<>();
+        this.attending.add(host);
     }
     public String getEventName() {
         return this.eventName;
@@ -82,5 +84,23 @@ public class Event {
     }
     public void inviteUser(User invitee) {
         this.invited.add(invitee);
+    }
+    public void addAttendingUser(User attendee) {
+        boolean contains = false;
+        for (User user : attending) {
+            if (user.id.equals(attendee.id)) {
+                contains = true;
+            }
+        }
+        if (!contains) {
+            attending.add(attendee);
+        }
+    }
+    public void removeAttendingUser(User attendee) {
+        for (int i = 0; i < attending.size(); i++) {
+            if (attending.get(i).id.equals(attendee.id)) {
+                attending.remove(i);
+            }
+        }
     }
 }
