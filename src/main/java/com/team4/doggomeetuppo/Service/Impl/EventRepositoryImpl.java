@@ -43,4 +43,9 @@ public class EventRepositoryImpl implements EventRepository {
     public void addEvent(Event event) {
         mongoTemplate.insert(event);
     }
+
+    @Override
+    public void removeEvent(Event event){
+        mongoTemplate.remove(event);
+    }
 }

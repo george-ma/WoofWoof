@@ -12,4 +12,5 @@ public interface EventRepository {
     public List<Event> getAllEvents();
     public void saveEvent(Event event);
     public void addEvent(Event event);
+    public void removeEvent(Event event);
 }

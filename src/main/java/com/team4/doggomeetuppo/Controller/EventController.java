@@ -70,4 +70,18 @@ public class EventController {
             return "User or event not found.";
         }
     }
+
+    @RequestMapping(value = "/cancel", method = RequestMethod.POST)
+    public String cancelEvent(@RequestBody JsonNode requestNode) {
+        String userID = requestNode.findValue("userID").asText();
+        String eventID = requestNode.findValue("eventID").asText();
+        Event event = eventRepository.findByEventId(eventID);
+        User user = userRepository.findByUserId(userID);
+        if (event != null && user != null && user.id.equals(event.getHost().id)) {
+            eventRepository.removeEvent(event);
+            return event.getEventName() + " deleted by " + user.getUserName();
+        } else {
+            return "User or event not found, or user not host of event.";
+        }
+    }
 }
