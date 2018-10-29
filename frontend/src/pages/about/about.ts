@@ -1,8 +1,9 @@
+import { ParkDetailsPage } from './../park-details/park-details';
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 import { Geolocation } from '@ionic-native/geolocation';
-import {  } from '@types/googlemaps';
+import { } from '@types/googlemaps';
 
 @Component({
   selector: 'page-about',
@@ -10,65 +11,124 @@ import {  } from '@types/googlemaps';
 })
 export class AboutPage {
 
-  map: any;
-  currentMarker: any;
+  map: google.maps.Map;
+  currentMarker: google.maps.Marker;
   allDogParks: google.maps.Marker[];
 
-  GooglePlaces: any;
 
   constructor(
     public navCtrl: NavController,
+    public navParams: NavParams,
     private geolocation: Geolocation
   ) {
     this.allDogParks = [];
   }
 
-  ionViewDidEnter() {
-    this.initMap();
+  ionViewWillLeave() {
+    console.log('left');
   }
 
-  initMap() {
-    this.geolocation.getCurrentPosition().then((resp) => {
+  ionViewDidLoad() {
+    this.initMap(this.navCtrl);
+  }
+
+  initMap(navCtrl) {
+    this.geolocation.getCurrentPosition().then(result => {
       const currentPosition = {
-        lat: resp.coords.latitude,
-        lng: resp.coords.longitude
+        lat: result.coords.latitude,
+        lng: result.coords.longitude,
       }
-      this.map = new google.maps.Map(
-        document.getElementById('map'),
-        {
+      const map = new google.maps.Map(
+        document.getElementById('map'), {
           center: currentPosition,
           zoom: 15
         }
       );
-      this.currentMarker = new google.maps.Marker({
-        position: currentPosition,
-        map: this.map,
-        title: 'I am here!'
-      });
-      const placeService = new google.maps.places.PlacesService(this.map);
-      placeService.nearbySearch({
-        location: currentPosition,
-        radius: 1000,
-        type: 'park'
-      }, (results, status) => {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          results.forEach((place) => {
-            this.allDogParks.push(new google.maps.Marker({
-              map: this.map,
-              position: place.geometry.location,
-            }));
-          });
+
+      let dragging = false;
+      let oldCenter = currentPosition;
+
+      const parkList = [];
+
+      const loadParks = this.loadNearbyParks;
+      map.addListener('idle', function () {
+        const currentPosition = {
+          lat: map.getCenter().lat(),
+          lng: map.getCenter().lng()
         }
+        if (!dragging && oldCenter && oldCenter !== currentPosition) {
+          loadParks(currentPosition, map, navCtrl, parkList);
+        }
+        if (!dragging) {
+          oldCenter = currentPosition;
+        }
+        console.log(parkList);
       });
+
+      map.addListener('dragstart', function () {
+        dragging = true;
+      })
+
+      map.addListener('dragend', function () {
+        dragging = false;
+      })
+
+      this.setCurrentMarker(currentPosition, map);
+      this.loadNearbyParks(currentPosition, map, this.navCtrl, parkList);
+      console.log(parkList);
     });
   }
 
-  createMarker(place) {
-
+  setCurrentMarker(currentPosition, map) {
+    this.currentMarker = new google.maps.Marker({
+      position: currentPosition,
+      map: map,
+      icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+    });
   }
 
-  // loadDogParks() {
-  //   this.GooglePlaces.
-  // }
+  loadNearbyParks(currentPosition, map, navCtrl, parkList) {
+    const placesService = new google.maps.places.PlacesService(map);
+    placesService.nearbySearch({
+      location: currentPosition,
+      radius: 1000,
+      type: 'park'
+    }, (results, status, page) => {
+      console.log(page);
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        console.log(results);
+        results.forEach((place) => {
 
+          const newPark = new google.maps.Marker({
+            map: map,
+            icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+            position: place.geometry.location,
+          });
+
+          newPark.addListener('click', function () {
+            navCtrl.push(ParkDetailsPage,
+              {
+                parentNav: navCtrl,
+                parkName: place.name
+              });
+          });
+          parkList.push(newPark);
+        });
+      }
+    });
+  }
+
+  showParkDetails(navCtrl: NavController) {
+    console.log('double click');
+    // this.navCtrl.push(ParkDetailsPage, {});
+  }
+
+  showParkModal() {
+    /**
+     * - Need to make ParkEvents component
+     * - make backend requests to see current and upcoming and past events.
+     */
+    // let parkModal = this.modalCtrl.create(ParkEvents, {});
+    // parkModal.present();
+  }
 }
