@@ -12,6 +12,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Geolocation } from '@ionic-native/geolocation';
+import { EventsPage } from '../pages/events/events';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { Geolocation } from '@ionic-native/geolocation';
     HomePage,
     TabsPage,
     ParkDetailsPage,
+    EventsPage
   ],
   imports: [
     BrowserModule,
@@ -34,6 +36,7 @@ import { Geolocation } from '@ionic-native/geolocation';
     HomePage,
     TabsPage,
     ParkDetailsPage,
+    EventsPage
   ],
   providers: [
     StatusBar,
