@@ -104,7 +104,7 @@ export class AboutPage {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         console.log(results);
         results.forEach((place) => {
-
+          console.log(place);
           const newPark = new google.maps.Marker({
             map: map,
             icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
@@ -115,7 +115,11 @@ export class AboutPage {
             navCtrl.push(ParkDetailsPage,
               {
                 parentNav: navCtrl,
-                parkName: place.name
+                parkName: place.name,
+                parkAddress: place.plus_code.compound_code,
+                parkPictures: place.photos,
+                currentEvents: [], // rest calls
+                upcomingEvents: [] // rest calls
               });
           });
           parkList.push(newPark);
