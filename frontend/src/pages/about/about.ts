@@ -48,7 +48,7 @@ export class AboutPage {
       let dragging = false;
       let oldCenter = currentPosition;
 
-      const parkList = [];
+      let parkList: google.maps.Marker[];
 
       const loadParks = this.loadNearbyParks;
       map.addListener('idle', function () {
@@ -57,7 +57,12 @@ export class AboutPage {
           lng: map.getCenter().lng()
         }
         if (!dragging && oldCenter && oldCenter !== currentPosition) {
-          loadParks(currentPosition, map, navCtrl, parkList);
+          parkList.forEach((park) => {
+            park.setMap(null);
+          })
+          parkList = [];
+          parkList = loadParks(currentPosition, map, navCtrl);
+          console.log(parkList);
         }
         if (!dragging) {
           oldCenter = currentPosition;
@@ -74,7 +79,7 @@ export class AboutPage {
       })
 
       this.setCurrentMarker(currentPosition, map);
-      this.loadNearbyParks(currentPosition, map, this.navCtrl, parkList);
+      parkList = this.loadNearbyParks(currentPosition, map, this.navCtrl);
       console.log(parkList);
     });
   }
@@ -87,8 +92,9 @@ export class AboutPage {
     });
   }
 
-  loadNearbyParks(currentPosition, map, navCtrl, parkList) {
+  loadNearbyParks(currentPosition, map, navCtrl): google.maps.Marker[] {
     const placesService = new google.maps.places.PlacesService(map);
+    const parkList: google.maps.Marker[] = []
     placesService.nearbySearch({
       location: currentPosition,
       radius: 1000,
@@ -113,9 +119,11 @@ export class AboutPage {
               });
           });
           parkList.push(newPark);
+          console.log(parkList);
         });
       }
     });
+    return parkList;
   }
 
   showParkDetails(navCtrl: NavController) {
