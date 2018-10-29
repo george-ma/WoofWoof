@@ -4,8 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
+import { MapPage } from '../pages/map/map';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -17,8 +16,7 @@ import { EventsPage } from '../pages/events/events';
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    MapPage,
     HomePage,
     TabsPage,
     ParkDetailsPage,
@@ -31,8 +29,7 @@ import { EventsPage } from '../pages/events/events';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    MapPage,
     HomePage,
     TabsPage,
     ParkDetailsPage,
