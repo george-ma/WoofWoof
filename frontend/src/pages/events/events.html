@@ -30,10 +30,13 @@
   
     <ion-list *ngSwitchCase="'Other Events'">
       <ion-item>
-        <ion-searchbar (ionInput)="searchEvents($event)"></ion-searchbar>
+        <ion-searchbar
+          (ionInput)="searchEvents($event)"
+          [showCancelButton]="shouldShowCancel">
+        </ion-searchbar>
         <ion-list>
           <ion-item *ngFor="let event of parkEvents">
-            {{ event }}
+            {{ event.name }}
           </ion-item>
         </ion-list>
       </ion-item>

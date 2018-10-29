@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { ParkEvent } from './ParkEvent';
 
 @Component({
   selector: 'page-events',
   templateUrl: 'events.html'
 })
 export class EventsPage {
-  parkEvents;
+  parkEvents: ParkEvent[];
 
   constructor(public navCtrl: NavController) {
     this.initializeEvents();
@@ -15,9 +16,9 @@ export class EventsPage {
 
   initializeEvents() {
     this.parkEvents = [
-      'Doggo 2nd Birthday Party',
-      'Halloween Costume Party',
-      'Obstacle Race'
+      new ParkEvent('Doggo 2nd Birthday Party', 'Feb, 3, 2019', 'Come for treats and photobooth'),
+      new ParkEvent('Halloween Costume Party', 'Oct, 31, 2018', 'Come for treats and photobooth'),
+      new ParkEvent('Obstacle Race', 'Aug, 10, 2019', 'Come for treats and photobooth')
     ];
   }
 
@@ -29,7 +30,7 @@ export class EventsPage {
     // if the value is an empty string don't filter the items
     if (search && search.trim() != '') {
       this.parkEvents = this.parkEvents.filter((event) => {
-        return (event.toLowerCase().indexOf(search.toLowerCase()) > -1);
+        return (event.name.toLowerCase().indexOf(search.toLowerCase()) > -1);
       })
     }
   }
