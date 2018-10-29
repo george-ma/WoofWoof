@@ -15,20 +15,27 @@
   <div [ngSwitch]="events" >
     <ion-list *ngSwitchCase="'My Events'">
       <ion-item>
-        <ion-thumbnail item-start>
-          <img src="img/thumbnail-puppy-1.jpg">
-        </ion-thumbnail>
-        <h2>Ruby</h2>
+         <h1>RSVP'd</h1> 
+      </ion-item>
+      <ion-item>
+        <ion-scroll scrollY="true">
+          <ion-thumbnail item-start>
+            <img src="img/thumbnail-puppy-1.jpg">
+          </ion-thumbnail>
+          <h2>Ruby</h2>
+        </ion-scroll>
       </ion-item>
       ...
     </ion-list>
   
     <ion-list *ngSwitchCase="'Other Events'">
       <ion-item>
-        <ion-thumbnail item-start>
-          <img src="img/thumbnail-kitten-1.jpg">
-        </ion-thumbnail>
-        <h2>Luna</h2>
+        <ion-searchbar (ionInput)="searchEvents($event)"></ion-searchbar>
+        <ion-list>
+          <ion-item *ngFor="let event of parkEvents">
+            {{ event }}
+          </ion-item>
+        </ion-list>
       </ion-item>
       ...
     </ion-list>
