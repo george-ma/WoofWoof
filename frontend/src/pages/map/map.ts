@@ -48,7 +48,7 @@ export class MapPage {
       let dragging = false;
       let oldCenter = currentPosition;
 
-      const parkList = [];
+      let parkList: google.maps.Marker[];
 
       const loadParks = this.loadNearbyParks;
       map.addListener('idle', function () {
@@ -57,7 +57,12 @@ export class MapPage {
           lng: map.getCenter().lng()
         }
         if (!dragging && oldCenter && oldCenter !== currentPosition) {
-          loadParks(currentPosition, map, navCtrl, parkList);
+          parkList.forEach((park) => {
+            park.setMap(null);
+          })
+          parkList = [];
+          parkList = loadParks(currentPosition, map, navCtrl);
+          console.log(parkList);
         }
         if (!dragging) {
           oldCenter = currentPosition;
@@ -74,7 +79,7 @@ export class MapPage {
       })
 
       this.setCurrentMarker(currentPosition, map);
-      this.loadNearbyParks(currentPosition, map, this.navCtrl, parkList);
+      parkList = this.loadNearbyParks(currentPosition, map, this.navCtrl);
       console.log(parkList);
     });
   }
@@ -87,8 +92,9 @@ export class MapPage {
     });
   }
 
-  loadNearbyParks(currentPosition, map, navCtrl, parkList) {
+  loadNearbyParks(currentPosition, map, navCtrl): google.maps.Marker[] {
     const placesService = new google.maps.places.PlacesService(map);
+    const parkList: google.maps.Marker[] = []
     placesService.nearbySearch({
       location: currentPosition,
       radius: 1000,
@@ -97,8 +103,8 @@ export class MapPage {
       console.log(page);
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         console.log(results);
-        results.forEach((place) => {
-
+        results.forEach((place: any) => {
+          console.log(place);
           const newPark = new google.maps.Marker({
             map: map,
             icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
@@ -109,13 +115,19 @@ export class MapPage {
             navCtrl.push(ParkDetailsPage,
               {
                 parentNav: navCtrl,
-                parkName: place.name
+                parkName: place.name,
+                parkAddress: place.plus_code.compound_code,
+                parkPictures: place.photos,
+                currentEvents: [], // rest calls
+                upcomingEvents: [] // rest calls
               });
           });
           parkList.push(newPark);
+          console.log(parkList);
         });
       }
     });
+    return parkList;
   }
 
   showParkDetails(navCtrl: NavController) {
