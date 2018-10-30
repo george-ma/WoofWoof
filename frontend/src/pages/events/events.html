@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="events">
+      <ion-segment-button value="My Events">
+        My Events
+      </ion-segment-button>
+      <ion-segment-button value="Other Events">
+        Other Events
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div [ngSwitch]="events" >
+    <ion-list *ngSwitchCase="'My Events'">
+      <ion-item>
+         <h1>RSVP'd</h1> 
+      </ion-item>
+      <ion-item>
+        <ion-scroll scrollY="true">
+          <ion-thumbnail item-start>
+            <img src="img/thumbnail-puppy-1.jpg">
+          </ion-thumbnail>
+          <h2>Ruby</h2>
+        </ion-scroll>
+      </ion-item>
+      ...
+    </ion-list>
+  
+    <ion-list *ngSwitchCase="'Other Events'">
+      <ion-item>
+        <ion-searchbar
+          (ionInput)="searchEvents($event)"
+          [showCancelButton]="shouldShowCancel">
+        </ion-searchbar>
+        <ion-list>
+          <ion-item *ngFor="let event of parkEvents">
+            {{ event.name }}
+          </ion-item>
+        </ion-list>
+      </ion-item>
+      ...
+    </ion-list>
+  </div>
+</ion-content>

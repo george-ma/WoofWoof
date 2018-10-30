@@ -1,4 +1,4 @@
-import { ParkDetailsPage } from './../park-details/park-details';
+import { ParkDetailsPage } from '../park-details/park-details';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
@@ -6,10 +6,10 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { } from '@types/googlemaps';
 
 @Component({
-  selector: 'page-about',
-  templateUrl: 'about.html'
+  selector: 'page-map',
+  templateUrl: 'map.html'
 })
-export class AboutPage {
+export class MapPage {
 
   map: google.maps.Map;
   currentMarker: google.maps.Marker;
