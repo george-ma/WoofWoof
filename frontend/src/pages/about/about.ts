@@ -103,7 +103,7 @@ export class AboutPage {
       console.log(page);
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         console.log(results);
-        results.forEach((place) => {
+        results.forEach((place: any) => {
           console.log(place);
           const newPark = new google.maps.Marker({
             map: map,
