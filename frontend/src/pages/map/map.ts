@@ -49,17 +49,29 @@ export class MapPage {
 
   chooseItem(item: any) {
     console.log(item);
-    this.geoCode(item);
+    console.log(item.split(',')[0]);
+    const place: any = this.geoCode(item);
   }
 
   //convert Address string to lat and long
 
   // set new current pin to here and pan map to it
   geoCode(address: any) {
-    let geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ address: address }, (results, status) => {
-      console.log({lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()});
-      ;
+    let placesServices = new google.maps.places.PlacesService(this.map);
+    placesServices.textSearch({ query: address }, (results, status) => {
+      // console.log({ lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng() });
+      console.log(results[0]);
+      const place = results[0];
+      this.navCtrl.push(ParkDetailsPage,
+        {
+          parentNav: this.navCtrl,
+          parkName: address,
+          parkAddress: place.plus_code.compound_code,
+          parkPictures: place.photos,
+          park: place,
+          currentEvents: [], // rest calls
+          upcomingEvents: [] // rest calls
+        });
     });
   }
 
@@ -103,6 +115,8 @@ export class MapPage {
           zoom: 15
         }
       );
+
+      this.map = map;
 
       let currentMarker: google.maps.Marker = this.setCurrentMarker(this.currentLocation, map);
 

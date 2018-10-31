@@ -1,3 +1,4 @@
+import { EventProvider } from './../../providers/event/event';
 import { EditEventPage } from './../edit-event/edit-event';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
@@ -19,13 +20,16 @@ export class ParkDetailsPage {
   parkAddress: string;
   parkPictures: string[] = [];
   park: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+  upcomingEvents: any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public eventProvider: EventProvider) {
   }
 
   ionViewDidLoad() {
     this.parkName = this.navParams.get('parkName');
     this.parkAddress = this.navParams.get('parkAddress');
-    this.park = this.navParams.get('place');
+    this.park = this.navParams.get('park');
     if (this.navParams.get('parkPictures') !== undefined) {
       this.navParams.get('parkPictures').forEach(picture => this.parkPictures.push(picture.getUrl({})));
     }
@@ -33,6 +37,14 @@ export class ParkDetailsPage {
     console.log(this.navParams.get('parkPictures'));
     console.log(this.navParams);
     console.log('ionViewDidLoad ParkDetailsPage');
+    console.log(this.navParams.get('park'));
+     this.eventProvider.getAllEvents().subscribe(result => {
+      this.upcomingEvents = result;
+    });
+
+    // this.eventProvider.getEventsByLocation(this.parkName).subscribe(result => {
+    //   this.upcomingEvents = result;
+    // });
   }
 
   ionViewWillLeave() {

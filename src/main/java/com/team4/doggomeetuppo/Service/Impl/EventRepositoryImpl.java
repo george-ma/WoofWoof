@@ -22,6 +22,12 @@ public class EventRepositoryImpl implements EventRepository {
     }
 
     @Override
+    public List<Event> findByPlaceName(String geocode) {
+        Query query = new Query().addCriteria(Criteria.where("location").is(geocode));
+        return mongoTemplate.find(query, Event.class);
+    }
+
+    @Override
     public List<Event> getAllEvents() {
         return mongoTemplate.findAll(Event.class);
     }

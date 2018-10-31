@@ -40,8 +40,8 @@
     <ion-list-header>
       Upcoming Events
     </ion-list-header>
-    <ion-item>
-      Itemdetails
+    <ion-item *ngFor="let event of upcomingEvents">
+      {{event.eventName}}
     </ion-item>
   </ion-list>
 
