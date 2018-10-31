@@ -1,17 +1,72 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <div text-center>
+      <ion-title id="header-title">My Account</ion-title>
+    </div>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI!!!!!!
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+
+  <!--user profile-->
+  <ion-card class="center" id="user">
+
+      <ion-item >
+          <ion-avatar class="avatar">
+            <img src="/assets/imgs/home/joji.jpg">
+          </ion-avatar>
+        <ion-col text-center>
+          <h2>Name: Joji</h2>
+          <p>November 5, 1955</p>
+        </ion-col>
+      </ion-item>
+
+      <ion-row no-padding>
+          <ion-col text-center>
+            <button ion-button clear large color="red" icon-start>
+              <!-- <ion-icon name='trash'></ion-icon> -->
+              Edit
+            </button>
+          </ion-col>
+        </ion-row>
+  </ion-card>
+  
+  <!-- ionic segment buttons-->
+  <div padding>
+      <ion-segment [(ngModel)]="navButtons">
+        <ion-segment-button value="myDoggos">
+          My Doggos
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+    
+    <div [ngSwitch]="navButtons">
+        <ion-list *ngSwitchCase="myDoggos">
+            <ion-item>
+              <ion-thumbnail item-start>
+                <img src="assets/imgs/home/puppy-1.jpg">
+              </ion-thumbnail>
+              <h2>Luna</h2>
+              <h3>the bestest boyo</h3>
+            </ion-item>
+            <ion-item>
+              <ion-thumbnail item-start>
+                <img src="assets/imgs/home/puppy-2.jpg">
+              </ion-thumbnail>
+              <h2>Milo</h2>
+            </ion-item>
+            <ion-item>
+              <ion-thumbnail item-start>
+                <img src="assets/imgs/home/puppy-3.jpg">
+              </ion-thumbnail>
+              <h2>Bandit</h2>
+            </ion-item>
+            <ion-item>
+              <ion-thumbnail item-start>
+                <img src="assets/imgs/home/puppy-4.jpg">
+              </ion-thumbnail>
+              <h2>Nala</h2>
+            </ion-item>
+          </ion-list>
+    </div>
 </ion-content>
