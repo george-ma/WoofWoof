@@ -1,3 +1,4 @@
+import { EditEventPage } from './../edit-event/edit-event';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
@@ -17,13 +18,14 @@ export class ParkDetailsPage {
   parkName: string;
   parkAddress: string;
   parkPictures: string[] = [];
-
+  park: any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     this.parkName = this.navParams.get('parkName');
     this.parkAddress = this.navParams.get('parkAddress');
+    this.park = this.navParams.get('place');
     if (this.navParams.get('parkPictures') !== undefined) {
       this.navParams.get('parkPictures').forEach(picture => this.parkPictures.push(picture.getUrl({})));
     }
@@ -35,6 +37,15 @@ export class ParkDetailsPage {
 
   ionViewWillLeave() {
     // console.log(this.navParams.get('parentNav'));
-    this.navParams.get('parentNav').popToRoot();
+    // this.navParams.get('parentNav').popToRoot();
+  }
+
+  newEvent() {
+    this.navCtrl.push(EditEventPage,
+      {
+        parentNav: this.navParams.get('parentNav'),
+        park: this.park
+      }
+    );
   }
 }
