@@ -14,10 +14,28 @@
 
 
 <ion-content padding>
+  <ion-card>
+    <ion-slides>
+      <ion-slide *ngFor="let picture of parkPictures">
+        <img [src]="picture">
+          <!-- style="width: 500px; height: 500px;"> -->
+      </ion-slide>
+      <ion-fab right bottom>
+        <button ion-fab (click)="newEvent()">
+          <ion-icon name="add" large></ion-icon>
+        </button>
+      </ion-fab>
+    </ion-slides>
+  </ion-card>
   <ion-list>
+    <ion-item>
+      <ion-icon name="navigate" item-start large></ion-icon>
+      <h2>{{parkName}}</h2>
+      <p>{{parkAddress}}</p>
+    </ion-item>
     <ion-list-header>Current Event</ion-list-header>
     <ion-item>
-      Doggo Meetuppo
+      Doggomeetuppo
     </ion-item>
     <ion-list-header>
       Upcoming Events

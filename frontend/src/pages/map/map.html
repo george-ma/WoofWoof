@@ -1,3 +1,12 @@
+<ion-header>
+  <ion-searchbar [(ngModel)]="autocomplete.query" [showCancelButton]="true" (ionInput)="updateSearch()" placeholder="Search for Park">
+  </ion-searchbar>
+  <ion-list *ngIf="autocompleteItems.length > 0">
+    <ion-item  *ngFor="let item of autocompleteItemsDescription" tappable (click)="chooseItem(item)">
+      {{item}}
+    </ion-item>
+  </ion-list>
+</ion-header>
 <ion-content padding>
   <div id="map"></div>
 </ion-content>

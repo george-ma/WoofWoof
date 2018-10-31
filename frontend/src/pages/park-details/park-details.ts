@@ -1,5 +1,6 @@
+import { EditEventPage } from './../edit-event/edit-event';
 import { Component } from '@angular/core';
-import { NavController, NavParams, ItemSliding } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 /**
  * Generated class for the ParkDetailsPage page.
@@ -15,18 +16,36 @@ import { NavController, NavParams, ItemSliding } from 'ionic-angular';
 export class ParkDetailsPage {
 
   parkName: string;
-
+  parkAddress: string;
+  parkPictures: string[] = [];
+  park: any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     this.parkName = this.navParams.get('parkName');
+    this.parkAddress = this.navParams.get('parkAddress');
+    this.park = this.navParams.get('place');
+    if (this.navParams.get('parkPictures') !== undefined) {
+      this.navParams.get('parkPictures').forEach(picture => this.parkPictures.push(picture.getUrl({})));
+    }
     console.log(this.navParams.get('parkName'));
+    console.log(this.navParams.get('parkPictures'));
+    console.log(this.navParams);
     console.log('ionViewDidLoad ParkDetailsPage');
   }
 
   ionViewWillLeave() {
     // console.log(this.navParams.get('parentNav'));
-    this.navParams.get('parentNav').popToRoot();
+    // this.navParams.get('parentNav').popToRoot();
+  }
+
+  newEvent() {
+    this.navCtrl.push(EditEventPage,
+      {
+        parentNav: this.navParams.get('parentNav'),
+        park: this.park
+      }
+    );
   }
 }
