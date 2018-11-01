@@ -22,10 +22,10 @@ export class EventProvider {
     return this.http.get(this.PARK_DETAILS_API + '/allEvents');
   }
 
-  getEventsByLocation(location: string): Observable<Object> {
+  getEventsByLocation(location: string): Observable<any> {
     return this.http.post(
       this.PARK_DETAILS_API + '/geocode',
-      JSON.stringify({ location })
+      location
     )
   }
 }

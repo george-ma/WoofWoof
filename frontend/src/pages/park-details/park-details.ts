@@ -22,12 +22,13 @@ export class ParkDetailsPage {
   park: any;
 
   upcomingEvents: any;
+  currentEvents: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public eventProvider: EventProvider) {
   }
 
   ionViewDidLoad() {
-    this.parkName = this.navParams.get('parkName');
+    this.parkName = this.navParams.get('parkName').split(',')[0];
     this.parkAddress = this.navParams.get('parkAddress');
     this.park = this.navParams.get('park');
     if (this.navParams.get('parkPictures') !== undefined) {
@@ -38,13 +39,21 @@ export class ParkDetailsPage {
     console.log(this.navParams);
     console.log('ionViewDidLoad ParkDetailsPage');
     console.log(this.navParams.get('park'));
-     this.eventProvider.getAllEvents().subscribe(result => {
-      this.upcomingEvents = result;
+    console.log(this.parkName.split(',')[0]);
+     this.eventProvider.getEventsByLocation(this.parkName).subscribe(result => {
+      this.upcomingEvents = result.filter(event => event.status === 'PLANNED')
+      console.log(this.upcomingEvents);
+      this.currentEvents = result.filter(event => event.status === 'ACTIVE');
+      console.log(this.currentEvents);
     });
 
     // this.eventProvider.getEventsByLocation(this.parkName).subscribe(result => {
     //   this.upcomingEvents = result;
     // });
+  }
+
+  rsvp(event) {
+    console.log(event);
   }
 
   ionViewWillLeave() {

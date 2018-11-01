@@ -61,7 +61,7 @@ export class MapPage {
     placesServices.textSearch({ query: address }, (results, status) => {
       // console.log({ lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng() });
       console.log(results[0]);
-      const place = results[0];
+      const place: any = results[0];
       this.navCtrl.push(ParkDetailsPage,
         {
           parentNav: this.navCtrl,
