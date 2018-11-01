@@ -28,4 +28,11 @@ export class EventProvider {
       location
     )
   }
+
+  saveEvent(newEvent : any): Observable<any> {
+    return this.http.put(
+      this.PARK_DETAILS_API + '/add',
+      newEvent
+      )
+  }
 }

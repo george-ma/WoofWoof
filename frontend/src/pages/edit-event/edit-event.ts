@@ -1,8 +1,9 @@
 
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, Provider } from '@angular/core';
+import { NavController, NavParams, Toast } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { ParkDetailsPage } from './../park-details/park-details';
+import { ToastController } from 'ionic-angular';
+import { EventProvider } from '../../providers/event/event';
 /**
  * Generated class for the EditEventPage page.
  *
@@ -24,7 +25,9 @@ export class EditEventPage {
   private eventName;
   private location;
   private description;
-
+  
+  myDate;
+  pushMyDate;
   park;
   parkName;
   parkAddress;
@@ -32,12 +35,12 @@ export class EditEventPage {
   parkPictures: string[] = [];
   imgUrl;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, private eventProvider: EventProvider, public toastCtrl: ToastController) {
     
     this.eventForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      username: ['', Validators.required],
-      email: new FormControl('', Validators.compose([
+      eventName: ['', Validators.required],
+      location: ['', Validators.required],
+      description: new FormControl('', Validators.compose([
         Validators.required
         //Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')   //Ensure email is valid
       ]))
@@ -46,18 +49,35 @@ export class EditEventPage {
 
   }
 
-
+  presentToast(){
+    const toast = this.toastCtrl.create({
+      message: 'Event successfully created!',
+      duration: 3000,
+      position: 'bottom'
+    });
+    toast.present();
+  }
 
   logForm() {
     //console.log(this.todo);
     console.log(this.eventForm.value);
-    this.eventName = this.eventForm.value.name;
-    this.location = this.eventForm.value.email;
-    this.description = this.eventForm.value.username;
+    const newEvent = {
+      
+
+      //pushMyDate: this.myDate,
+      eventName: this.eventForm.value.eventName,
+      location: this.eventForm.value.location,
+      eventInfo: this.eventForm.value.description,
+      isPublic: true
+    }
+    
+    this.eventProvider.saveEvent(newEvent).subscribe(result => {});
+    this.navCtrl.pop();
+    this.presentToast();
   }
 
   ionViewDidLoad() {
-
+    
     //this.parkPictures = this.navParams.get('parkPictures');
     //console.log(this.navParams.get('park'));
     console.log(this.navParams.get('parkPictures'));
@@ -66,14 +86,7 @@ export class EditEventPage {
     this.parkAddress = this.navParams.get('parkAddress');
     this.imgUrl = this.navParams.get('imgUrl');
     console.log("imgurl: " + this.imgUrl);
-/*
-    if (this.navParams.get('parkPictures') !== undefined) {
-      
-      this.navParams.get('parkPictures').forEach(picture => 
-        this.parkPictures.push(picture));    
 
-      }
-    */
     console.log("park: " + this.park);
     console.log("parkName: " + this.parkName);
     console.log("parkAddress: " + this.parkAddress);
