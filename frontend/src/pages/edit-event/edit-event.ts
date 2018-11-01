@@ -20,7 +20,7 @@ import { ParkDetailsPage } from './../park-details/park-details';
 export class EditEventPage {
 
 
-  private todo: FormGroup;
+  private eventForm: FormGroup;
   private eventName;
   private location;
   private description;
@@ -34,7 +34,7 @@ export class EditEventPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder) {
     
-    this.todo = this.formBuilder.group({
+    this.eventForm = this.formBuilder.group({
       name: ['', Validators.required],
       username: ['', Validators.required],
       email: new FormControl('', Validators.compose([
@@ -50,10 +50,10 @@ export class EditEventPage {
 
   logForm() {
     //console.log(this.todo);
-    console.log(this.todo.value);
-    this.eventName = this.todo.value.name;
-    this.location = this.todo.value.email;
-    this.description = this.todo.value.username;
+    console.log(this.eventForm.value);
+    this.eventName = this.eventForm.value.name;
+    this.location = this.eventForm.value.email;
+    this.description = this.eventForm.value.username;
   }
 
   ionViewDidLoad() {

@@ -1,28 +1,28 @@
 <ion-header>
 
   <ion-navbar>
-      
-      <div text-center>
-    <ion-title>Create an Event</ion-title>
-  </div>
+
+    <div text-center>
+      <ion-title>Create an Event</ion-title>
+    </div>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
 
-<ion-card>
-  <img [src]='imgUrl'/>
+  <ion-card>
+    <img [src]='imgUrl' />
 
-</ion-card>
+  </ion-card>
 
-<ion-item>
-  
-  <ion-label>Date</ion-label>
-  <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="myDate"></ion-datetime>
-</ion-item>
+  <ion-item>
 
-  <form [formGroup]="todo" (ngSubmit)="logForm()">
+    <ion-label>Date</ion-label>
+    <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="myDate"></ion-datetime>
+  </ion-item>
+
+  <form [formGroup]="eventForm" (ngSubmit)="logForm()">
     <ion-list>
       <ion-item>
         <ion-label stacked>Event name</ion-label>
@@ -39,7 +39,7 @@
         <ion-input [(ngModel)]="firstname" type="text" formControlName="email"></ion-input>
       </ion-item>
 
-      <button ion-button type="submit" [disabled]="!todo.valid">Submit</button>
+      <button ion-button type="submit" [disabled]="!eventForm.valid">Submit</button>
       <h2>{{ name }}</h2>
       <h2>{{ username }}</h2>
       <h2>{{ email }}</h2>
