@@ -14,33 +14,28 @@
 <ion-content>
   <div [ngSwitch]="events" >
     <ion-list *ngSwitchCase="'My Events'">
-      <ion-item>
-         <h1>RSVP'd</h1> 
-      </ion-item>
-      <ion-item>
-        <ion-scroll scrollY="true">
-          <ion-thumbnail item-start>
-            <img src="img/thumbnail-puppy-1.jpg">
-          </ion-thumbnail>
-          <h2>Ruby</h2>
-        </ion-scroll>
-      </ion-item>
-      ...
+      <h1 padding>RSVP'd</h1>
+
+      <h1 padding>Hosting</h1>
+
     </ion-list>
-  
     <ion-list *ngSwitchCase="'Other Events'">
-      <ion-item>
         <ion-searchbar
           (ionInput)="searchEvents($event)"
-          [showCancelButton]="shouldShowCancel">
+          (showCancelButton)="shouldShowCancel">
         </ion-searchbar>
-        <ion-list>
-          <ion-item *ngFor="let event of parkEvents">
-            {{ event.name }}
+          <ion-item *ngFor="let event of parkEvents" text-wrap>
+              <div>
+                <h2>
+                {{ event.eventName }}
+                </h2>
+                <p>
+                {{ event.eventInfo }}
+                </p>
+              </div>
+                <button ion-button round (click)="goToMap(event)">Get location</button>
+                <button #rsvp ion-button round color="primary" (click)="buttonClicked(rsvp)">RSVP</button>
           </ion-item>
-        </ion-list>
-      </ion-item>
-      ...
     </ion-list>
   </div>
 </ion-content>

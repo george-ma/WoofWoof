@@ -1,4 +1,7 @@
 <ion-header>
+<ion-navbar>
+    <ion-title>DoggoMeetUppo</ion-title>
+  </ion-navbar>
   <ion-searchbar [(ngModel)]="autocomplete.query" [showCancelButton]="true" (ionInput)="updateSearch()" placeholder="Search for Park">
   </ion-searchbar>
   <ion-list *ngIf="autocompleteItems.length > 0">
@@ -7,6 +10,6 @@
     </ion-item>
   </ion-list>
 </ion-header>
-<ion-content padding>
+<ion-content>
   <div id="map"></div>
 </ion-content>

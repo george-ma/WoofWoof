@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ParkDetailsPage } from './../pages/park-details/park-details';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,7 +15,11 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { DatePicker } from '@ionic-native/date-picker';
 import { EventsPage } from '../pages/events/events';
 import { EditEventPage } from './../pages/edit-event/edit-event';
+
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
+import { EventProvider } from '../providers/event/event';
+import { ParkLocationPage } from '../pages/park-location/park-location';
+
 
 @NgModule({
   declarations: [
@@ -25,10 +30,12 @@ import { EditProfilePage } from '../pages/edit-profile/edit-profile';
     ParkDetailsPage,
     EventsPage,
     EditEventPage,
-    EditProfilePage
+    EditProfilePage,
+    ParkLocationPage
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp, { swipeBackEnabled: true })
   ],
   bootstrap: [IonicApp],
@@ -40,14 +47,17 @@ import { EditProfilePage } from '../pages/edit-profile/edit-profile';
     ParkDetailsPage,
     EventsPage,
     EditEventPage,
-    EditProfilePage
+    EditProfilePage,
+    ParkLocationPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     Geolocation,
     DatePicker,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    EventProvider,
   ]
 })
 export class AppModule {}
