@@ -31,7 +31,7 @@
 
       <ion-item>
         <ion-label stacked>Location</ion-label>
-        <ion-input readonly = "true" [(ngModel)]="parkName" type="text" formControlName="location" ></ion-input>
+        <ion-input readonly="true" [(ngModel)]="parkName" type="text" formControlName="location"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -39,12 +39,10 @@
         <ion-input placeholder="Describe your event!" type="text" formControlName="description"></ion-input>
       </ion-item>
 
-      <button ion-button type="submit" [disabled]="!eventForm.valid || !myDate">Submit</button>
 
-      <h2>{{ name }}</h2>
-      <h2>{{ username }}</h2>
-      <h2>{{ email }}</h2>
+
+          
 
     </ion-list>
-
+    <button ion-button type="submit" [disabled]="!eventForm.valid || !myDate">Submit</button>
   </form>
