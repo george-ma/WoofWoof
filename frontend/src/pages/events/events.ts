@@ -8,7 +8,7 @@ import { ParkEvent } from './ParkEvent';
 })
 export class EventsPage {
   parkEvents: ParkEvent[];
-
+  events: string = "Other Events"
   constructor(public navCtrl: NavController) {
     this.initializeEvents();
 

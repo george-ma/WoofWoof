@@ -23,7 +23,7 @@
 
       <ion-row no-padding>
           <ion-col text-center>
-            <button ion-button clear large color="red" icon-start>
+            <button ion-button clear large icon-start>
               <!-- <ion-icon name='trash'></ion-icon> -->
               Edit
             </button>
@@ -33,15 +33,15 @@
   
   <!-- ionic segment buttons-->
   <div padding>
-      <ion-segment [(ngModel)]="navButtons">
+      <ion-segment [(ngModel)]="nav">
         <ion-segment-button value="myDoggos">
           My Doggos
         </ion-segment-button>
       </ion-segment>
     </div>
     
-    <div [ngSwitch]="navButtons">
-        <ion-list *ngSwitchCase="myDoggos">
+    <div [ngSwitch]="nav">
+        <ion-list *ngSwitchCase="'myDoggos'">
             <ion-item>
               <ion-thumbnail item-start>
                 <img src="assets/imgs/home/puppy-1.jpg">
@@ -69,4 +69,5 @@
             </ion-item>
           </ion-list>
     </div>
+
 </ion-content>
