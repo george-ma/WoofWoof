@@ -15,6 +15,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { EventsPage } from '../pages/events/events';
 import { EditEventPage } from './../pages/edit-event/edit-event';
 import { EventProvider } from '../providers/event/event';
+import { ParkLocationPage } from '../pages/park-location/park-location';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { EventProvider } from '../providers/event/event';
     TabsPage,
     ParkDetailsPage,
     EventsPage,
-    EditEventPage
+    EditEventPage,
+    ParkLocationPage
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,8 @@ import { EventProvider } from '../providers/event/event';
     TabsPage,
     ParkDetailsPage,
     EventsPage,
-    EditEventPage
+    EditEventPage,
+    ParkLocationPage
   ],
   providers: [
     StatusBar,

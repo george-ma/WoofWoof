@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ParkEvent } from './ParkEvent';
 import { EventProvider } from '../../providers/event/event';
+import { ParkLocationPage } from '../park-location/park-location';
 EventProvider
 
 @Component({
@@ -11,6 +12,8 @@ EventProvider
 export class EventsPage {
   parkEvents: any;// ParkEvent[];
   origEvents: any;
+  rsvpButtonColour: string;
+  events: string;
 
   constructor(public navCtrl: NavController, public eventProvider: EventProvider) {
     // this.initializeEvents();
@@ -18,7 +21,8 @@ export class EventsPage {
       this.parkEvents = result;
       this.origEvents = result;
     })
-
+    this.rsvpButtonColour = 'primary';
+    this.events = "Other Events";
   }
 
   initializeEvents() {
@@ -44,8 +48,15 @@ export class EventsPage {
     }
   }
 
-  goToMap(ev) {
+  goToMap(event) {
+    this.navCtrl.push(
+      ParkLocationPage,     
+      {event: event}
+    )
+  }
 
+  buttonClicked(currButton) {
+    currButton.color = 'secondary';
   }
 
 }
