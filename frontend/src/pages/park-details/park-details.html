@@ -18,7 +18,7 @@
     <ion-slides>
       <ion-slide *ngFor="let picture of parkPictures">
         <img [src]="picture">
-          <!-- style="width: 500px; height: 500px;"> -->
+        <!-- style="width: 500px; height: 500px;"> -->
       </ion-slide>
       <ion-fab right bottom>
         <button ion-fab (click)="newEvent()">
@@ -34,14 +34,14 @@
       <p>{{parkAddress}}</p>
     </ion-item>
     <ion-list-header>Current Event</ion-list-header>
-    <ion-item>
-      Doggomeetuppo
+    <ion-item *ngFor="let event of currentEvents" (click)="rsvp(event)">
+      {{event.eventName}}
     </ion-item>
     <ion-list-header>
       Upcoming Events
     </ion-list-header>
-    <ion-item>
-      Itemdetails
+    <ion-item *ngFor="let event of upcomingEvents" (click)="rsvp(event)">
+      {{event.eventName}}
     </ion-item>
   </ion-list>
 

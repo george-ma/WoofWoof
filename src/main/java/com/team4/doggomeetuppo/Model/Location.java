@@ -1,33 +1,25 @@
 package com.team4.doggomeetuppo.Model;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.data.annotation.Id;
 
 public class Location {
 
-  private float longitude;
-  private float latitude;
+  @Id
+  public String id;
+
+  private String geocode;
 
   public Location() { }
 
-  public Location(float longitude, float latitude){
-    this.longitude = longitude;
-    this.latitude = latitude;
+  public Location(String geocode){
+      this.geocode = geocode;
   }
 
-  public void setLongtitude(float longitude){
-    this.longitude = longitude;
+  public String getGeocode() {
+    return this.geocode;
   }
 
-  public float getLongitude(){
-    return this.longitude;
-  }
-
-  public void setLatitude(float latitude){
-    this.latitude = latitude;
-  }
-
-  public float getLatitude(){
-    return this.latitude;
+  public void setGeocode(String geocode) {
+    this.geocode = geocode;
   }
 }

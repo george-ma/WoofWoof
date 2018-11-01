@@ -19,6 +19,11 @@ public class EventController {
         return eventRepository.findByEventName(eventName);
     }
 
+    @RequestMapping(value = "/geocode", method = RequestMethod.POST)
+    public List<Event> getEventsByPlaceName(@RequestBody String geocode) {
+        return eventRepository.findByPlaceName(geocode);
+    }
+
     @RequestMapping(value = "/allEvents", method = RequestMethod.GET)
     public List<Event> getAllEvents() {
         return eventRepository.getAllEvents();
