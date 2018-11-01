@@ -62,11 +62,24 @@ export class ParkDetailsPage {
   }
 
   newEvent() {
+    let passImgUrl = this.parkPictures[0];
+    console.log('fail');
+    let passPark = this.park;
+    let passParkName = this.parkName;
+    let passParkAddress = this.parkAddress;
+    let passParkPics = this.parkPictures;
+
     this.navCtrl.push(EditEventPage,
       {
         parentNav: this.navParams.get('parentNav'),
-        park: this.park
+        imgUrl: passImgUrl,
+        park: passPark,
+        parkName: passParkName,
+        parkAddress: passParkAddress,
+        parkPictures: passParkPics
+
       }
     );
+    console.log(passParkPics);
   }
 }
