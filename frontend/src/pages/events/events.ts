@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ParkEvent } from './ParkEvent';
 import { EventProvider } from '../../providers/event/event';
+import { ParkLocationPage } from '../park-location/park-location';
 EventProvider
 
 @Component({
@@ -44,8 +45,11 @@ export class EventsPage {
     }
   }
 
-  goToMap(ev) {
-
+  goToMap(event) {
+    this.navCtrl.push(
+      ParkLocationPage,     
+      {event: event}
+    )
   }
 
 }
