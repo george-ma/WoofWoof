@@ -12,7 +12,6 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Geolocation } from '@ionic-native/geolocation';
-import { DatePicker } from '@ionic-native/date-picker';
 import { EventsPage } from '../pages/events/events';
 import { EditEventPage } from './../pages/edit-event/edit-event';
 
@@ -54,7 +53,6 @@ import { ParkLocationPage } from '../pages/park-location/park-location';
     StatusBar,
     SplashScreen,
     Geolocation,
-    DatePicker,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     EventProvider,
