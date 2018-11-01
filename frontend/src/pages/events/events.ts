@@ -12,6 +12,8 @@ EventProvider
 export class EventsPage {
   parkEvents: any;// ParkEvent[];
   origEvents: any;
+  rsvpButtonColour: string;
+  events: string;
 
   constructor(public navCtrl: NavController, public eventProvider: EventProvider) {
     // this.initializeEvents();
@@ -19,7 +21,8 @@ export class EventsPage {
       this.parkEvents = result;
       this.origEvents = result;
     })
-
+    this.rsvpButtonColour = 'primary';
+    this.events = "Other Events";
   }
 
   initializeEvents() {
@@ -50,6 +53,10 @@ export class EventsPage {
       ParkLocationPage,     
       {event: event}
     )
+  }
+
+  buttonClicked(currButton) {
+    currButton.color = 'secondary';
   }
 
 }
