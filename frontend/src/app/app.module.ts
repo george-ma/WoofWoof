@@ -11,18 +11,21 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Geolocation } from '@ionic-native/geolocation';
+import { DatePicker } from '@ionic-native/date-picker';
 import { EventsPage } from '../pages/events/events';
 import { EditEventPage } from './../pages/edit-event/edit-event';
+import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 
 @NgModule({
   declarations: [
     MyApp,
-    MapPage,
+    MapPage,  
     HomePage,
     TabsPage,
     ParkDetailsPage,
     EventsPage,
-    EditEventPage
+    EditEventPage,
+    EditProfilePage
   ],
   imports: [
     BrowserModule,
@@ -36,12 +39,14 @@ import { EditEventPage } from './../pages/edit-event/edit-event';
     TabsPage,
     ParkDetailsPage,
     EventsPage,
-    EditEventPage
+    EditEventPage,
+    EditProfilePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     Geolocation,
+    DatePicker,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
