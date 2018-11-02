@@ -42,6 +42,7 @@ public class EventController {
     @CrossOrigin
     @RequestMapping(value = "/add", method = RequestMethod.PUT)
     public void addEvent(@RequestBody Event event) {
+        event.setStatus(Event.status.PLANNED);
         eventRepository.addEvent(event);
     }
 }

@@ -14,7 +14,7 @@ public class Event {
     private TimeLocation timeLocation;
     private boolean isPublic;
     private boolean isCanceled = false;
-    private enum status {
+    public enum status {
         ACTIVE, PLANNED, NONE
     }
     private status eventStatus;
