@@ -18,9 +18,10 @@
 
   <ion-item>
 
-    <ion-label>Date</ion-label>
-    <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="myDate"></ion-datetime>
-  </ion-item>
+      <ion-label stacked>Date</ion-label>
+      <ion-datetime placeholder = "Choose a date!" displayFormat="MM/DD/YYYY" [(ngModel)]="myDate"></ion-datetime>
+    </ion-item>
+
 
   <form [formGroup]="eventForm" (ngSubmit)="logForm()">
     <ion-list>
