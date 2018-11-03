@@ -45,8 +45,8 @@ Our workflow began with creating issues on github for work that needed to be don
 Backend
 * Setup MongoDB cloud instance.
 * Setup rest endpoints to load and persist data.
-  * Events
-  * Users
+  * Events (Controller, Model, Service)
+  * Users (Controller, Model, Service)
 
 Frontend
 * Setup the map homepage.
@@ -69,4 +69,3 @@ Frontend
   * Used MongoDB as database
 * Front end created as an Ionic Application.
   * Used google maps api to populate map screen
-  Mind if I go get lunch before 369?

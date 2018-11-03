@@ -2,13 +2,13 @@
 
 ## Iteration 2 - Review & Retrospect
 
- * When: Friday November 2nd Good meeting guys
- * Where: Morison Hall Common Room
+ * When: Friday November 2nd
+ * Where: Morrison Hall Common Room
 
 
 #### Decisions that turned out well
 
-* Using Springboot
+* Using Spring-boot
   * Creating back-end was much easier and more streamlined
 * Using Google Maps api
   * Made setting up map screen straight-forward
