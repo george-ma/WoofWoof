@@ -27,6 +27,15 @@ export class ParkDetailsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public eventProvider: EventProvider) {
   }
 
+  ionViewDidEnter() {
+    this.eventProvider.getEventsByLocation(this.parkName).subscribe(result => {
+      this.upcomingEvents = result.filter(event => event.status === 'PLANNED')
+      console.log(this.upcomingEvents);
+      this.currentEvents = result.filter(event => event.status === 'ACTIVE');
+      console.log(this.currentEvents);
+    });
+  }
+
   ionViewDidLoad() {
     this.parkName = this.navParams.get('parkName').split(',')[0];
     this.parkAddress = this.navParams.get('parkAddress');

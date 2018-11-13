@@ -1,65 +1,71 @@
-# YOUR PRODUCT/TEAM NAME
+# WoofWoof - Team 4
 
- > _Note:_ This document is meant to be written during (or shortly after) your initial planning meeting.     
- > It does not really make sense for you to edit this document much (if at all) while working on the project - Instead, at the end of the planning phase, you can refer back to this document and decide which parts of your plan you are happy with and which parts you would like to change.
+## Iteration 2
 
-
-## Iteration XX
-
- * Start date: FILL IN THE DATE WHEN YOU HAD YOUR FIRST TEAM PLANNING MEETING
- * End date: FILL IN THE DATE WHEN YOU ARE PLANNING TO HAVE YOUR REVIEW MEETING
-
-## Process
-
-(Optional:) Quick introduction
+* Start date: Oct 18
+* End date: Oct 25
 
 #### Roles & responsibilities
 
-Describe the different roles on the team and the responsibilities associated with each role.
+The team kept the same roles same as before with Malavan, Tiger, and George on the back-end and Rohan, Grace, and Matthew on the front end.
+
+In addition to our assigned roles, there were times when someone who was working on the frontend would help out someone working on the back-end and vice versa. This was necessary for times when individuals came across blockers they could not get through on there own.
 
 #### Events
 
-Describe meetings (and other events) you are planning to have:
+Tutorial Meetings (Monday)
 
- * When and where? In-person or online?
- * What's the purpose of each meeting?
- * Other events could be coding sessions, code reviews, quick weekly sync' meeting online, etc.
+* Review what everyone has accomplished over the weekend.
+* Address blockers anyone might have.
+* Hear feedback from TA and see how to apply this to the upcoming sprint.
+
+Prepare for Weekend Meetings (Thursday)
+
+* Check everyone's schedule for any upcoming deadlines not related to 301.
+  * Assign tasks accordingly.
+* Address blockers anyone might have with tasks assigned.
+* Review any major changes/direction of the app.
+* Reprioritize tasks according to any changes/discussion we have during this meeting.
 
 #### Artifacts
 
-List/describe the artifacts you will produce in order to organize your team.       
-
- * Artifacts can be To-do lists, Task boards, schedule(s), etc.
- * We want to understand:
-   * How do you keep track of what needs to get done?
-   * How do you prioritize tasks?
-   * How do tasks get assigned to team members?
+* To-Do List: Github Issues
+  * These items were then moved to the Kanban board after being assigned.
+* Task Boards: Github Projects Kanban Board
+  * Task priorities and assignments done on Thursday were recorded here.
 
 #### Git / GitHub workflow
 
-Describe your Git / GitHub workflow.     
-Essentially, we want to understand how your team members share a codebase and avoid conflicts. You must incorporate 'Pull Requests' into your process. 
-
- * Be concise, yet precise.      
-For example, "we use pull-requests" is not a precise statement since it leaves too many open questions - Pull-requests from where to where? Who reviews the pull-requests? Who is responsible for merging them? etc.
- * If applicable, specify any naming conventions or standards you decide to adopt.
- * Don't forget to **explain why** you chose this workflow.
-
-
+Our workflow began with creating issues on github for work that needed to be done such as features, fixes, etc. One of our team members may choose to work on one or more issues. Typically, we would then create a new branch. Issues that are similar to or have dependency to code written in the new branch would then also work on that branch. When it is felt that it is appropriate to merge the branch onto master, such as when major features are completed, another team member reviews the code and merges the pull request. The other team member should ideally be someone who also works on the same role, either front-end or back-end, but did not work directly on.
 
 ## Product
 
 #### Goals and tasks
 
- * Describe your goals for this iteration and the tasks that you will have to complete in order to achieve these goals.
- * Order the items from most to least important.
- * Feel free (but not obligated) to specify some/all tasks as user stories.
+Backend
+* Setup MongoDB cloud instance.
+* Setup rest endpoints to load and persist data.
+  * Events (Controller, Model, Service)
+  * Users (Controller, Model, Service)
+
+Frontend
+* Setup the map homepage.
+  * Users should be able see near by parks around them.
+  * Users should be able to click on the park markers and see upcoming/current events.
+  * Users should be able to create new events from the park details page.
+* Setup event page.
+  * Users should be able to see/search through all events.
+  * Users should be able to see a map of the location event through a map.
+* Setup user profile
+  * View all dogs and be able to change user profile information.
 
 #### Artifacts
 
-List/describe the artifacts you will produce in order to present your project idea.
-
- * Artifacts can be text, code, images, videos, interactive mock-ups and/or any other useful artifact you can think of.
- * Make sure to explain the purpose of each artifact (i.e. Why is it on your to-do list? Why is it useful for your team?)
- * Be concise, yet precise.         
-   For example: "Build the website" is not precise at all, but "Build a static home page and upload it somewhere, so that it is publicly accessible" is much clearer.
+* Video
+  * Shows primary uses of application
+* Wireframes
+  * Mock up of final front end
+* REST api created with Spring Boot
+  * Used MongoDB as database
+* Front end created as an Ionic Application.
+  * Used google maps api to populate map screen
