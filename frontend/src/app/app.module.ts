@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
+import { LoginPage } from '../pages/login/login'
 import { MapPage } from '../pages/map/map';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -25,6 +26,7 @@ import { ParkLocationPage } from '../pages/park-location/park-location';
     MyApp,
     MapPage,  
     HomePage,
+    LoginPage,
     TabsPage,
     ParkDetailsPage,
     EventsPage,
@@ -42,6 +44,7 @@ import { ParkLocationPage } from '../pages/park-location/park-location';
     MyApp,
     MapPage,
     HomePage,
+    LoginPage,
     TabsPage,
     ParkDetailsPage,
     EventsPage,
