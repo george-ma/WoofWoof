@@ -7,14 +7,27 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Login Page</ion-title>
+    <ion-title> (use admin:admin to login) </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <button ion-button large icon-start (click)="registerUser()">
-    Register
-  </button>
-  <button ion-button large icon-start (click)="loginUser()">
-    Login
-  </button>
+
+    <ion-list>
+
+        <ion-item>
+          <ion-label floating>Username</ion-label>
+          <ion-input type="text" #username></ion-input>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label floating>Password</ion-label>
+          <ion-input type="password" #password></ion-input>
+        </ion-item>
+      
+      </ion-list>
+      
+      <div padding>
+        <button block ion-button (click)="loginUser()">Login</button>
+      </div>
 </ion-content>

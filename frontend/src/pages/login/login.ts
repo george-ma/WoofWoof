@@ -1,12 +1,7 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild} from '@angular/core';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { TabsPage } from './../tabs/tabs';
 
 @IonicPage()
 @Component({
@@ -15,7 +10,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class LoginPage {
 
-    constructor(public navCtrl: NavController, public navParams: NavParams) {
+    @ViewChild('username') username;
+    @ViewChild('password') password;
+
+    constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
     }
 
     ionViewDidLoad() {
@@ -23,9 +21,18 @@ export class LoginPage {
     }
 
     loginUser(){
-    //you can use either of below
-    //this.route.navigateByUrl('/app/tabs/(home:home)');
-    //this.navCtrl.navigateRoot('/app/tabs/(home:home)')
+        if (this.username.value == "admin" && this.password.value == "admin") {
+            const alert = this.alertCtrl.create({
+                title: 'Login Successful!',
+                subTitle: 'You are logged in.',
+                buttons: [
+                    {
+                    text: 'OK',
+                    handler: () => { this.navCtrl.push(TabsPage); }
+                    }]
+              });
+              alert.present();
+        }
     }
 
     registerUser(){
