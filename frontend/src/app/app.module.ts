@@ -19,6 +19,7 @@ import { EditEventPage } from './../pages/edit-event/edit-event';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { EventProvider } from '../providers/event/event';
 import { ParkLocationPage } from '../pages/park-location/park-location';
+import { NewsfeedPage } from '../pages/newsfeed/newsfeed';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { ParkLocationPage } from '../pages/park-location/park-location';
     EventsPage,
     EditEventPage,
     EditProfilePage,
-    ParkLocationPage
+    ParkLocationPage,
+    NewsfeedPage,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import { ParkLocationPage } from '../pages/park-location/park-location';
     EventsPage,
     EditEventPage,
     EditProfilePage,
-    ParkLocationPage
+    ParkLocationPage,
+    NewsfeedPage
   ],
   providers: [
     StatusBar,
