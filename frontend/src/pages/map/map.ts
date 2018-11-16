@@ -36,14 +36,28 @@ export class MapPage {
 
   ionViewWillLeave() {
     console.log('left');
+    this.autocompleteItems = [];
+    this.autocomplete = {
+      query: ''
+    };
+    this.initMap(this.navCtrl);
+  }
+
+  ionViewWillEnter() {
+    console.log('enter');
+    this.autocompleteItems = [];
+    // this.autocomplete = {
+    //   query: ''
+    // };
+    this.initMap(this.navCtrl);
   }
 
   ionViewDidLoad() {
     this.allDogParks = [];
     this.autocompleteItems = [];
-    this.autocomplete = {
-      query: ''
-    };
+    // this.autocomplete = {
+    //   query: ''
+    // };
     this.initMap(this.navCtrl);
   }
 
@@ -59,19 +73,23 @@ export class MapPage {
   geoCode(address: any) {
     let placesServices = new google.maps.places.PlacesService(this.map);
     placesServices.textSearch({ query: address }, (results, status) => {
-      // console.log({ lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng() });
+      // console.log({ lat: rsults[0].geometry.location.lat(), lng: results[0].geometry.location.lng() });
       console.log(results[0]);
       const place: any = results[0];
-      this.navCtrl.push(ParkDetailsPage,
-        {
-          parentNav: this.navCtrl,
-          parkName: address,
-          parkAddress: place.plus_code.compound_code,
-          parkPictures: place.photos,
-          park: place,
-          currentEvents: [], // rest calls
-          upcomingEvents: [] // rest calls
-        });
+      this.map.setCenter({
+        lat: place.geometry.lat(),
+        lng: place.geometry.lng()
+      });
+      // this.navCtrl.push(ParkDetailsPage,
+      //   {
+      //     parentNav: this.navCtrl,
+      //     parkName: address,
+      //     parkAddress: place.plus_code.compound_code,
+      //     parkPictures: place.photos,
+      //     park: place,
+      //     currentEvents: [], // rest calls
+      //     upcomingEvents: [] // rest calls
+      //   });
     });
   }
 

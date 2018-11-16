@@ -54,4 +54,8 @@ public class UserController {
     public @ResponseBody byte[] getProfilePic(@PathVariable String username) {
         return imageRepository.getProfilePic(username);
     }
+
+//    <img [src]="'data:image/JPEG;base64,' + result.arrayofbytes" />
+    // display images
+
 }

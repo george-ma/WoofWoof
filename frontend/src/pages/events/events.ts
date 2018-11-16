@@ -21,9 +21,13 @@ export class EventsPage {
     //   this.parkEvents = result;
     //   this.origEvents = result;
     // })
+  }
+  
+  ionViewWillEnter(){
     this.eventProvider.getAllEvents().subscribe((result: any[]) => {
       this.parkEvents = result.filter(event => event.isPublic);
       this.origEvents = this.parkEvents;
+      console.log('new events');
     })
     this.rsvpButtonColour = 'primary';
     this.events = "Other Events";

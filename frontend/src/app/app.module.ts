@@ -12,6 +12,9 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Geolocation } from '@ionic-native/geolocation';
+import { Camera } from '@ionic-native/camera';
+import { ImagePicker } from '@ionic-native/image-picker';
+
 import { EventsPage } from '../pages/events/events';
 import { EditEventPage } from './../pages/edit-event/edit-event';
 
@@ -23,7 +26,7 @@ import { ParkLocationPage } from '../pages/park-location/park-location';
 @NgModule({
   declarations: [
     MyApp,
-    MapPage,  
+    MapPage,
     HomePage,
     TabsPage,
     ParkDetailsPage,
@@ -53,9 +56,11 @@ import { ParkLocationPage } from '../pages/park-location/park-location';
     StatusBar,
     SplashScreen,
     Geolocation,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     EventProvider,
+    Camera,
+    ImagePicker,
   ]
 })
-export class AppModule {}
+export class AppModule { }
