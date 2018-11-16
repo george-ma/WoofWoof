@@ -25,6 +25,8 @@ export class MapPage {
 
   chosenLocation: any = '';
 
+  views = 'Map';
+
 
   constructor(
     public navCtrl: NavController,
@@ -38,6 +40,7 @@ export class MapPage {
     console.log('left');
   }
 
+
   ionViewDidLoad() {
     this.allDogParks = [];
     this.autocompleteItems = [];
@@ -45,6 +48,15 @@ export class MapPage {
       query: ''
     };
     this.initMap(this.navCtrl);
+  }
+
+  switchSelector(event) {
+    console.log(event);
+    console.log('swithed');
+    console.log(event._value);
+     if (event._value === 'Map') {
+      this.initMap(this.navCtrl);
+     }
   }
 
   chooseItem(item: any) {
