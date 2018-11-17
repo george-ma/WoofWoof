@@ -26,7 +26,7 @@ export class EditEventPage {
   private location;
   private description;
   
-  myDate;
+  myDate: String = new Date().toISOString();
   pushMyDate;
   park;
   parkName;
@@ -38,10 +38,10 @@ export class EditEventPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, private eventProvider: EventProvider, public toastCtrl: ToastController) {
     
     this.eventForm = this.formBuilder.group({
-      eventName: ['', Validators.required],
-      location: ['', Validators.required],
+      eventName: [''],
+      location: [''],
       description: new FormControl('', Validators.compose([
-        Validators.required
+        //Validators.required
         //Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')   //Ensure email is valid
       ]))
     })
