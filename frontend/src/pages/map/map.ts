@@ -15,6 +15,9 @@ export class MapPage {
   allDogParks: google.maps.Marker[];
 
   currentLocation = { lat: 0, lng: 0 };
+  currentMarker: google.maps.Marker;
+
+  currentLocationName;
 
   placeHolder: string = "Enter a Park";
 
@@ -25,6 +28,8 @@ export class MapPage {
 
   chosenLocation: any = '';
 
+  views = 'Map';
+
 
   constructor(
     public navCtrl: NavController,
@@ -34,23 +39,24 @@ export class MapPage {
   ) {
   }
 
-  ionViewWillLeave() {
-    console.log('left');
-    this.autocompleteItems = [];
-    this.autocomplete = {
-      query: ''
-    };
-    this.initMap(this.navCtrl);
-  }
+  // ionViewWillLeave() {
+  //   console.log('left');
+  //   this.autocompleteItems = [];
+  //   this.autocomplete = {
+  //     query: ''
+  //   };
+  //   this.initMap(this.navCtrl);
+  // }
 
-  ionViewWillEnter() {
-    console.log('enter');
-    this.autocompleteItems = [];
-    // this.autocomplete = {
-    //   query: ''
-    // };
-    this.initMap(this.navCtrl);
-  }
+  // ionViewWillEnter() {
+  //   console.log('enter');
+  //   this.autocompleteItems = [];
+  //   // this.autocomplete = {
+  //   //   query: ''
+  //   // };
+  //   this.initMap(this.navCtrl);
+  // }
+
 
   ionViewDidLoad() {
     this.allDogParks = [];
@@ -61,9 +67,19 @@ export class MapPage {
     this.initMap(this.navCtrl);
   }
 
+  switchSelector(event) {
+    console.log(event);
+    console.log('swithed');
+    console.log(event._value);
+    if (event._value === 'Map') {
+      this.initMap(this.navCtrl);
+    }
+  }
+
   chooseItem(item: any) {
     console.log(item);
     console.log(item.split(',')[0]);
+    this.currentLocationName = item.split(',')[0];
     const place: any = this.geoCode(item);
   }
 
@@ -76,10 +92,15 @@ export class MapPage {
       // console.log({ lat: rsults[0].geometry.location.lat(), lng: results[0].geometry.location.lng() });
       console.log(results[0]);
       const place: any = results[0];
-      this.map.setCenter({
-        lat: place.geometry.lat(),
-        lng: place.geometry.lng()
-      });
+      this.currentLocation = {
+        lat: place.geometry.location.lat(),
+        lng: place.geometry.location.lng()
+      }
+      this.currentMarker = this.setCurrentMarker(this.currentLocation, this.map);
+      this.map.setCenter(
+        this.currentLocation
+      );
+
       // this.navCtrl.push(ParkDetailsPage,
       //   {
       //     parentNav: this.navCtrl,
@@ -136,7 +157,7 @@ export class MapPage {
 
       this.map = map;
 
-      let currentMarker: google.maps.Marker = this.setCurrentMarker(this.currentLocation, map);
+      this.currentMarker = this.setCurrentMarker(this.currentLocation, map);
 
       let dragging = false;
       let oldCenter = this.currentLocation;
@@ -203,27 +224,32 @@ export class MapPage {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         console.log(results);
         results.forEach((place: any) => {
-          console.log(place);
-          const newPark = new google.maps.Marker({
-            map: map,
-            icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
-            position: place.geometry.location,
-          });
+          // TODO: Check by place name
+          // if ({ lat: place.geometry.location.lat(), lng: place.geometry.location.lng() } !== currentPosition) {
+          if (place.name !== this.currentLocationName) {
 
-          newPark.addListener('click', function () {
-            navCtrl.push(ParkDetailsPage,
-              {
-                parentNav: navCtrl,
-                parkName: place.name,
-                parkAddress: place.plus_code.compound_code,
-                parkPictures: place.photos,
-                park: place,
-                currentEvents: [], // rest calls
-                upcomingEvents: [] // rest calls
-              });
-          });
-          parkList.push(newPark);
-          console.log(parkList);
+            console.log(place);
+            const newPark = new google.maps.Marker({
+              map: map,
+              icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+              position: place.geometry.location,
+            });
+
+            newPark.addListener('click', function () {
+              navCtrl.push(ParkDetailsPage,
+                {
+                  parentNav: navCtrl,
+                  parkName: place.name,
+                  parkAddress: place.plus_code.compound_code,
+                  parkPictures: place.photos,
+                  park: place,
+                  currentEvents: [], // rest calls
+                  upcomingEvents: [] // rest calls
+                });
+            });
+            parkList.push(newPark);
+            console.log(parkList);
+          }
         });
       }
     });
