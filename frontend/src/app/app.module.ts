@@ -6,6 +6,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { LoginPage } from '../pages/login/login'
+import { RegisterFormPage } from '../pages/register-form/register-form'
 import { MapPage } from '../pages/map/map';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -28,6 +29,7 @@ import { NewsfeedPage } from '../pages/newsfeed/newsfeed';
     MapPage,  
     HomePage,
     LoginPage,
+    RegisterFormPage,
     TabsPage,
     ParkDetailsPage,
     EventsPage,
@@ -47,6 +49,7 @@ import { NewsfeedPage } from '../pages/newsfeed/newsfeed';
     MapPage,
     HomePage,
     LoginPage,
+    RegisterFormPage,
     TabsPage,
     ParkDetailsPage,
     EventsPage,
