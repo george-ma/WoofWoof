@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Events } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -19,7 +19,8 @@ export class RegisterFormPage {
   constructor(
       public navCtrl: NavController, 
       public navParams: NavParams,
-      private alertCtrl: AlertController
+      private alertCtrl: AlertController,
+      public events: Events
       ) {}
 
   public register() {
@@ -43,7 +44,9 @@ export class RegisterFormPage {
           text: 'OK',
           handler: () => { 
                 if (this.createSuccess) {
-                    this.navCtrl.pop();
+                    this.navCtrl.pop().then( () => {
+                        this.events.publish('newUser', this.registerCredentials.name, this.registerCredentials.password)
+                    });
                 } 
             }
         }

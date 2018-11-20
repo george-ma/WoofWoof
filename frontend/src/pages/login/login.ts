@@ -1,5 +1,6 @@
 import { Component, ViewChild} from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Events } from 'ionic-angular';
+
 
 import { TabsPage } from './../tabs/tabs';
 import { RegisterFormPage } from '../register-form/register-form';
@@ -13,32 +14,55 @@ export class LoginPage {
 
     @ViewChild('username') username;
     @ViewChild('password') password;
+    
+    loginSuccess = false;
+    private accounts = {
+        'admin': 'admin'
+    };
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
-    }
-
-    ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+    constructor(public navCtrl: NavController, public navParams: NavParams, 
+        public alertCtrl: AlertController, public events: Events) {
     }
 
     loginUser(){
-        if (this.username.value == "admin" && this.password.value == "admin") {
-            const alert = this.alertCtrl.create({
-                title: 'Login Successful!',
-                subTitle: 'You are logged in.',
-                buttons: [
-                    {
-                    text: 'OK',
-                    handler: () => { this.navCtrl.push(TabsPage); }
-                    }]
-              });
-              alert.present();
+        var found = false;
+        for (var userName in this.accounts){
+            if (this.username.value === userName && this.password.value === this.accounts[userName]) {
+                this.loginSuccess = true;
+                this.showPopup("Login Success!", "You are now logged in.");
+                found = true;
+                return;
+            }
         }
+        if (!found){this.showPopup("Error", "Invalid Login Credentials.")}
     }
 
     redirectRegister(){
+        this.events.subscribe('newUser', (user, password) => {
+            console.log(`Register Info ${user} ${password}`);
+            this.accounts[user] = password; // update users array
+
+            this.events.unsubscribe('newUser')
+        })
         this.navCtrl.push(RegisterFormPage);
     }
-
+    
+    showPopup(title, text) {
+        let alert = this.alertCtrl.create({
+          title: title,
+          subTitle: text,
+          buttons: [
+            {
+              text: 'OK',
+              handler: () => { 
+                    if (this.loginSuccess) {
+                        this.navCtrl.push(TabsPage);
+                    } 
+                }
+            }
+          ]
+        });
+        alert.present();
+      }
 
 }
