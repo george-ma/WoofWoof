@@ -2,6 +2,7 @@ import { Component, ViewChild} from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
 import { TabsPage } from './../tabs/tabs';
+import { RegisterFormPage } from '../register-form/register-form';
 
 @IonicPage()
 @Component({
@@ -35,8 +36,8 @@ export class LoginPage {
         }
     }
 
-    registerUser(){
-        
+    redirectRegister(){
+        this.navCtrl.push(RegisterFormPage);
     }
 
 
