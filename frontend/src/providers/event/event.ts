@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class EventProvider {
 
-  public API = 'http://localhost:8080';
+  public API = 'https://doggo-meet-uppo.herokuapp.com';
   public PARK_DETAILS_API = this.API + '/api/event';
 
   constructor(public http: HttpClient) {
