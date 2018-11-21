@@ -5,7 +5,7 @@
   "homepage": "http://ionicframework.com/",
   "private": true,
   "scripts": {
-    "start": "ionic cordova run browser",
+    "start": "ionic cordova run android -c",
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
     "lint": "ionic-app-scripts lint"
@@ -20,8 +20,8 @@
     "@angular/http": "5.2.11",
     "@angular/platform-browser": "5.2.11",
     "@angular/platform-browser-dynamic": "5.2.11",
-    "@ionic-native/camera": "^4.17.0",
     "@angular/router": "^7.0.4",
+    "@ionic-native/camera": "^4.17.0",
     "@ionic-native/core": "~4.15.0",
     "@ionic-native/date-picker": "^4.16.0",
     "@ionic-native/geolocation": "^4.16.0",

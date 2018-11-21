@@ -1,3 +1,4 @@
+import { GalleryPage } from './../pages/gallery/gallery';
 import { HttpClientModule } from '@angular/common/http';
 import { ParkDetailsPage } from './../pages/park-details/park-details';
 import { NgModule, ErrorHandler } from '@angular/core';
@@ -38,6 +39,7 @@ import { NewsfeedPage } from '../pages/newsfeed/newsfeed';
     EditProfilePage,
     ParkLocationPage,
     NewsfeedPage,
+    GalleryPage,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +58,8 @@ import { NewsfeedPage } from '../pages/newsfeed/newsfeed';
     EditEventPage,
     EditProfilePage,
     ParkLocationPage,
-    NewsfeedPage
+    NewsfeedPage,
+    GalleryPage,
   ],
   providers: [
     StatusBar,

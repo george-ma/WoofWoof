@@ -17,7 +17,7 @@ export class MapPage {
   currentLocation = { lat: 0, lng: 0 };
   currentMarker: google.maps.Marker;
 
-  currentLocationName;
+  currentLocationName = 'High PArk Dog Off Leash Area';
 
   placeHolder: string = "Enter a Park";
 
@@ -30,6 +30,9 @@ export class MapPage {
 
   views = 'Map';
 
+  // SETUP NOTES
+  // need to do a quick search to initialize green pin, don't ask why
+
 
   constructor(
     public navCtrl: NavController,
@@ -39,28 +42,10 @@ export class MapPage {
   ) {
   }
 
-  // ionViewWillLeave() {
-  //   console.log('left');
-  //   this.autocompleteItems = [];
-  //   this.autocomplete = {
-  //     query: ''
-  //   };
-  //   this.initMap(this.navCtrl);
-  // }
-
-  // ionViewWillEnter() {
-  //   console.log('enter');
-  //   this.autocompleteItems = [];
-  //   // this.autocomplete = {
-  //   //   query: ''
-  //   // };
-  //   this.initMap(this.navCtrl);
-  // }
-
-
   ionViewDidLoad() {
     this.allDogParks = [];
     this.autocompleteItems = [];
+    this.currentLocationName = '';
     // this.autocomplete = {
     //   query: ''
     // };
@@ -88,29 +73,19 @@ export class MapPage {
   // set new current pin to here and pan map to it
   geoCode(address: any) {
     let placesServices = new google.maps.places.PlacesService(this.map);
+    const thisComp = this;
     placesServices.textSearch({ query: address }, (results, status) => {
-      // console.log({ lat: rsults[0].geometry.location.lat(), lng: results[0].geometry.location.lng() });
       console.log(results[0]);
       const place: any = results[0];
-      this.currentLocation = {
+      thisComp.currentLocationName = place.name;
+      thisComp.currentLocation = {
         lat: place.geometry.location.lat(),
         lng: place.geometry.location.lng()
       }
-      this.currentMarker = this.setCurrentMarker(this.currentLocation, this.map);
-      this.map.setCenter(
-        this.currentLocation
+      thisComp.map.setCenter(
+        thisComp.currentLocation
       );
-
-      // this.navCtrl.push(ParkDetailsPage,
-      //   {
-      //     parentNav: this.navCtrl,
-      //     parkName: address,
-      //     parkAddress: place.plus_code.compound_code,
-      //     parkPictures: place.photos,
-      //     park: place,
-      //     currentEvents: [], // rest calls
-      //     upcomingEvents: [] // rest calls
-      //   });
+      thisComp.currentMarker = this.setCurrentMarker(this.currentLocation, this.map);
     });
   }
 
@@ -165,6 +140,7 @@ export class MapPage {
       let parkList: google.maps.Marker[];
 
       const loadParks = this.loadNearbyParks;
+      const currentPlace = this.currentLocationName;
       map.addListener('idle', function () {
         const currentPosition = {
           lat: map.getCenter().lat(),
@@ -175,7 +151,7 @@ export class MapPage {
             park.setMap(null);
           })
           parkList = [];
-          parkList = loadParks(currentPosition, map, navCtrl);
+          parkList = loadParks(currentPosition, map, navCtrl, currentPlace);
           console.log(parkList);
         }
         if (!dragging) {
@@ -192,7 +168,7 @@ export class MapPage {
         dragging = false;
       })
 
-      parkList = this.loadNearbyParks(this.currentLocation, map, this.navCtrl);
+      parkList = this.loadNearbyParks(this.currentLocation, map, this.navCtrl, this.currentLocationName);
 
     });
   }
@@ -204,17 +180,18 @@ export class MapPage {
     console.log(place);
   }
 
-  setCurrentMarker(currentPosition, map) {
-    return new google.maps.Marker({
+  setCurrentMarker(currentPosition, map): google.maps.Marker {
+    const newCurrent = new google.maps.Marker({
       position: currentPosition,
       map: map,
       icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
     });
+    return newCurrent;
   }
 
-  loadNearbyParks(currentPosition, map, navCtrl): google.maps.Marker[] {
+  loadNearbyParks(currentPosition, map, navCtrl, currentPlace): google.maps.Marker[] {
     const placesService = new google.maps.places.PlacesService(map);
-    const parkList: google.maps.Marker[] = []
+    const parkList: google.maps.Marker[] = [];
     placesService.nearbySearch({
       location: currentPosition,
       radius: 1000,
@@ -225,48 +202,37 @@ export class MapPage {
         console.log(results);
         results.forEach((place: any) => {
           // TODO: Check by place name
-          // if ({ lat: place.geometry.location.lat(), lng: place.geometry.location.lng() } !== currentPosition) {
-          if (place.name !== this.currentLocationName) {
 
-            console.log(place);
-            const newPark = new google.maps.Marker({
-              map: map,
-              icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
-              position: place.geometry.location,
-            });
-
-            newPark.addListener('click', function () {
-              navCtrl.push(ParkDetailsPage,
-                {
-                  parentNav: navCtrl,
-                  parkName: place.name,
-                  parkAddress: place.plus_code.compound_code,
-                  parkPictures: place.photos,
-                  park: place,
-                  currentEvents: [], // rest calls
-                  upcomingEvents: [] // rest calls
-                });
-            });
-            parkList.push(newPark);
-            console.log(parkList);
+          console.log(place);
+          let marker = '';
+          if (place.name === currentPlace) {
+            marker = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png';
+          } else {
+            marker = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
           }
+          const newPark = new google.maps.Marker({
+            map: map,
+            icon: marker,
+            position: place.geometry.location,
+          });
+
+          newPark.addListener('click', function () {
+            navCtrl.push(ParkDetailsPage,
+              {
+                parentNav: navCtrl,
+                parkName: place.name,
+                parkAddress: place.plus_code.compound_code,
+                parkPictures: place.photos,
+                park: place,
+                currentEvents: [], // rest calls
+                upcomingEvents: [] // rest calls
+              });
+          });
+          parkList.push(newPark);
+          console.log(parkList);
         });
       }
     });
     return parkList;
-  }
-
-  showParkDetails(navCtrl: NavController) {
-    console.log('double click');
-    // this.navCtrl.push(ParkDetailsPage, {});
-  }
-
-  showParkModal() {
-    /**
-     * - Need to make ParkEvents component
-     * - make backend requests to see current and upcoming and past events.
-     */
-    // let parkModal = this.modalCtrl.create(ParkEvents, {});
-    // parkModal.present();
   }
 }
