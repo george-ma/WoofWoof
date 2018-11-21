@@ -5,6 +5,10 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { } from '@types/googlemaps';
 
+import { EventProvider } from '../../providers/event/event';
+import { ParkLocationPage } from '../park-location/park-location';
+EventProvider
+
 @Component({
   selector: 'page-map',
   templateUrl: 'map.html'
@@ -32,14 +36,24 @@ export class MapPage {
 
   // SETUP NOTES
   // need to do a quick search to initialize green pin, don't ask why
+  // Events segment
+  parkEvents: any;
+  origEvents: any;
+  rsvpButtonColour: string;
 
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private geolocation: Geolocation,
-    private zone: NgZone
+    private zone: NgZone,
+    public eventProvider: EventProvider
   ) {
+    this.eventProvider.getAllEvents().subscribe((result: any[]) => {
+      this.parkEvents = result.filter(event => event.isPublic);
+      this.origEvents = this.parkEvents;
+    })
+    this.rsvpButtonColour = 'primary';
   }
 
   ionViewDidLoad() {
@@ -69,6 +83,10 @@ export class MapPage {
   }
 
   //convert Address string to lat and long
+
+  // TODO: To navigate away from map,
+  // 1. go to view events
+  // 2. navigate to other page
 
   // set new current pin to here and pan map to it
   geoCode(address: any) {
@@ -235,4 +253,45 @@ export class MapPage {
     });
     return parkList;
   }
+
+  showParkDetails(navCtrl: NavController) {
+    console.log('double click');
+    // this.navCtrl.push(ParkDetailsPage, {});
+  }
+
+  showParkModal() {
+    /**
+     * - Need to make ParkEvents component
+     * - make backend requests to see current and upcoming and past events.
+     */
+    // let parkModal = this.modalCtrl.create(ParkEvents, {});
+    // parkModal.present();
+  }
+
+  searchEvents(ev) {
+    // this.initializeEvents();
+
+    const search: string = ev.target.value;
+
+    // if the value is an empty string don't filter the items
+    if (search && search.trim() != '') {
+      this.parkEvents = this.parkEvents.filter((event) => {
+        return (event.eventName.toLowerCase().indexOf(search.toLowerCase()) > -1);
+      })
+    } else {
+      this.parkEvents = this.origEvents;
+    }
+  }
+
+  goToMap(event) {
+    this.navCtrl.push(
+      ParkLocationPage,
+      { event: event }
+    )
+  }
+
+  buttonClicked(currButton) {
+    currButton.color = 'secondary';
+  }
+
 }
