@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Events } from 'ionic-angular';
 
 /**
  * Generated class for the DoggoFormPage page.
@@ -16,20 +16,55 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class DoggoFormPage {
 
     createSuccess = false;
+
+    // TODO: image upload integration
     dogInfo = {
         name: '',
         description: '',
         imageURL: ''
     };
 
-    constructor(public navCtrl: NavController, public navParams: NavParams) { }
-
-    addNewDoggo(){
+    constructor(
+        public navCtrl: NavController, 
+        public navParams: NavParams,
+        private alertCtrl: AlertController,
+        public events: Events
+        ) {}
         
+    public submitNewDoggo(){
+        if (this.dogInfo.name === "" || this.dogInfo.description === ""){
+            this.showPopup("Error", "Incomplete information.")
+        } else {
+            this.createSuccess = true;
+            this.showPopup("Success", "New dog added.");
+        }
     }
 
     uploadImage(){
       
     }
+
+    showPopup(title, text) {
+        let alert = this.alertCtrl.create({
+          title: title,
+          subTitle: text,
+          buttons: [
+            {
+              text: 'OK',
+              handler: () => { 
+                    if (this.createSuccess) {
+                        this.navCtrl.pop().then( () => {
+                            this.events.publish('newDoggo', 
+                            this.dogInfo.name, 
+                            this.dogInfo.description,
+                            this.dogInfo.imageURL)
+                        });
+                    } 
+                }
+            }
+          ]
+        });
+        alert.present();
+      }
 
 }

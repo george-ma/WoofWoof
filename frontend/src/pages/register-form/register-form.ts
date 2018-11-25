@@ -35,6 +35,10 @@ export class RegisterFormPage {
     }
   }
 
+  uploadImage(){
+      
+  }
+
   showPopup(title, text) {
     let alert = this.alertCtrl.create({
       title: title,
@@ -45,7 +49,9 @@ export class RegisterFormPage {
           handler: () => { 
                 if (this.createSuccess) {
                     this.navCtrl.pop().then( () => {
-                        this.events.publish('newUser', this.registerCredentials.name, this.registerCredentials.password)
+                        this.events.publish('newUser', 
+                        this.registerCredentials.name, 
+                        this.registerCredentials.password)
                     });
                 } 
             }
@@ -53,10 +59,6 @@ export class RegisterFormPage {
       ]
     });
     alert.present();
-  }
-
-  uploadImage(){
-      
   }
 
 }
