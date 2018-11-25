@@ -55,4 +55,8 @@ export class RegisterFormPage {
     alert.present();
   }
 
+  uploadImage(){
+      
+  }
+
 }
