@@ -24,7 +24,6 @@
       <ion-row no-padding>
           <ion-col text-center>
             <button ion-button clear large icon-start (click)="editProfile()">
-              <!-- <ion-icon name='trash'></ion-icon> -->
               Edit
             </button>
           </ion-col>
@@ -69,6 +68,13 @@
               <h2>Nala</h2>
             </ion-item>
           </ion-list>
+    </div>
+
+    <div class="addDoggoButton">
+      <button ion-button full icon-start (click)="addNewDoggo()">
+          <ion-icon name="md-add"></ion-icon>
+          Add New Doggo
+      </button>
     </div>
 
 </ion-content>

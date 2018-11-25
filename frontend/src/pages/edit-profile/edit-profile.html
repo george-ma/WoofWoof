@@ -20,7 +20,10 @@
   </ion-avatar>
   <!-- </ion-item> -->
 
-  <button ion-button id="uploadImage" color="primary" (click)="uploadImage()">Upload Image</button>
+  <button ion-button icon-start (click)="uploadImage()">
+      <ion-icon name="md-camera"></ion-icon>
+      Upload Image
+  </button>
 
 
   <form [formGroup]="profileForm" (ngSubmit)="logForm()">
