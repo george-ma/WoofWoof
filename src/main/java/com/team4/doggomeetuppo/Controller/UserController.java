@@ -55,6 +55,24 @@ public class UserController {
         return imageRepository.getProfilePic(username);
     }
 
+    @PostMapping(value = "/saveDogPic")
+    public ResponseEntity saveDogPic(
+        @RequestParam(value = "profilePic") MultipartFile profilePic,
+        @RequestParam(value = "username") String username,
+        @RequestParam(value = "dogname") String dogname
+    ) {
+        if (imageRepository.saveDogPic(profilePic, username,dogname)) {
+            return new ResponseEntity(HttpStatus.OK);
+        } else {
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping(value = "/getDogPic/{username}/{dogname}", produces = MediaType.IMAGE_JPEG_VALUE)
+    public @ResponseBody byte[] getDogPic(@PathVariable("username") String username,@PathVariable("dogname") String dogname) {
+        return imageRepository.getDogPic(username,dogname);
+    }
+
 //    <img [src]="'data:image/JPEG;base64,' + result.arrayofbytes" />
     // display images
 
