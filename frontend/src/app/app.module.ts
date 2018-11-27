@@ -18,6 +18,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Camera } from '@ionic-native/camera';
 import { ImagePicker } from '@ionic-native/image-picker';
+import { File } from '@ionic-native/file';
+import { Transfer } from '@ionic-native/transfer';
+import { FilePath } from '@ionic-native/file-path';
 
 import { EventsPage } from '../pages/events/events';
 import { EditEventPage } from './../pages/edit-event/edit-event';
@@ -78,6 +81,9 @@ import { UserProvider } from '../providers/user/user';
     Camera,
     ImagePicker,
     UserProvider,
+    File,
+    Transfer,
+    FilePath,
   ]
 })
 export class AppModule { }
