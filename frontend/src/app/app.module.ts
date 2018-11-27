@@ -8,6 +8,7 @@ import { MyApp } from './app.component';
 
 import { LoginPage } from '../pages/login/login'
 import { RegisterFormPage } from '../pages/register-form/register-form'
+import { DoggoFormPage } from '../pages/doggo-form/doggo-form'
 import { MapPage } from '../pages/map/map';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -35,6 +36,7 @@ import { UserProvider } from '../providers/user/user';
     HomePage,
     LoginPage,
     RegisterFormPage,
+    DoggoFormPage,
     TabsPage,
     ParkDetailsPage,
     EventsPage,
@@ -56,6 +58,7 @@ import { UserProvider } from '../providers/user/user';
     HomePage,
     LoginPage,
     RegisterFormPage,
+    DoggoFormPage,
     TabsPage,
     ParkDetailsPage,
     EventsPage,

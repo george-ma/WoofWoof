@@ -20,6 +20,11 @@
   </ion-avatar>
   <!-- </ion-item> -->
 
+  <button ion-button icon-start (click)="uploadImage()">
+      <ion-icon name="md-camera"></ion-icon>
+      Upload Image
+  </button>
+
 
   <form [formGroup]="profileForm" (ngSubmit)="logForm()">
       
@@ -61,13 +66,20 @@
         formControlName="email"></ion-input>
       </ion-item>
 
-      <button ion-button type="submit" [disabled]="!profileForm.valid">Submit</button>
+      <ion-row>
+          <ion-col>
+            <button ion-button type="submit" [disabled]="!profileForm.valid">Submit</button>
+          </ion-col>
+      </ion-row>
+
+
       <h2>{{ name }}</h2>
       <h2>{{ username }}</h2>
       <h2>{{ email }}</h2>
 
     </ion-list>
   </form>
+</ion-content>
 
   <!-- <div class="alert alert-danger"
   *ngIf="form.controls.confirmPassword.errors?.MutchPassword">Password not match</div> -->

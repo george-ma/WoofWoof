@@ -24,7 +24,6 @@
       <ion-row no-padding>
           <ion-col text-center>
             <button ion-button clear large icon-start (click)="editProfile()">
-              <!-- <ion-icon name='trash'></ion-icon> -->
               Edit
             </button>
           </ion-col>
@@ -39,8 +38,21 @@
         </ion-segment-button>
       </ion-segment>
     </div>
-    
+
     <div [ngSwitch]="nav">
+        <ion-list *ngFor="let dog of doggos">
+            <ion-item>
+              <ion-thumbnail item-start>
+                <img src={{dog.imageURL}}>
+              </ion-thumbnail>
+              <h2>{{dog.name}}</h2>
+              <h3>{{dog.breed}}</h3>
+              <h3>{{dog.description}}</h3>
+            </ion-item>
+          </ion-list>
+    </div>
+    
+    <!-- <div [ngSwitch]="nav">
         <ion-list *ngSwitchCase="'myDoggos'">
             <ion-item>
               <ion-thumbnail item-start>
@@ -69,6 +81,13 @@
               <h2>Nala</h2>
             </ion-item>
           </ion-list>
+    </div> -->
+
+    <div class="addDoggoButton">
+      <button ion-button full icon-start (click)="redirectNewDoggo()">
+          <ion-icon name="md-add"></ion-icon>
+          Add New Doggo
+      </button>
     </div>
 
 </ion-content>
