@@ -10,23 +10,18 @@ EventProvider
   templateUrl: 'events.html'
 })
 export class EventsPage {
-  parkEvents: any;// ParkEvent[];
+  parkEvents: any;
   origEvents: any;
   rsvpButtonColour: string;
   events: string;
 
   constructor(public navCtrl: NavController, public eventProvider: EventProvider) {
-    // this.initializeEvents();
-    // this.eventProvider.getEventsByLocation('High Park Dog Off Leash Area').subscribe(result => {
-    //   this.parkEvents = result;
-    //   this.origEvents = result;
-    // })
     this.eventProvider.getAllEvents().subscribe((result: any[]) => {
       this.parkEvents = result.filter(event => event.isPublic);
       this.origEvents = this.parkEvents;
     })
     this.rsvpButtonColour = 'primary';
-    this.events = "Other Events";
+    this.events = "My Events";
   }
 
   initializeEvents() {
