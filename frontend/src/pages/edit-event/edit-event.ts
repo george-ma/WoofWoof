@@ -1,3 +1,4 @@
+import { UserProvider } from './../../providers/user/user';
 import { ImagePicker, ImagePickerOptions } from '@ionic-native/image-picker';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
@@ -25,10 +26,12 @@ import { INTERNAL_BROWSER_DYNAMIC_PLATFORM_PROVIDERS } from '@angular/platform-b
 export class EditEventPage {
 
 
-  private eventForm: FormGroup;
+  public eventForm: FormGroup;
   private eventName;
   private location;
   private description;
+
+  public noImage = true;
 
   myDate;
   pushMyDate;
@@ -46,13 +49,16 @@ export class EditEventPage {
     mediaType: this.camera.MediaType.PICTURE
   };
 
-  imagePickerOptions: ImagePickerOptions = {
-    maximumImagesCount: 1,
-    quality: 100,
-    outputType: 1
-  };
-
-  constructor(private imagePicker: ImagePicker, private actionSheetCtrl: ActionSheetController, private camera: Camera, public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, private eventProvider: EventProvider, public toastCtrl: ToastController) {
+  constructor(
+    private actionSheetCtrl: ActionSheetController, 
+    private camera: Camera, 
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private formBuilder: FormBuilder, 
+    private eventProvider: EventProvider, 
+    public toastCtrl: ToastController,
+    private userProvider: UserProvider
+  ) {
 
     this.eventForm = this.formBuilder.group({
       eventName: ['', Validators.required],
@@ -62,8 +68,6 @@ export class EditEventPage {
         //Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')   //Ensure email is valid
       ]))
     })
-
-
   }
 
   presentActionSheet() {
@@ -76,23 +80,14 @@ export class EditEventPage {
             console.log('Camera Picked');
             this.camera.getPicture(this.options).then((imageData) => {
               let base64Image = 'data:image/jpeg;base64,' + imageData
-              this.navCtrl.push(GalleryPage, { image: base64Image });
+              this.userProvider.saveUserProfile(base64Image, 'amy4real').subscribe(result => {
+                
+                // this.navCtrl.push(GalleryPage, { image: base64Image });
+              });
             },
               (err) => {
                 console.log(err);
               });
-          }
-        }, {
-          text: 'Choose Photo',
-          handler: () => {
-            console.log('Choose Photo');
-            this.imagePicker.getPictures(this.imagePickerOptions).then((results) => {
-              for (var i = 0; i < results.length; i++) {
-                console.log('Image URI: ' + results[i]);
-              }
-            }, (err) => {
-              console.log(err);
-            });
           }
         }
       ]

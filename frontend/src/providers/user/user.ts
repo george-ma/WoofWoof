@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class UserProvider {
 
-  public API = 'http://localhost:8080'
+  public API = 'https://doggo-meet-uppo.herokuapp.com';
   public USER_DETAIL_API = this.API + '/api/user';
 
   constructor(public http: HttpClient) {
@@ -19,9 +19,31 @@ export class UserProvider {
   }
 
   saveUser(newUser: any): Observable<any> {
-    return this.http.put(
-      this.USER_DETAIL_API + '/saveProfilePic',
+    return this.http.post(
+      this.USER_DETAIL_API + '/save',
       newUser
+    );
+  }
+
+  saveUserProfile(photo: any, username: string): Observable<any> {
+    return this.http.post(
+      this.USER_DETAIL_API + '/saveProfilePic',
+      {
+        profilePic: photo,
+        username: username
+      }
+
+    );
+  }
+
+  saveDog(photo: any, username: string, dogName: string): Observable<any> {
+    return this.http.post(
+      this.USER_DETAIL_API + '/saveDogPic',
+      {
+        profilePic: photo,
+        username: username,
+        dogname: dogName
+      }
     );
   }
 
