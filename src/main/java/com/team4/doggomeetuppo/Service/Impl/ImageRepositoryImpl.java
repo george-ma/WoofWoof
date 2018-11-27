@@ -37,7 +37,7 @@ public class ImageRepositoryImpl implements ImageRepository {
 //                    .getResourceAsStream("/com/team4/doggomeetuppo/Resources/test_image.jpg");
             DBObject metadata = new BasicDBObject();
             metadata.put("username", username);
-            gridFsTemplate.store(profilePicStream, metadata);
+            gridFsTemplate.store(profilePicStream, username, metadata);
             logger.info(String.format("Stored new profile pic for user: %s", username));
             return true;
         } catch (IOException e) {
@@ -52,11 +52,11 @@ public class ImageRepositoryImpl implements ImageRepository {
     @Override
     public byte[] getProfilePic(String username) {
         byte[] loaded = null;
-        Query query = Query.query(GridFsCriteria.whereMetaData("username").is(username));
-        GridFSFile resource = gridFsTemplate.findOne(query);
+//        Query query = Query.query(GridFsCriteria.whereMetaData("username").is(username));
+        GridFsResource resource = gridFsTemplate.getResource(username);
         if (resource != null) {
             logger.info(String.format("Retrieved profile pic for user: %s", username));
-            try (InputStream inputStream = new GridFsResource(resource).getInputStream()) {
+            try (InputStream inputStream = resource.getInputStream()) {
                 loaded = StreamUtils.copyToByteArray(inputStream);
             } catch (IOException e) {
                 logger.error(e.getCause());
@@ -100,10 +100,11 @@ public class ImageRepositoryImpl implements ImageRepository {
         byte[] loaded = null;
         Query query = Query.query(GridFsCriteria.whereMetaData("username").is(username));
         query.addCriteria(GridFsCriteria.whereMetaData("dog").is(dogname));
-        GridFSFile resource = gridFsTemplate.findOne(query);
+//        GridFSFile resource = gridFsTemplate.findOne(query);
+        GridFsResource resource = gridFsTemplate.getResource(username);
         if (resource != null) {
             logger.info(String.format("Retrieved dog pic for user: %s", username));
-            try (InputStream inputStream = new GridFsResource(resource).getInputStream()) {
+            try (InputStream inputStream = resource.getInputStream()) {
                 loaded = StreamUtils.copyToByteArray(inputStream);
             } catch (IOException e) {
                 logger.error(e.getCause());

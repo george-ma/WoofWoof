@@ -25,6 +25,7 @@ import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { EventProvider } from '../providers/event/event';
 import { ParkLocationPage } from '../pages/park-location/park-location';
 import { NewsfeedPage } from '../pages/newsfeed/newsfeed';
+import { UserProvider } from '../providers/user/user';
 
 
 @NgModule({
@@ -73,6 +74,7 @@ import { NewsfeedPage } from '../pages/newsfeed/newsfeed';
     EventProvider,
     Camera,
     ImagePicker,
+    UserProvider,
   ]
 })
 export class AppModule { }

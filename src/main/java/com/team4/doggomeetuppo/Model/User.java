@@ -10,13 +10,13 @@ public class User {
 
     private String userName;
 
-    private String pathToPicture;
+    private String firstName;
 
-    private String phoneNumber;
+    private String lastName;
 
     private List<Event> eventsHosted;
 
-    private List<Dog> dogsOwned;
+    private List<String> dogsOwned;
 
     public User() {}
 
@@ -32,14 +32,6 @@ public class User {
         this.userName = userName;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
     public List<Event> getEventsHosted() {
         return eventsHosted;
     }
@@ -52,16 +44,31 @@ public class User {
         this.eventsHosted.add(event);
     }
 
-    public List<Dog> getDogsOwned() {
+    public List<String> getDogsOwned() {
         return dogsOwned;
     }
 
-    public void setDogsOwned(List<Dog> dogsOwned) {
+    public void setDogsOwned(List<String> dogsOwned) {
         this.dogsOwned = dogsOwned;
     }
 
-    public void addDog(Dog dog){
+    public void addDog(String dog){
         this.dogsOwned.add(dog);
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 }
