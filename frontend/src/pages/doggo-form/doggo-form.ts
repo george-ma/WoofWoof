@@ -21,6 +21,7 @@ export class DoggoFormPage {
     dogInfo = {
         name: '',
         description: '',
+        breed: '',
         imageURL: ''
     };
 
@@ -32,7 +33,7 @@ export class DoggoFormPage {
         ) {}
         
     public submitNewDoggo(){
-        if (this.dogInfo.name === "" || this.dogInfo.description === ""){
+        if (this.dogInfo.name === "" || this.dogInfo.description === "" || this.dogInfo.breed === ""){
             this.showPopup("Error", "Incomplete information.")
         } else {
             this.createSuccess = true;
@@ -56,6 +57,7 @@ export class DoggoFormPage {
                         this.navCtrl.pop().then( () => {
                             this.events.publish('newDoggo', 
                             this.dogInfo.name, 
+                            this.dogInfo.breed,
                             this.dogInfo.description,
                             this.dogInfo.imageURL)
                         });

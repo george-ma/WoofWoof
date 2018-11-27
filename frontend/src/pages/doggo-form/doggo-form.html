@@ -24,6 +24,35 @@
             </ion-item>
   
             <ion-item>
+              <ion-label floating>Breed</ion-label>
+              <ion-select name = "breed" [(ngModel)]="dogInfo.breed" required>
+                <ion-option value="Akita">Akita</ion-option>
+                <ion-option value="Beagle">Beagle</ion-option>
+                <ion-option value="Border Collie">Border Collie</ion-option>
+                <ion-option value="Boxer">Boxer</ion-option>
+                <ion-option value="Bull Terrier">Bull Terrier</ion-option>
+                <ion-option value="Bulldog">Bulldog</ion-option>
+                <ion-option value="Chihuahua">Chihuahua</ion-option>
+                <ion-option value="Dachsund">Dachsund</ion-option>
+                <ion-option value="Dobermann">Dobermann</ion-option>
+                <ion-option value="English Mastiff">English Mastiff</ion-option>
+                <ion-option value="French Bulldog">French Bulldog</ion-option>
+                <ion-option value="German Shepherd">German Shepherd</ion-option>
+                <ion-option value="Golden Retriever">Golden Retriever</ion-option>
+                <ion-option value="Great Dane">Great Dane</ion-option>
+                <ion-option value="Labrador">Labrador</ion-option>
+                <ion-option value="Pomeranian">Pomeranian</ion-option>
+                <ion-option value="Poodle">Poodle</ion-option>
+                <ion-option value="Pug">Pug</ion-option>
+                <ion-option value="Rottweiler">Rottweiler</ion-option>
+                <ion-option value="Shih Tzu">Shih Tzu</ion-option>
+                <ion-option value="Siberian Husky">Siberian Husky</ion-option>
+                <ion-option value="Yorkshire Terrier">Yorkshire Terrier</ion-option>
+                <ion-option value="Other">Other</ion-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
               <ion-label floating>Description</ion-label>
               <ion-input type="text" name="description" [(ngModel)]="dogInfo.description" required></ion-input>
             </ion-item>

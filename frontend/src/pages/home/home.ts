@@ -11,10 +11,10 @@ export class HomePage {
     nav: string = "myDoggos"
 
     public doggos: any = [
-        {name:'Luna', description:'bestest boyo', imageURL:'assets/imgs/home/puppy-1.jpg'},
-        {name:'Milo', description:'second bestest boyo', imageURL:'assets/imgs/home/puppy-2.jpg'},
-        {name:'Bandit', description:'', imageURL:'assets/imgs/home/puppy-3.jpg'},
-        {name:'Nala', description:'', imageURL:'assets/imgs/home/puppy-4.jpg'}];
+        {name:'Luna', breed: 'Rottweiler', description:'bestest boyo', imageURL:'assets/imgs/home/puppy-1.jpg'},
+        {name:'Milo', breed: 'Golden Retriever', description:'second bestest boyo', imageURL:'assets/imgs/home/puppy-2.jpg'},
+        {name:'Bandit', breed: 'Golden Retriever', description:'', imageURL:'assets/imgs/home/puppy-3.jpg'},
+        {name:'Nala', breed: 'Shetland Sheepdog', description:'', imageURL:'assets/imgs/home/puppy-4.jpg'}];
 
     constructor(public navCtrl: NavController, public navParams: NavParams, 
         public alertCtrl: AlertController, public events: Events) {
@@ -30,14 +30,14 @@ export class HomePage {
   }
 
   redirectNewDoggo(){
-      this.events.subscribe('newDoggo', (name, description, imageURL) => {
-          console.log(`Dog info: ${name} ${description} ${imageURL}`);
+      this.events.subscribe('newDoggo', (name, breed, description, imageURL) => {
+          console.log(`Dog info: ${name} ${breed} ${description} ${imageURL}`);
 
           if (imageURL === ""){
               imageURL = 'assets/imgs/home/puppy-default.png'
           }
           
-          this.doggos.push({name: name, description: description, imageURL: imageURL})
+          this.doggos.push({name: name, breed: breed, description: description, imageURL: imageURL})
           
           this.events.unsubscribe('newDoggo')
       })
