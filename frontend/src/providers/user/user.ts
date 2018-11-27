@@ -36,7 +36,7 @@ export class UserProvider {
     );
   }
 
-  saveDog(photo: Blob, username: string, dogName: string): Observable<any> {
+  saveDog(photo: any, username: string, dogName: string): Observable<any> {
     let headers = new HttpHeaders();
     headers.set('Content-Type', null);
     headers.set('Accept', "multipart/form-data");
@@ -46,7 +46,7 @@ export class UserProvider {
     formData.append('dogname', dogName);
     formData.append('profilePic', photo);
     return this.http.post(
-      this.USER_DETAIL_API + '/saveDogPic', formData, { params, headers }
+      this.USER_DETAIL_API + '/saveDogPic', formData, { headers: headers }
     );
   }
 

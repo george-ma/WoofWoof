@@ -55,7 +55,7 @@ public class UserController {
         return imageRepository.getProfilePic(username);
     }
 
-    @PostMapping(value = "/saveDogPic", consumes = "multipart/form-data")
+    @PostMapping(value = "/saveDogPic")
     public ResponseEntity saveDogPic(
         @RequestParam(value = "profilePic") MultipartFile profilePic,
         @RequestParam(value = "username") String username,

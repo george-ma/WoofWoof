@@ -52,8 +52,8 @@ export class DoggoFormPage {
             this.showPopup("Error", "Incomplete information.")
         } else {
             this.createSuccess = true;
-            this.userProvider.saveDog(this.image, 'amy4real', this.dogInfo.name).subscribe(result => {
-                
+            this.userProvider.saveDog(this.dogInfo.imageURL, 'amy4real', this.dogInfo.name).subscribe(result => {
+
                 // this.navCtrl.push(GalleryPage, { image: base64Image });
             });
             this.showPopup("Success", "New dog added.");
