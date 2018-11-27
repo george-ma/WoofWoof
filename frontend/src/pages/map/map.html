@@ -4,7 +4,7 @@
       <ion-segment-button value="Map">
         Map
       </ion-segment-button>
-      <ion-segment-button value="View Events">
+      <ion-segment-button value="ViewEvents">
         View Events
       </ion-segment-button>
     </ion-segment>
@@ -13,40 +13,35 @@
 
 <ion-content style="height: 100%; width: 100%;">
   <div [ngSwitch]="views" style="height: 100%; width: 100%;">
-    <div *ngIf="views === 'Map'" style="height: 100%; width: 100%;">
-      <ion-content style="height: 100%; width: 100%;">
-        <div>
-            <ion-searchbar [(ngModel)]="autocomplete.query" [showCancelButton]="true" (ionInput)="updateSearch()" placeholder="Search for Park">
-            </ion-searchbar>
-            <ion-list *ngIf="autocompleteItems.length > 0">
-              <ion-item  *ngFor="let item of autocompleteItemsDescription" tappable (click)="chooseItem(item)">
-                {{item}}
-              </ion-item>
-            </ion-list>
-          </div>
-
-        <div id="map" style="height: 90%; width: 100%;"></div>
-      </ion-content>
-      
-    </div>
-    <ion-list *ngIf="views === 'View Events'">
-          <ion-searchbar
-            (ionInput)="searchEvents($event)"
-            (showCancelButton)="shouldShowCancel">
-          </ion-searchbar>
-          <ion-item *ngFor="let event of parkEvents" text-wrap>
-              <div>
-                <h2>
-                {{ event.eventName }}
-                </h2>
-                <p>
-                {{ event.eventInfo }}
-                </p>
-              </div>
-                <button ion-button round (click)="goToMap(event)">Get location</button>
-                <button #rsvp ion-button round color="primary" (click)="buttonClicked(rsvp)">RSVP</button>
-          </ion-item>
+    <ion-list *ngIf="views === 'Map'" style="height: 100%; width: 100%;">
+      <!-- <ion-content style="height: 100%; width: 100%;"> -->
+      <ion-searchbar [(ngModel)]="autocomplete.query" [showCancelButton]="true" (ionInput)="updateSearch()" placeholder="Search for Park">
+      </ion-searchbar>
+      <ion-list *ngIf="autocompleteItems.length > 0">
+        <ion-item *ngFor="let item of autocompleteItemsDescription" tappable (click)="chooseItem(item)">
+          {{item}}
+        </ion-item>
       </ion-list>
-    </div>
-  </ion-content>
-  
+
+      <div id="map" style="height: 95%;"></div>
+      <!-- </ion-content> -->
+
+    </ion-list>
+    <ion-list *ngIf="views === 'ViewEvents'">
+      <ion-searchbar (ionInput)="searchEvents($event)" [showCancelButton]="true">
+      </ion-searchbar>
+      <ion-item *ngFor="let event of parkEvents" text-wrap>
+        <div>
+          <h2>
+            {{ event.eventName }}
+          </h2>
+          <p>
+            {{ event.eventInfo }}
+          </p>
+        </div>
+        <button ion-button round (click)="goToMap(event)">Get location</button>
+        <button #rsvp ion-button round color="primary" (click)="buttonClicked(rsvp)">RSVP</button>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

@@ -18,7 +18,7 @@ export class MapPage {
   map: google.maps.Map;
   allDogParks: google.maps.Marker[];
 
-  currentLocation = { lat: 0, lng: 0 };
+  currentLocation: any;
   currentMarker: google.maps.Marker;
 
   currentLocationName = 'High PArk Dog Off Leash Area';
@@ -49,17 +49,18 @@ export class MapPage {
     private zone: NgZone,
     public eventProvider: EventProvider
   ) {
-    this.eventProvider.getAllEvents().subscribe((result: any[]) => {
-      this.parkEvents = result.filter(event => event.isPublic);
-      this.origEvents = this.parkEvents;
-    })
     this.rsvpButtonColour = 'primary';
   }
-
+  
   ionViewDidLoad() {
     this.allDogParks = [];
     this.autocompleteItems = [];
     this.currentLocationName = '';
+    this.eventProvider.getAllEvents().subscribe((result: any[]) => {
+      this.parkEvents = result.filter(event => event.isPublic);
+      this.origEvents = this.parkEvents;
+      console.log(this.parkEvents);
+    })
     // this.autocomplete = {
     //   query: ''
     // };
@@ -72,6 +73,8 @@ export class MapPage {
     console.log(event._value);
     if (event._value === 'Map') {
       this.initMap(this.navCtrl);
+    } else {
+      this.views = 'ViewEvents';
     }
   }
 
@@ -137,14 +140,17 @@ export class MapPage {
 
   initMap(navCtrl) {
     this.geolocation.getCurrentPosition().then(result => {
-      this.currentLocation = {
-        lat: result.coords.latitude,
-        lng: result.coords.longitude,
+      if (!this.currentLocation) {
+        this.currentLocation = {
+          lat: result.coords.latitude,
+          lng: result.coords.longitude,
+        }
       }
       const map = new google.maps.Map(
         document.getElementById('map'), {
           center: this.currentLocation,
-          zoom: 15
+          zoom: 15,
+          disableDefaultUI: true,
         }
       );
 
