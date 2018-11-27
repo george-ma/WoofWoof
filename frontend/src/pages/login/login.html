@@ -1,0 +1,26 @@
+<!-- <ion-content padding> -->
+<ion-content>
+  
+  <div class="img-margin">
+    <img src="assets/imgs/woofwoof.png" alt="logo">
+  </div>
+
+  <div class="center">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Username</ion-label>
+        <ion-input type="text" #username></ion-input>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input type="password" #password></ion-input>
+      </ion-item>
+    </ion-list>
+  </div>
+    
+  <div padding>
+    <button ion-button (click)="redirectRegister()">Register</button>
+    <button ion-button (click)="loginUser()">Login</button>
+  </div>
+</ion-content>

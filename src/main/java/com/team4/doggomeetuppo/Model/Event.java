@@ -10,11 +10,11 @@ public class Event {
     private String eventName;
     private List<String> pathsToPictures;
     private String eventInfo;
-    private Location location;
+    private String location;
     private TimeLocation timeLocation;
     private boolean isPublic;
     private boolean isCanceled = false;
-    private enum status {
+    public enum status {
         ACTIVE, PLANNED, NONE
     }
     private status eventStatus;
@@ -27,7 +27,7 @@ public class Event {
 
     public Event() {}
 
-    public Event(Location location, String eventName, TimeLocation timeLocation, boolean isPublic, User host) {
+    public Event(String location, String eventName, TimeLocation timeLocation, boolean isPublic, User host) {
         this.location = location;
         this.eventName = eventName;
         this.timeLocation = timeLocation;
@@ -102,5 +102,12 @@ public class Event {
                 attending.remove(i);
             }
         }
+    }
+
+    public String getLocation() {
+        return this.location;
+    }
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

@@ -9,6 +9,7 @@ import java.util.List;
 public interface EventRepository {
     public Event findByEventName(String eventName);
     public Event findByEventId(String eventId);
+    public List<Event> findByPlaceName(String geocode);
     public List<Event> getAllEvents();
     public void saveEvent(Event event);
     public void addEvent(Event event);

@@ -1,0 +1,85 @@
+<!--
+  Generated template for the EditProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Edit Profile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <!-- <ion-item > -->
+  <ion-avatar class="avatar">
+    <img src="/assets/imgs/home/dog-owner.jpg">
+  </ion-avatar>
+  <!-- </ion-item> -->
+
+  <button ion-button icon-start (click)="uploadImage()">
+      <ion-icon name="md-camera"></ion-icon>
+      Upload Image
+  </button>
+
+
+  <form [formGroup]="profileForm" (ngSubmit)="logForm()">
+      
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>Username</ion-label>
+        <ion-input 
+        placeholder="Enter new username" 
+        type="text" 
+        formControlName="username"
+        id="username">
+
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Password</ion-label>
+        <ion-input 
+        placeholder="Enter new password"
+        type="password" 
+        id="password"
+        formControlName="password"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label stacked>Confirm Password</ion-label>
+          <ion-input 
+          placeholder="Enter password again"
+          type="password" 
+          id="confirmPassword"
+          formControlName="confirmPassword"></ion-input>
+        </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Email</ion-label>
+        <ion-input 
+        placeholder="Enter new email" 
+        type="email" 
+        formControlName="email"></ion-input>
+      </ion-item>
+
+      <ion-row>
+          <ion-col>
+            <button ion-button type="submit" [disabled]="!profileForm.valid">Submit</button>
+          </ion-col>
+      </ion-row>
+
+
+      <h2>{{ name }}</h2>
+      <h2>{{ username }}</h2>
+      <h2>{{ email }}</h2>
+
+    </ion-list>
+  </form>
+</ion-content>
+
+  <!-- <div class="alert alert-danger"
+  *ngIf="form.controls.confirmPassword.errors?.MutchPassword">Password not match</div> -->
