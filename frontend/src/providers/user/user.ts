@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 /*
@@ -36,14 +36,17 @@ export class UserProvider {
     );
   }
 
-  saveDog(photo: File, username: string, dogName: string): Observable<any> {
+  saveDog(photo: Blob, username: string, dogName: string): Observable<any> {
+    let headers = new HttpHeaders();
+    headers.set('Content-Type', null);
+    headers.set('Accept', "multipart/form-data");
+    let params = new HttpParams();
+    let formData: FormData = new FormData();
+    formData.append('username', username);
+    formData.append('dogname', dogName);
+    formData.append('profilePic', photo);
     return this.http.post(
-      this.USER_DETAIL_API + '/saveDogPic',
-      {
-        profilePic: photo,
-        username: username,
-        dogname: dogName
-      }
+      this.USER_DETAIL_API + '/saveDogPic', formData, { params, headers }
     );
   }
 
