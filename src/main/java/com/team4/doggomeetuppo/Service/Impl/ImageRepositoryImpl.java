@@ -29,7 +29,7 @@ public class ImageRepositoryImpl implements ImageRepository {
     @Override
     public boolean saveProfilePic(MultipartFile profilePic, String username) {
         try (InputStream profilePicStream = profilePic.getInputStream()) {
-            if (maybeLoadFile(username).isPresent()) {
+            if (maybeLoadFile(getFileByNameQuery(username)).isPresent()) {
                 gridFsTemplate.delete(getFileByNameQuery(username));
                 logger.info(String.format("Deleted existing profile pic for user: %s", username));
             }
@@ -73,9 +73,8 @@ public class ImageRepositoryImpl implements ImageRepository {
     @Override
     public boolean saveDogPic(MultipartFile dogPic, String username, String dogname){
         try (InputStream profilePicStream = dogPic.getInputStream()) {
-            if (maybeLoadFile(username).isPresent()) {
-                Query query = Query.query(GridFsCriteria.whereMetaData("username").is(username));
-                query.addCriteria(GridFsCriteria.whereMetaData("dog").is(dogname));
+            Query query = Query.query(GridFsCriteria.whereMetaData("username").is(username)).addCriteria(GridFsCriteria.whereMetaData("dog").is(dogname));
+            if (maybeLoadFile(query).isPresent()) {
                 gridFsTemplate.delete(query);
                 logger.info(String.format("Deleted existing dog pic for user: %s", username));
             }
@@ -84,7 +83,7 @@ public class ImageRepositoryImpl implements ImageRepository {
             DBObject metadata = new BasicDBObject();
             metadata.put("username", username);
             metadata.put("dog", dogname);
-            gridFsTemplate.store(profilePicStream, metadata);
+            logger.info(gridFsTemplate.store(profilePicStream, dogname, metadata));
             logger.info(String.format("Stored new dog pic for user: %s", username));
             return true;
         } catch (IOException e) {
@@ -98,14 +97,14 @@ public class ImageRepositoryImpl implements ImageRepository {
 
     public byte[] getDogPic(String username, String dogname) {
         byte[] loaded = null;
-        Query query = Query.query(GridFsCriteria.whereMetaData("username").is(username));
-        query.addCriteria(GridFsCriteria.whereMetaData("dog").is(dogname));
+        Query query = Query.query(GridFsCriteria.whereMetaData("dog").is(dogname)).addCriteria(GridFsCriteria.whereMetaData("username").is(username));
 //        GridFSFile resource = gridFsTemplate.findOne(query);
-        GridFsResource resource = gridFsTemplate.getResource(username);
+        GridFsResource resource = gridFsTemplate.getResource(dogname);
         if (resource != null) {
             logger.info(String.format("Retrieved dog pic for user: %s", username));
             try (InputStream inputStream = resource.getInputStream()) {
                 loaded = StreamUtils.copyToByteArray(inputStream);
+                return loaded;
             } catch (IOException e) {
                 logger.error(e.getCause());
                 logger.error(e.getMessage());
@@ -118,8 +117,8 @@ public class ImageRepositoryImpl implements ImageRepository {
         return loaded;
     }
 
-    private Optional<GridFSFile> maybeLoadFile(String username) {
-        return Optional.ofNullable(gridFsTemplate.findOne(getFileByNameQuery(username)));
+    private Optional<GridFSFile> maybeLoadFile(Query query) {
+        return Optional.ofNullable(gridFsTemplate.findOne(query));
     }
 
     private Query getFileByNameQuery(String username) {

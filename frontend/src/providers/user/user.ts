@@ -36,7 +36,7 @@ export class UserProvider {
     );
   }
 
-  saveDog(photo: any, username: string, dogName: string): Observable<any> {
+  saveDog(photo: File, username: string, dogName: string): Observable<any> {
     return this.http.post(
       this.USER_DETAIL_API + '/saveDogPic',
       {
