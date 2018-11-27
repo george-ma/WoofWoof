@@ -73,6 +73,19 @@ public class UserController {
         return imageRepository.getDogPic(username,dogname);
     }
 
+    @GetMapping(value = "/getLocation/{username}")
+    public String getLocation(@PathVariable("username") String userName){
+         User user = userRepository.findByUserName(userName);
+         return user.getGeocode();
+    }
+
+    @PostMapping(value = "/checkIn/{username}")
+    public void checkIn(@PathVariable("username") String userName, @RequestParam(value = "geocode") String geocode){
+        User user = userRepository.findByUserName(userName);
+        user.setGeocode(geocode);
+        userRepository.saveUser(user);
+    }
+
 //    <img [src]="'data:image/JPEG;base64,' + result.arrayofbytes" />
     // display images
 

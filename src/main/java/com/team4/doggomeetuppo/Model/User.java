@@ -18,6 +18,8 @@ public class User {
 
     private List<Dog> dogsOwned;
 
+    private String geocode;
+
     public User() {}
 
     public User(String userName){
@@ -63,5 +65,9 @@ public class User {
     public void addDog(Dog dog){
         this.dogsOwned.add(dog);
     }
+
+    public void setGeocode(String geocode){ this.geocode = geocode; }
+
+    public String getGeocode(){ return this.geocode; }
 
 }
