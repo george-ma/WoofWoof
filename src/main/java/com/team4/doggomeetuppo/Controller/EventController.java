@@ -1,6 +1,5 @@
 package com.team4.doggomeetuppo.Controller;
 
-import com.sun.deploy.net.HttpResponse;
 import com.team4.doggomeetuppo.Model.Event;
 import com.team4.doggomeetuppo.Service.EventRepository;
 import com.team4.doggomeetuppo.Service.ImageRepository;
@@ -13,9 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Base64;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 @CrossOrigin
 @RestController
@@ -70,14 +68,11 @@ public class EventController {
     }
 
     @PostMapping(value = "/getEventPic", produces = MediaType.IMAGE_JPEG_VALUE)
-    public @ResponseBody ResponseEntity<byte[]> getDogPic(
+    public @ResponseBody byte[] getDogPic(
             @RequestParam("parkName") String parkName,
             @RequestParam("eventName") String eventName
     ) {
-        byte[] encodeImage = imageRepository.getEventPic(parkName, eventName);
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Content-Type", "image/jpg");
-        return new ResponseEntity<>(encodeImage, headers, HttpStatus.OK);
+        return imageRepository.getEventPic(parkName, eventName);
     }
 
 //    @RequestMapping(value = "/attend", method = RequestMethod.POST)

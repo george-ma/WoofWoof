@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import {HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Response } from '@angular/http';
 
 /*
   Generated class for the EventProvider provider.
@@ -12,6 +13,7 @@ import { Observable } from 'rxjs/Observable';
 export class EventProvider {
 
   public API = 'https://doggo-meet-uppo.herokuapp.com'
+  // public API = 'http://localhost:8080';
   public PARK_DETAILS_API = this.API + '/api/event';
 
   constructor(public http: HttpClient) {
@@ -42,7 +44,8 @@ export class EventProvider {
     formData.append('eventName', eventName);
     return this.http.post(
       this.PARK_DETAILS_API + '/getEventPic',
-      formData
+      formData,
+      { responseType: 'blob' },
     );
   }
 }

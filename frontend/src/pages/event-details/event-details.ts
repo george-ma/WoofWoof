@@ -20,9 +20,10 @@ export class EventDetailsPage {
   description: string;
   location: string;
   pictureURI: any;
+  imageToShow: any;
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     public eventProvider: EventProvider) {
   }
@@ -34,10 +35,23 @@ export class EventDetailsPage {
     this.location = this.navParams.get('event').location;
     console.log(this.location, this.title);
     this.eventProvider.getEventPhoto(this.location, this.title).subscribe(res => {
-      this.pictureURI = res.json();
       console.log(this.pictureURI);
+      this.createImageFromBlob(res);
+      // this.pictureURI = 'data:image/jpeg;base64,' + res;
       // console.log(res);
     })
+  }
+
+
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+      this.pictureURI = reader.result;
+    }, false);
+
+    if (image) {
+      reader.readAsDataURL(image);
+    }
   }
 
 }
