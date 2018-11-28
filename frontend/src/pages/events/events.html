@@ -1,41 +1,119 @@
 <ion-header>
   <ion-toolbar>
     <ion-segment [(ngModel)]="events">
-      <ion-segment-button value="My Events">
-        My Events
+      <ion-segment-button value="Going">
+        Going
       </ion-segment-button>
-      <ion-segment-button value="Other Events">
-        Other Events
+      <ion-segment-button value="Hosting">
+        Hosting
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div [ngSwitch]="events" >
-    <ion-list *ngSwitchCase="'My Events'">
-      <h1 padding>RSVP'd</h1>
+<ion-content padding>
+  <div [ngSwitch]="events">
+    <ion-list *ngSwitchCase="'Going'">
+      <flash-card>
 
-      <h1 padding>Hosting</h1>
+        <div class="flash-card-front">
+          <ion-card>
+            <img src="../../assets/imgs/newsfeed/bday_pup.jpg" style="height:300px;" />
+            <ion-card-content>
+              <ion-card-title text-center>
+                Milo's Birthday!!
+              </ion-card-title>
+            </ion-card-content>
+          </ion-card>
+        </div>
+
+        <div class="flash-card-back" style="vertical-align: middle;">
+          <ion-card style="width:320px; vertical-align: middle;">
+            <ion-card-content style="width:320px;">
+              <ion-card-title text-center>
+                Milo's Birthday!!
+              </ion-card-title>
+              <p text-center>Treats, cakes, and lots of doggos! :)</p>
+              <p text-center style="background-color:rgb(213, 240, 240);">Date: 2019-05-12</p>
+            </ion-card-content>
+            <ion-row text-center>
+              <ion-col>
+                <button ion-button style="background-color:powderblue;">
+                  Location
+                </button>
+              </ion-col>
+            </ion-row>
+            <ion-row text-center>
+              <ion-col>
+                <button ion-button style="background-color:powderblue;">
+                  Cancel
+                </button>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </div>
+
+      </flash-card>
+      <flash-card>
+        <div class="flash-card-front">
+          <ion-card>
+            <img src="../../assets/imgs/newsfeed/4_corgis.jpeg" style="height:300px;" />
+            <ion-card-content>
+              <ion-card-title text-center>
+                Corgis Convention
+              </ion-card-title>
+            </ion-card-content>
+          </ion-card>
+        </div>
+
+        <div class="flash-card-back">
+          <ion-card style="width:200px;">
+            <ion-card-content style="width:320px;">
+              <ion-card-title text-center>
+                Corgis Convention
+              </ion-card-title>
+              <p text-center>Come witness the greatest gathering of your neighbourhood corgis! :)</p>
+              <p text-center style="background-color:rgb(213, 240, 240);">Date: 2019-07-23</p>
+            </ion-card-content>
+            <ion-row text-center>
+              <ion-col>
+                <button ion-button style="background-color:powderblue;">
+                  Location
+                </button>
+              </ion-col>
+            </ion-row>
+            <ion-row text-center>
+              <ion-col>
+                <button ion-button style="background-color:powderblue;">
+                  Cancel
+                </button>
+              </ion-col>
+            </ion-row>
+
+          </ion-card>
+        </div>
+      </flash-card>
+
 
     </ion-list>
-    <ion-list *ngSwitchCase="'Other Events'">
-        <ion-searchbar
-          (ionInput)="searchEvents($event)"
-          (showCancelButton)="shouldShowCancel">
-        </ion-searchbar>
-          <ion-item *ngFor="let event of parkEvents" text-wrap>
-              <div>
-                <h2>
-                {{ event.eventName }}
-                </h2>
-                <p>
-                {{ event.eventInfo }}
-                </p>
-              </div>
-                <button ion-button round (click)="goToMap(event)">Get location</button>
-                <button #rsvp ion-button round color="primary" (click)="buttonClicked(rsvp)">RSVP</button>
-          </ion-item>
+    <ion-list *ngSwitchCase="'Hosting'">
+      <ion-card>
+        <img src="../../assets/imgs/newsfeed/Animal-Planet-Puppy-Bowl-X.jpg" />
+        <ion-card-content>
+          <ion-card-title>
+            Puppy Bowl Weekend!
+          </ion-card-title>
+          <p>
+            Sign your puppy up at the upcoming Puppy Bowl!
+          </p>
+        </ion-card-content>
+        <ion-row>
+          <button ion-button icon-start clear small>
+            <ion-icon name="paw"></ion-icon>
+            <div>37 Likes</div>
+          </button>
+        </ion-row>
+      </ion-card>
     </ion-list>
   </div>
 </ion-content>

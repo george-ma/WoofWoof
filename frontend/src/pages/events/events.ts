@@ -21,7 +21,7 @@ export class EventsPage {
       this.origEvents = this.parkEvents;
     })
     this.rsvpButtonColour = 'primary';
-    this.events = "My Events";
+    this.events = "Going";
   }
 
   initializeEvents() {

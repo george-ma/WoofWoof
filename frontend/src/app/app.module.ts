@@ -21,6 +21,7 @@ import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { EventProvider } from '../providers/event/event';
 import { ParkLocationPage } from '../pages/park-location/park-location';
 import { NewsfeedPage } from '../pages/newsfeed/newsfeed';
+import { FlashCardComponent } from '../pages/flash-card/flash-card';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { NewsfeedPage } from '../pages/newsfeed/newsfeed';
     EditProfilePage,
     ParkLocationPage,
     NewsfeedPage,
+    FlashCardComponent
   ],
   imports: [
     BrowserModule,
