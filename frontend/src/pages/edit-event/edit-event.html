@@ -25,9 +25,10 @@
 
   <ion-item>
 
-    <ion-label stacked>Date</ion-label>
-    <ion-datetime placeholder="Choose a date!" displayFormat="MM/DD/YYYY" [(ngModel)]="myDate"></ion-datetime>
-  </ion-item>
+      <ion-label stacked>Date</ion-label>
+      <ion-datetime placeholder = "Choose a date!" displayFormat="MMM DD, h:mm a" pickerFormat = "MMM D YYYY, h mm a" min="2018-11-17" max="2118-12-31" [(ngModel)]="myDate"></ion-datetime>
+    </ion-item>
+
 
 
   <form [formGroup]="eventForm" (ngSubmit)="logForm()">
@@ -52,6 +53,5 @@
 
 
     </ion-list>
-    <button ion-button type="submit" [disabled]="!eventForm.valid || !myDate">Submit</button>
+    <button ion-button type="submit">Submit</button>
   </form>
-</ion-content>

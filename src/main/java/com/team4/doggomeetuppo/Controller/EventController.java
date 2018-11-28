@@ -1,18 +1,15 @@
 package com.team4.doggomeetuppo.Controller;
 
 import com.team4.doggomeetuppo.Model.Event;
-import com.team4.doggomeetuppo.Model.User;
 import com.team4.doggomeetuppo.Service.EventRepository;
 import com.team4.doggomeetuppo.Service.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.UnsatisfiedServletRequestParameterException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.jws.soap.SOAPBinding;
 import java.util.List;
 
 @CrossOrigin
@@ -26,8 +23,10 @@ public class EventController {
     @Autowired
     private ImageRepository imageRepository;
 
-    @RequestMapping(value = "/{eventName}", method = RequestMethod.GET)
-    public Event getEventByEventName(@PathVariable("eventName") String eventName) {
+    @RequestMapping(value = "/getEventByName", method = RequestMethod.GET)
+    public Event getEventByEventName(
+            @RequestParam(value = "eventName") String eventName
+    ) {
         return eventRepository.findByEventName(eventName);
     }
 
@@ -72,4 +71,48 @@ public class EventController {
     ) {
         return imageRepository.getEventPic(parkName, eventName);
     }
+
+//    @RequestMapping(value = "/attend", method = RequestMethod.POST)
+//    public ResponseEntity attendEvent(@RequestBody JsonNode requestNode) {
+//        String userID = requestNode.findValue("userID").asText();
+//        String eventID = requestNode.findValue("eventID").asText();
+//        Event event = eventRepository.findByEventId(eventID);
+//        User user = userRepository.findByUserId(userID);
+//        if (event != null && user != null) {
+//            event.addAttendingUser(user);
+//            eventRepository.saveEvent(event);
+//            return user.getUserName() + "added to" + event.getEventName();
+//        } else {
+//            return "User or event not found.";
+//        }
+//    }
+//
+//    @RequestMapping(value = "/noAttend", method = RequestMethod.POST)
+//    public String unattendEvent(@RequestBody JsonNode requestNode) {
+//        String userID = requestNode.findValue("userID").asText();
+//        String eventID = requestNode.findValue("eventID").asText();
+//        Event event = eventRepository.findByEventId(eventID);
+//        User user = userRepository.findByUserId(userID);
+//        if (event != null && user != null) {
+//            event.removeAttendingUser(user);
+//            eventRepository.saveEvent(event);
+//            return user.getUserName() + " removed from " + event.getEventName();
+//        } else {
+//            return "User or event not found.";
+//        }
+//    found}
+
+//    @RequestMapping(value = "/cancel", method = RequestMethod.POST)
+//    public String cancelEvent(@RequestBody JsonNode requestNode) {
+//        String userID = requestNode.findValue("userID").asText();
+//        String eventID = requestNode.findValue("eventID").asText();
+//        Event event = eventRepository.findByEventId(eventID);
+//        User user = userRepository.findByUserId(userID);
+//        if (event != null && user != null && user.id.equals(event.getHost().id)) {
+//            eventRepository.removeEvent(event);
+//            return event.getEventName() + " deleted by " + user.getUserName();
+//        } else {
+//            return "User or event not found, or user not host of event.";
+//        }
+//    }
 }

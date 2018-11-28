@@ -33,7 +33,7 @@ export class EditEventPage {
 
   public noImage = true;
 
-  myDate;
+  myDate: String = new Date().toISOString();
   pushMyDate;
   park;
   parkName;
@@ -61,10 +61,10 @@ export class EditEventPage {
   ) {
 
     this.eventForm = this.formBuilder.group({
-      eventName: ['', Validators.required],
-      location: ['', Validators.required],
+      eventName: [''],
+      location: [''],
       description: new FormControl('', Validators.compose([
-        Validators.required
+        //Validators.required
         //Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')   //Ensure email is valid
       ]))
     })
