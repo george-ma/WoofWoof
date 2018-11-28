@@ -70,7 +70,9 @@ public class UserController {
     public ResponseEntity saveDogPic(
         @RequestParam(value = "profilePic") MultipartFile profilePic,
         @RequestParam(value = "username") String username,
-        @RequestParam(value = "dogname") String dogname
+        @RequestParam(value = "dogname") String dogname,
+        @RequestParam(value = "description") String description,
+        @RequestParam(value = "breed") String breed
     ) {
         if (imageRepository.saveDogPic(profilePic, username, dogname)) {
             return new ResponseEntity(HttpStatus.OK);
