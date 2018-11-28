@@ -1,3 +1,4 @@
+import { EventDetailsPage } from './../pages/event-details/event-details';
 import { GalleryPage } from './../pages/gallery/gallery';
 import { HttpClientModule } from '@angular/common/http';
 import { ParkDetailsPage } from './../pages/park-details/park-details';
@@ -49,7 +50,8 @@ import { FlashCardComponent } from '../pages/flash-card/flash-card';
     ParkLocationPage,
     NewsfeedPage,
     GalleryPage,
-    FlashCardComponent
+    FlashCardComponent,
+    EventDetailsPage,
   ],
   imports: [
     BrowserModule,
@@ -72,6 +74,7 @@ import { FlashCardComponent } from '../pages/flash-card/flash-card';
     ParkLocationPage,
     NewsfeedPage,
     GalleryPage,
+    EventDetailsPage
   ],
   providers: [
     StatusBar,

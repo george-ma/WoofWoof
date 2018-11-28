@@ -64,7 +64,7 @@ public class EventController {
         }
     }
 
-    @GetMapping(value = "/getEventPic", produces = MediaType.IMAGE_JPEG_VALUE)
+    @PostMapping(value = "/getEventPic", produces = MediaType.IMAGE_JPEG_VALUE)
     public @ResponseBody byte[] getDogPic(
             @RequestParam("parkName") String parkName,
             @RequestParam("eventName") String eventName

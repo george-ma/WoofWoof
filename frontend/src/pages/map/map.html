@@ -31,7 +31,7 @@
       <ion-searchbar (ionInput)="searchEvents($event)" [showCancelButton]="true">
       </ion-searchbar>
       <ion-item *ngFor="let event of parkEvents" text-wrap>
-        <div>
+        <div (click)="showEvent(event)">
           <h2>
             {{ event.eventName }}
           </h2>

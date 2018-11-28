@@ -1,7 +1,8 @@
 import { EventProvider } from './../../providers/event/event';
 import { EditEventPage } from './../edit-event/edit-event';
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
+import { EventDetailsPage } from '../event-details/event-details';
 
 /**
  * Generated class for the ParkDetailsPage page.
@@ -26,7 +27,12 @@ export class ParkDetailsPage {
 
   checkin = 'danger';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public eventProvider: EventProvider) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public eventProvider: EventProvider,
+    public modalController: ModalController
+  ) {
   }
 
   ionViewDidEnter() {
@@ -92,5 +98,9 @@ export class ParkDetailsPage {
       }
     );
     console.log(passParkPics);
+  }
+
+  showEvent(event) {
+    this.navCtrl.push(EventDetailsPage, { event: event });
   }
 }

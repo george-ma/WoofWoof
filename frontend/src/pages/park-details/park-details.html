@@ -12,7 +12,6 @@
 
 </ion-header>
 
-
 <ion-content padding>
   <ion-card>
     <ion-slides>
@@ -45,14 +44,16 @@
       <p>{{parkAddress}}</p>
     </ion-item>
     <ion-list-header>Current Event</ion-list-header>
-    <ion-item *ngFor="let event of currentEvents" (click)="rsvp(event)">
+    <ion-item *ngFor="let event of currentEvents" (click)="showEvent(event)">
       {{event.eventName}}
     </ion-item>
     <ion-list-header>
       Upcoming Events
     </ion-list-header>
-    <ion-item *ngFor="let event of upcomingEvents" (click)="rsvp(event)">
-      {{event.eventName}}
+    <ion-item *ngFor="let event of upcomingEvents">
+      <p (click)="showEvent(event)">
+        {{event.eventName}}
+      </p>
     </ion-item>
   </ion-list>
 

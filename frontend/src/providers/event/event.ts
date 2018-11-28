@@ -35,4 +35,14 @@ export class EventProvider {
       newEvent
       )
   }
+
+  getEventPhoto(park: string, eventName: string): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('parkName', park);
+    formData.append('eventName', eventName);
+    return this.http.post(
+      this.PARK_DETAILS_API + '/getEventPic',
+      formData
+    )
+  }
 }
