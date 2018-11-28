@@ -12,8 +12,15 @@
 <ion-content padding>
 
   <ion-card>
-    <img [src]='imgUrl' />
+    <ion-slides>
 
+      <img *ngIf="noImage" src='https://via.placeholder.com/350x200?text='>
+      <ion-fab right bottom>
+        <button ion-fab (click)="presentActionSheet()">
+          <ion-icon name="add" large></ion-icon>
+        </button>
+      </ion-fab>
+    </ion-slides>
   </ion-card>
 
   <ion-item>
@@ -43,7 +50,7 @@
 
 
 
-          
+
 
     </ion-list>
     <button ion-button type="submit">Submit</button>

@@ -1,6 +1,6 @@
-import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 /*
   Generated class for the EventProvider provider.
@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class EventProvider {
 
-  public API = 'https://doggo-meet-uppo.herokuapp.com';
+  public API = 'https://doggo-meet-uppo.herokuapp.com'
   public PARK_DETAILS_API = this.API + '/api/event';
 
   constructor(public http: HttpClient) {

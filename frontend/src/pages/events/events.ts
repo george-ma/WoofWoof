@@ -19,9 +19,10 @@ export class EventsPage {
     this.eventProvider.getAllEvents().subscribe((result: any[]) => {
       this.parkEvents = result.filter(event => event.isPublic);
       this.origEvents = this.parkEvents;
+      console.log('new events');
     })
     this.rsvpButtonColour = 'primary';
-    this.events = "My Events";
+    this.events = "Going";
   }
 
   initializeEvents() {
@@ -49,8 +50,8 @@ export class EventsPage {
 
   goToMap(event) {
     this.navCtrl.push(
-      ParkLocationPage,     
-      {event: event}
+      ParkLocationPage,
+      { event: event }
     )
   }
 
