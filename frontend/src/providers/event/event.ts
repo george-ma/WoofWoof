@@ -43,6 +43,6 @@ export class EventProvider {
     return this.http.post(
       this.PARK_DETAILS_API + '/getEventPic',
       formData
-    )
+    );
   }
 }

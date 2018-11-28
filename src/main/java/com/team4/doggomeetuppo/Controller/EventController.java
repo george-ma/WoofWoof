@@ -10,7 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin
 @RestController
@@ -65,11 +68,17 @@ public class EventController {
     }
 
     @PostMapping(value = "/getEventPic", produces = MediaType.IMAGE_JPEG_VALUE)
-    public @ResponseBody byte[] getDogPic(
+    public @ResponseBody Map<String, String> getDogPic(
             @RequestParam("parkName") String parkName,
             @RequestParam("eventName") String eventName
     ) {
-        return imageRepository.getEventPic(parkName, eventName);
+        String encodeImage = Base64.getEncoder()
+                .withoutPadding()
+                .encodeToString(imageRepository.getEventPic(parkName, eventName));
+
+        Map<String, String> jsonMap = new HashMap<>();
+        jsonMap.put("content", encodeImage);
+        return jsonMap;
     }
 
 //    @RequestMapping(value = "/attend", method = RequestMethod.POST)

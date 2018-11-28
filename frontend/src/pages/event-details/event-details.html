@@ -18,7 +18,7 @@
 
     <div class="flash-card-front">
       <ion-card>
-        <img [src]="eventPhoto" style="height:250px;" />
+        <img [src]="pictureURI" style="height:250px;" *ngIf="pictureURI" />
         <ion-card-content>
           <ion-card-title text-center *ngIf="title">
             {{title}}
