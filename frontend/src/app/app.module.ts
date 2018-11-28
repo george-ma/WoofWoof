@@ -30,6 +30,7 @@ import { EventProvider } from '../providers/event/event';
 import { ParkLocationPage } from '../pages/park-location/park-location';
 import { NewsfeedPage } from '../pages/newsfeed/newsfeed';
 import { UserProvider } from '../providers/user/user';
+import { FlashCardComponent } from '../pages/flash-card/flash-card';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { UserProvider } from '../providers/user/user';
     ParkLocationPage,
     NewsfeedPage,
     GalleryPage,
+    FlashCardComponent
   ],
   imports: [
     BrowserModule,

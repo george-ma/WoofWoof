@@ -22,7 +22,7 @@ export class EventsPage {
       console.log('new events');
     })
     this.rsvpButtonColour = 'primary';
-    this.events = "My Events";
+    this.events = "Going";
   }
 
   initializeEvents() {
