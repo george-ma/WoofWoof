@@ -5,8 +5,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Repository
 public interface ImageRepository {
-    public boolean saveProfilePic(MultipartFile profilePic, String username);
-    public byte[] getProfilePic(String username);
-    public boolean saveDogPic(MultipartFile dogPic, String username, String dogname);
-    public byte[] getDogPic(String username, String dogname);
+    boolean saveProfilePic(MultipartFile profilePic, String username);
+    byte[] getProfilePic(String username);
+    boolean saveDogPic(MultipartFile dogPic, String username, String dogname);
+    byte[] getDogPic(String username, String dogname);
+    boolean saveEventPic(MultipartFile eventPic, String parkName, String eventName);
+    byte[] getEventPic(String parkName, String eventName);
 }

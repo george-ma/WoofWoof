@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @CrossOrigin
 @RestController
@@ -38,6 +39,16 @@ public class UserController {
         userRepository.saveUser(user);
     }
 
+    @PostMapping(value = "/verifyLogin")
+    public boolean verifyLogin(
+            @RequestParam(value = "userName") String userName,
+            @RequestParam(value = "password") String password
+    ) {
+        return userRepository.getAllUsers()
+                .stream()
+                .anyMatch(user -> user.getUserName().equals(userName) && user.getPassword().equals(password));
+    }
+
     @PostMapping(value = "/saveProfilePic")
     public ResponseEntity saveProfilePic(
             @RequestParam(value = "profilePic") MultipartFile profilePic,
@@ -61,7 +72,7 @@ public class UserController {
         @RequestParam(value = "username") String username,
         @RequestParam(value = "dogname") String dogname
     ) {
-        if (imageRepository.saveDogPic(profilePic, username,dogname)) {
+        if (imageRepository.saveDogPic(profilePic, username, dogname)) {
             return new ResponseEntity(HttpStatus.OK);
         } else {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -71,6 +82,27 @@ public class UserController {
     @GetMapping(value = "/getDogPic/{username}/{dogname}", produces = MediaType.IMAGE_JPEG_VALUE)
     public @ResponseBody byte[] getDogPic(@PathVariable("username") String username,@PathVariable("dogname") String dogname) {
         return imageRepository.getDogPic(username,dogname);
+    }
+
+    @GetMapping(value = "/getLocation/{username}")
+    public String getLocation(@PathVariable("username") String userName){
+         User user = userRepository.findByUserName(userName);
+         return user.getGeocode();
+    }
+
+    @PostMapping(value = "/checkIn/{username}")
+    public void checkIn(@PathVariable("username") String userName, @RequestParam(value = "geocode") String geocode){
+        User user = userRepository.findByUserName(userName);
+        user.setGeocode(geocode);
+        userRepository.saveUser(user);
+    }
+
+    @PostMapping(value = "/allUsersAtPark")
+    public List<User> getAllUsersAtPark(@RequestParam(value = "geocode") String geocode) {
+        return userRepository.getAllUsers()
+                .stream()
+                .filter(user -> user.getGeocode().equals(geocode))
+                .collect(Collectors.toList());
     }
 
 //    <img [src]="'data:image/JPEG;base64,' + result.arrayofbytes" />

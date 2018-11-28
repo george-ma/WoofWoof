@@ -14,9 +14,13 @@ public class User {
 
     private String lastName;
 
-    private List<Event> eventsHosted;
+    private String password;
+
+    private List<String> eventsHosted;
 
     private List<String> dogsOwned;
+
+    private String geocode;
 
     public User() {}
 
@@ -32,15 +36,15 @@ public class User {
         this.userName = userName;
     }
 
-    public List<Event> getEventsHosted() {
+    public List<String> getEventsHosted() {
         return eventsHosted;
     }
 
-    public void setEventsHosted(List<Event> eventsHosted) {
+    public void setEventsHosted(List<String> eventsHosted) {
         this.eventsHosted = eventsHosted;
     }
 
-    public void addEvent(Event event){
+    public void addEvent(String event){
         this.eventsHosted.add(event);
     }
 
@@ -70,5 +74,17 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public void setGeocode(String geocode){ this.geocode = geocode; }
+
+    public String getGeocode(){ return this.geocode; }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

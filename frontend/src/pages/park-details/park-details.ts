@@ -24,6 +24,8 @@ export class ParkDetailsPage {
   upcomingEvents: any;
   currentEvents: any;
 
+  checkin = 'danger';
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public eventProvider: EventProvider) {
   }
 
