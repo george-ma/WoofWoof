@@ -29,7 +29,7 @@ export class LoginPage {
         for (var userName in this.accounts){
             if (this.username.value === userName && this.password.value === this.accounts[userName]) {
                 this.loginSuccess = true;
-                this.showPopup("Login Success!", "You are now logged in.");
+                this.navCtrl.push(TabsPage);
                 found = true;
                 return;
             }
