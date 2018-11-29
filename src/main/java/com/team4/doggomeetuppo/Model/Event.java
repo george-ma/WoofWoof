@@ -56,6 +56,7 @@ public class Event {
     public void addAttending(String user) {
         if (!getAttending().contains(user)) this.attending.add(user);
     }
+    public void removeAttending(String user) { this.getAttending().remove(user); }
     public boolean isAttending(String user) {
         return getAttending().contains(user);
     }

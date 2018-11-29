@@ -12,7 +12,11 @@
   <flash-card>
     <div class="flash-card-front">
       <ion-card>
-        <img [src]="pictureURI['event']" style="height:250px;" *ngIf=" pictureURI && pictureURI['event']" />
+        <img
+          [src]="pictureURI['event']"
+          style="height:250px;"
+          *ngIf="pictureURI && pictureURI['event']"
+        />
         <ion-card-content>
           <ion-card-title text-center *ngIf="title">
             {{ title }}
@@ -31,10 +35,10 @@
         </ion-card-content>
         <ion-row text-center>
           <ion-col>
-            <button ion-button style="background-color:powderblue;">
+            <button *ngIf="going" (click)="notGo()" ion-button style="background-color:powderblue;">
               Cancel
             </button>
-            <button ion-button style="background-color:powderblue;">
+            <button *ngIf="!going" (click)="go()"  ion-button style="background-color:powderblue;">
               RSVP
             </button>
           </ion-col>
@@ -44,7 +48,12 @@
   </flash-card>
   <ion-list>
     <ion-item *ngFor="let person of attending">
-      <ion-avatar item-start> <img src="{{pictureURI[person]}}" *ngIf="pictureURI && pictureURI[person]" /> </ion-avatar>
+      <ion-avatar item-start>
+        <img
+          src="{{pictureURI[person]}}"
+          *ngIf="pictureURI && pictureURI[person]"
+        />
+      </ion-avatar>
       {{ person }}
     </ion-item>
   </ion-list>

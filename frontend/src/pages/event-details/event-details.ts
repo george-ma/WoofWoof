@@ -2,6 +2,7 @@ import { UserProvider } from "./../../providers/user/user";
 import { EventProvider } from "./../../providers/event/event";
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { Storage } from "@ionic/storage";
 
 /**
  * Generated class for the EventDetailsPage page.
@@ -23,16 +24,22 @@ export class EventDetailsPage {
   imageToShow: any;
   attending: any[];
 
+  going: boolean;
+
+  event: any;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public eventProvider: EventProvider,
-    public userProvider: UserProvider
+    public userProvider: UserProvider,
+    public storage: Storage
   ) {}
 
   ionViewDidLoad() {
     console.log(this.navParams);
     this.title = this.navParams.get("event").eventName;
+    this.event = this.navParams.get("event");
     this.description = this.navParams.get("event").eventInfo;
     this.location = this.navParams.get("event").location;
     this.attending = this.navParams.get("event").attending;
@@ -53,6 +60,22 @@ export class EventDetailsPage {
         });
       });
     }
+    this.storage.get("user").then(val => {
+      this.going = this.attending.findIndex(user => user === val) >= 0;
+    });
+  }
+
+  notGo() {
+    this.storage.get("user").then(val => {
+      this.event.attending = this.event.attending.filter(user => user !== val);
+      this.eventProvider.saveEvent(this.event).subscribe(u => {
+        console.log('saved');
+      });
+    });
+  }
+
+  go() {
+    console.log("go");
   }
 
   getProfilePic(username: string) {}
