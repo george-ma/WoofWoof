@@ -14,8 +14,8 @@
 <ion-content padding>
   <div [ngSwitch]="events">
     <ion-list *ngSwitchCase="'Going'">
+      
       <flash-card>
-
         <div class="flash-card-front">
           <ion-card>
             <img src="../../assets/imgs/newsfeed/bday_pup.jpg" style="height:300px;" />
@@ -28,8 +28,8 @@
         </div>
 
         <div class="flash-card-back" style="vertical-align: middle;">
-          <ion-card style="width:320px; vertical-align: middle;">
-            <ion-card-content style="width:320px;">
+          <ion-card style="width:300px; vertical-align: middle;">
+            <ion-card-content style="width:300px;">
               <ion-card-title text-center>
                 Milo's Birthday!!
               </ion-card-title>
@@ -38,15 +38,15 @@
             </ion-card-content>
             <ion-row text-center>
               <ion-col>
-                <button ion-button style="background-color:powderblue;">
+                <button ion-button style="background-color:powderblue; width: 120px">
                   Location
                 </button>
               </ion-col>
             </ion-row>
             <ion-row text-center>
               <ion-col>
-                <button ion-button style="background-color:powderblue;">
-                  Cancel
+                <button ion-button style="background-color:powderblue; width: 120px">
+                  Cancel RSVP
                 </button>
               </ion-col>
             </ion-row>
@@ -67,8 +67,8 @@
         </div>
 
         <div class="flash-card-back">
-          <ion-card style="width:200px;">
-            <ion-card-content style="width:320px;">
+          <ion-card style="width:300px;">
+            <ion-card-content style="width:300px;">
               <ion-card-title text-center>
                 Corgis Convention
               </ion-card-title>
@@ -77,15 +77,15 @@
             </ion-card-content>
             <ion-row text-center>
               <ion-col>
-                <button ion-button style="background-color:powderblue;">
+                <button ion-button style="background-color:powderblue; width: 120px">
                   Location
                 </button>
               </ion-col>
             </ion-row>
             <ion-row text-center>
               <ion-col>
-                <button ion-button style="background-color:powderblue;">
-                  Cancel
+                <button ion-button style="background-color:powderblue; width: 120px">
+                  Cancel RSVP
                 </button>
               </ion-col>
             </ion-row>
@@ -98,21 +98,27 @@
     </ion-list>
     <ion-list *ngSwitchCase="'Hosting'">
       <ion-card>
-        <img src="../../assets/imgs/newsfeed/Animal-Planet-Puppy-Bowl-X.jpg" />
+          
+        <img src="../../assets/imgs/newsfeed/pool-poodle.jpg" style="height:285px;"/>
         <ion-card-content>
-          <ion-card-title>
-            Puppy Bowl Weekend!
-          </ion-card-title>
-          <p>
-            Sign your puppy up at the upcoming Puppy Bowl!
+          <ion-fab top right>
+              <button ion-fab mini (click)="goToEdit(event)">
+                <ion-icon name="create"></ion-icon>
+              </button>
+          </ion-fab>
+          <p text-center style="font-size: 21px">
+            Summer Pup Pool Party
+          </p>
+          <p style="font-size: 15px">
+            Date: 
+          </p>
+          <p style="font-size: 15px">
+            Location:
+          </p>
+          <p style="width:250px; text-overflow:ellipsis; overflow: hidden; white-space: nowrap; ">
+            Info: Inflatable pools and fun activities!
           </p>
         </ion-card-content>
-        <ion-row>
-          <button ion-button icon-start clear small>
-            <ion-icon name="paw"></ion-icon>
-            <div>37 Likes</div>
-          </button>
-        </ion-row>
       </ion-card>
     </ion-list>
   </div>

@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { ParkEvent } from './ParkEvent';
 import { EventProvider } from '../../providers/event/event';
 import { ParkLocationPage } from '../park-location/park-location';
+import { EditEventPage } from '../edit-event/edit-event';
 EventProvider
 
 @Component({
@@ -54,6 +55,15 @@ export class EventsPage {
       { event: event }
     )
   }
+
+  goToEdit(event) {
+    console.log(event);
+    this.navCtrl.push(
+      EditEventPage,
+      { parkName: event.parkName }
+    )
+  }
+
 
   buttonClicked(currButton) {
     currButton.color = 'secondary';
