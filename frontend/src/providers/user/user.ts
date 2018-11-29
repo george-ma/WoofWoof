@@ -13,7 +13,8 @@ import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_di
 @Injectable()
 export class UserProvider {
 
-  public API = 'https://doggo-meet-uppo.herokuapp.com';
+  // public API = 'https://doggo-meet-uppo.herokuapp.com';
+  public API = "http://localhost:8080";
   public USER_DETAIL_API = this.API + '/api/user';
 
   constructor(public http: HttpClient) {

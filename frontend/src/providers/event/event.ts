@@ -11,7 +11,8 @@ import { EventListener } from "@angular/core/src/debug/debug_node";
 */
 @Injectable()
 export class EventProvider {
-  public API = "https://doggo-meet-uppo.herokuapp.com";
+  // public API = "https://doggo-meet-uppo.herokuapp.com";
+  public API = "http://localhost:8080";
   public PARK_DETAILS_API = this.API + "/api/event";
 
   constructor(public http: HttpClient) {
@@ -44,7 +45,7 @@ export class EventProvider {
     formData.append("eventName", eventName);
     formData.append("username", username);
 
-    return this.http.post(this.PARK_DETAILS_API + "attendEvent", formData);
+    return this.http.post(this.PARK_DETAILS_API + "/attendEvent", formData);
   }
 
   removeAttend(
@@ -57,7 +58,7 @@ export class EventProvider {
     formData.append("eventName", eventName);
     formData.append("username", username);
 
-    return this.http.post(this.PARK_DETAILS_API + "removeAttend", formData);
+    return this.http.post(this.PARK_DETAILS_API + "/removeAttend", formData);
   }
 
   getEventPhoto(park: string, eventName: string): Observable<any> {
@@ -79,6 +80,6 @@ export class EventProvider {
     formData.append("eventName", eventName);
     formData.append("username", username);
 
-    return this.http.post(this.PARK_DETAILS_API + "isAttending", formData);
+    return this.http.post(this.PARK_DETAILS_API + "/isGoing", formData);
   }
 }

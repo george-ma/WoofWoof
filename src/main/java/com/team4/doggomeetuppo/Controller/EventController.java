@@ -107,7 +107,7 @@ public class EventController {
     }
 
     @CrossOrigin
-    @PostMapping(value = "/removeAttend")
+    @PostMapping(value = "/isGoing")
     public @ResponseBody boolean isGoing(
             @RequestParam(value = "geocode") String geocode,
             @RequestParam(value = "eventName") String eventName,
