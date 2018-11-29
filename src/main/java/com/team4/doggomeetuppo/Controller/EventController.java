@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @CrossOrigin
 @RestController
@@ -41,6 +42,19 @@ public class EventController {
     @RequestMapping(value = "/allEvents", method = RequestMethod.GET)
     public List<Event> getAllEvents() {
         return eventRepository.getAllEvents();
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/getAllHosted/{username}", method = RequestMethod.GET)
+    public List<Event> getAllHosted(@PathVariable("username") String username) {
+        return eventRepository.getAllHosted(username);
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/getAllAttending/{username}", method = RequestMethod.GET)
+    public List<Event> getAllAttending(@PathVariable("username") String username) {
+        List<Event> allEvents = eventRepository.getAllEvents();
+        return allEvents.stream().filter(event -> event.isAttending(username)).collect(Collectors.toList());
     }
 
     @CrossOrigin
