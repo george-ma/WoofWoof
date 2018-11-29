@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:8100")
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/api/event")
 public class EventController {

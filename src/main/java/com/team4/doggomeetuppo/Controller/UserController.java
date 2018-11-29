@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "http://localhost:8100")
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/api/user")
 public class UserController {
