@@ -1,6 +1,7 @@
 import { Component, ViewChild} from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, Events } from 'ionic-angular';
 
+import { Storage } from '@ionic/storage';
 
 import { TabsPage } from './../tabs/tabs';
 import { RegisterFormPage } from '../register-form/register-form';
@@ -14,14 +15,14 @@ export class LoginPage {
 
     @ViewChild('username') username;
     @ViewChild('password') password;
-    
+
     loginSuccess = false;
     private accounts = {
         'admin': 'admin'
     };
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, 
-        public alertCtrl: AlertController, public events: Events) {
+    constructor(public navCtrl: NavController, public navParams: NavParams,
+        public alertCtrl: AlertController, public events: Events, private storage: Storage) {
     }
 
     loginUser(){
@@ -46,7 +47,7 @@ export class LoginPage {
         })
         this.navCtrl.push(RegisterFormPage);
     }
-    
+
     showPopup(title, text) {
         let alert = this.alertCtrl.create({
           title: title,
@@ -54,10 +55,13 @@ export class LoginPage {
           buttons: [
             {
               text: 'OK',
-              handler: () => { 
+              handler: () => {
                     if (this.loginSuccess) {
+                      this.storage.set('user', 'amy4reals').then(_ => {
+                        console.log(_);
                         this.navCtrl.push(TabsPage);
-                    } 
+                      });
+                    }
                 }
             }
           ]

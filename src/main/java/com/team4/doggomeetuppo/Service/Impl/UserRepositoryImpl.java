@@ -21,6 +21,12 @@ public class UserRepositoryImpl implements UserRepository {
         return mongoTemplate.findOne(query, User.class);
     }
 
+    @Override
+    public List<User> findUserByLocation(String geocode) {
+        Query query = new Query().addCriteria(Criteria.where("geocode").is(geocode));
+        return mongoTemplate.find(query, User.class);
+    }
+
 //    @Override
 //    public User findByUserId(String userID) {
 //        Query query = new Query().addCriteria(Criteria.where("id").is(userID));

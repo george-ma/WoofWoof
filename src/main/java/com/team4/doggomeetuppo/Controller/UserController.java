@@ -87,7 +87,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/getLocation/{username}")
-    public String getLocation(@PathVariable("username") String userName){
+    public @ResponseBody String getLocation(@PathVariable("username") String userName){
          User user = userRepository.findByUserName(userName);
          return user.getGeocode();
     }
@@ -100,11 +100,8 @@ public class UserController {
     }
 
     @PostMapping(value = "/allUsersAtPark")
-    public List<User> getAllUsersAtPark(@RequestParam(value = "geocode") String geocode) {
-        return userRepository.getAllUsers()
-                .stream()
-                .filter(user -> user.getGeocode().equals(geocode))
-                .collect(Collectors.toList());
+    public @ResponseBody List<String> getAllUsersAtPark(@RequestParam(value = "geocode") String geocode) {
+        return userRepository.findUserByLocation(geocode).stream().map(User::getUserName).collect(Collectors.toList());
     }
 
 //    <img [src]="'data:image/JPEG;base64,' + result.arrayofbytes" />
