@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/Observable";
+import { EventListener } from "@angular/core/src/debug/debug_node";
 
 /*
   Generated class for the EventProvider provider.
@@ -33,6 +34,32 @@ export class EventProvider {
     return this.http.put(this.PARK_DETAILS_API + "/save", newEvent);
   }
 
+  attendEvent(
+    park: string,
+    eventName: string,
+    username: string
+  ): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append("geocode", park);
+    formData.append("eventName", eventName);
+    formData.append("username", username);
+
+    return this.http.post(this.PARK_DETAILS_API + "attendEvent", formData);
+  }
+
+  removeAttend(
+    park: string,
+    eventName: string,
+    username: string
+  ): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append("geocode", park);
+    formData.append("eventName", eventName);
+    formData.append("username", username);
+
+    return this.http.post(this.PARK_DETAILS_API + "removeAttend", formData);
+  }
+
   getEventPhoto(park: string, eventName: string): Observable<any> {
     const formData: FormData = new FormData();
     formData.append("parkName", park);
@@ -40,5 +67,18 @@ export class EventProvider {
     return this.http.post(this.PARK_DETAILS_API + "/getEventPic", formData, {
       responseType: "blob"
     });
+  }
+
+  isAttending(
+    park: string,
+    eventName: string,
+    username: string
+  ): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append("geocode", park);
+    formData.append("eventName", eventName);
+    formData.append("username", username);
+
+    return this.http.post(this.PARK_DETAILS_API + "isAttending", formData);
   }
 }

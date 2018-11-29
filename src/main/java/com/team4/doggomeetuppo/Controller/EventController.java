@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:8100")
 @RestController
 @RequestMapping(value = "/api/event")
 public class EventController {
@@ -84,6 +84,7 @@ public class EventController {
         eventRepository.saveEvent(event);
         return new ResponseEntity(HttpStatus.OK);
     }
+
     @PostMapping(value = "/removeAttend")
     public ResponseEntity removeAttend(
             @RequestParam(value = "geocode") String geocode,
@@ -94,5 +95,15 @@ public class EventController {
         event.removeAttending(username);
         eventRepository.saveEvent(event);
         return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/removeAttend")
+    public @ResponseBody boolean isGoing(
+            @RequestParam(value = "geocode") String geocode,
+            @RequestParam(value = "eventName") String eventName,
+            @RequestParam(value = "username") String username
+    ) {
+        Event event = eventRepository.findByPlaceEventName(geocode, eventName);
+        return event.getAttending().contains(username);
     }
 }

@@ -61,21 +61,32 @@ export class EventDetailsPage {
       });
     }
     this.storage.get("user").then(val => {
-      this.going = this.attending.findIndex(user => user === val) >= 0;
+      this.eventProvider.isAttending(this.location, this.title, val).subscribe(val => {
+        this.going = val;
+      });
     });
   }
 
   notGo() {
     this.storage.get("user").then(val => {
-      this.event.attending = this.event.attending.filter(user => user !== val);
-      this.eventProvider.saveEvent(this.event).subscribe(u => {
-        console.log('saved');
-      });
+      this.eventProvider
+        .removeAttend(this.location, this.title, val)
+        .subscribe(u => {
+          console.log("notGo");
+          this.going = false;
+        });
     });
   }
 
   go() {
-    console.log("go");
+    this.storage.get("user").then(val => {
+      this.eventProvider
+        .attendEvent(this.location, this.title, val)
+        .subscribe(u => {
+          console.log("go");
+          this.going = true;
+        });
+    });
   }
 
   getProfilePic(username: string) {}

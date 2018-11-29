@@ -50,12 +50,12 @@ export class EditEventPage {
   };
 
   constructor(
-    private actionSheetCtrl: ActionSheetController, 
-    private camera: Camera, 
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
-    private formBuilder: FormBuilder, 
-    private eventProvider: EventProvider, 
+    private actionSheetCtrl: ActionSheetController,
+    private camera: Camera,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private formBuilder: FormBuilder,
+    private eventProvider: EventProvider,
     public toastCtrl: ToastController,
     private userProvider: UserProvider
   ) {
@@ -81,7 +81,7 @@ export class EditEventPage {
             this.camera.getPicture(this.options).then((imageData) => {
               let base64Image = 'data:image/jpeg;base64,' + imageData
               this.userProvider.saveUserProfile(base64Image, 'amy4real').subscribe(result => {
-                
+
                 // this.navCtrl.push(GalleryPage, { image: base64Image });
               });
             },
@@ -120,7 +120,7 @@ export class EditEventPage {
       isPublic: true
     }
 
-    this.eventProvider.saveEvent(newEvent).subscribe(result => { });
+    this.eventProvider.addEvent(newEvent).subscribe(result => { });
     this.navCtrl.pop();
     this.presentToast();
   }
