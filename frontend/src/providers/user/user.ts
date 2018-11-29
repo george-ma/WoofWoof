@@ -46,6 +46,13 @@ export class UserProvider {
     );
   }
 
+  getUserProfile(username: string): Observable<any> {
+    return this.http.get(
+      this.USER_DETAIL_API + '/getProfilePic/' + username,
+      { responseType: 'blob' }
+    );
+  }
+
   dataURItoBlob(dataURI) {
     // convert base64 to raw binary data held in a string
     var byteString = atob(dataURI.split(',')[1]);
