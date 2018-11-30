@@ -13,6 +13,8 @@ public interface EventRepository {
 
     List<Event> findByPlaceName(String geocode);
 
+    List<Event> getAllHosted(String username);
+
     Event findByPlaceEventName(String geocode, String eventName);
 
     List<Event> getAllEvents();
