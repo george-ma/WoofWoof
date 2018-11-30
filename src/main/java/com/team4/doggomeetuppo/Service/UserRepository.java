@@ -8,6 +8,9 @@ import java.util.List;
 @Repository
 public interface UserRepository {
     User findByUserName(String userName);
+
+    List<User> findUserByLocation(String geocode);
+
     List<User> getAllUsers();
     void saveUser(User user);
 }

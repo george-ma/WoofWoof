@@ -1,12 +1,8 @@
 <ion-header>
   <ion-toolbar>
     <ion-segment [(ngModel)]="events">
-      <ion-segment-button value="Going">
-        Going
-      </ion-segment-button>
-      <ion-segment-button value="Hosting">
-        Hosting
-      </ion-segment-button>
+      <ion-segment-button value="Going"> Going </ion-segment-button>
+      <ion-segment-button value="Hosting"> Hosting </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
 </ion-header>
@@ -14,14 +10,13 @@
 <ion-content padding>
   <div [ngSwitch]="events">
     <ion-list *ngSwitchCase="'Going'">
-      
-      <flash-card>
+      <flash-card *ngFor="let event of attendedEvents">
         <div class="flash-card-front">
           <ion-card>
-            <img src="../../assets/imgs/newsfeed/bday_pup.jpg" style="height:300px;" />
+            <img [src]="imageURL[event.eventName]" style="height:300px;" />
             <ion-card-content>
               <ion-card-title text-center>
-                Milo's Birthday!!
+                {{ event.eventName }}
               </ion-card-title>
             </ion-card-content>
           </ion-card>
@@ -31,95 +26,113 @@
           <ion-card style="width:300px; vertical-align: middle;">
             <ion-card-content style="width:300px;">
               <ion-card-title text-center>
-                Milo's Birthday!!
+                {{ event.eventName }}
               </ion-card-title>
-              <p text-center>Treats, cakes, and lots of doggos! :)</p>
-              <p text-center style="background-color:rgb(213, 240, 240);">Date: 2019-05-12</p>
+              <p text-center>{{ event.eventInfo }}</p>
+              <p text-center style="background-color:rgb(213, 240, 240);">
+                Date: 2019-05-12
+              </p>
+              <p text-center>{{ event.location }}</p>
             </ion-card-content>
             <ion-row text-center>
               <ion-col>
-                <button ion-button style="background-color:powderblue; width: 120px">
+                <button
+                  ion-button
+                  style="background-color:powderblue; width: 120px"
+                  (click)="showLocation(event)"
+                >
                   Location
                 </button>
               </ion-col>
             </ion-row>
             <ion-row text-center>
               <ion-col>
-                <button ion-button style="background-color:powderblue; width: 120px">
+                <button
+                  ion-button
+                  style="background-color:powderblue; width: 120px"
+                >
                   Cancel RSVP
                 </button>
               </ion-col>
             </ion-row>
           </ion-card>
         </div>
-
       </flash-card>
-      <flash-card>
-        <div class="flash-card-front">
-          <ion-card>
-            <img src="../../assets/imgs/newsfeed/4_corgis.jpeg" style="height:300px;" />
-            <ion-card-content>
-              <ion-card-title text-center>
-                Corgis Convention
-              </ion-card-title>
-            </ion-card-content>
-          </ion-card>
-        </div>
-
-        <div class="flash-card-back">
-          <ion-card style="width:300px;">
-            <ion-card-content style="width:300px;">
-              <ion-card-title text-center>
-                Corgis Convention
-              </ion-card-title>
-              <p text-center>Come witness the greatest gathering of your neighbourhood corgis! :)</p>
-              <p text-center style="background-color:rgb(213, 240, 240);">Date: 2019-07-23</p>
-            </ion-card-content>
-            <ion-row text-center>
-              <ion-col>
-                <button ion-button style="background-color:powderblue; width: 120px">
-                  Location
-                </button>
-              </ion-col>
-            </ion-row>
-            <ion-row text-center>
-              <ion-col>
-                <button ion-button style="background-color:powderblue; width: 120px">
-                  Cancel RSVP
-                </button>
-              </ion-col>
-            </ion-row>
-
-          </ion-card>
-        </div>
-      </flash-card>
-
-
     </ion-list>
     <ion-list *ngSwitchCase="'Hosting'">
-      <ion-card>
-          
-        <img src="../../assets/imgs/newsfeed/pool-poodle.jpg" style="height:285px;"/>
-        <ion-card-content>
-          <ion-fab top right>
+      <flash-card *ngFor="let event of hostedEvents">
+        <div class="flash-card-front">
+          <ion-card>
+            <ion-fab top right>
               <button ion-fab mini (click)="goToEdit(event)">
                 <ion-icon name="create"></ion-icon>
               </button>
-          </ion-fab>
-          <p text-center style="font-size: 21px">
-            Summer Pup Pool Party
-          </p>
-          <p style="font-size: 15px">
-            Date: 
-          </p>
-          <p style="font-size: 15px">
-            Location:
-          </p>
-          <p style="width:250px; text-overflow:ellipsis; overflow: hidden; white-space: nowrap; ">
-            Info: Inflatable pools and fun activities!
-          </p>
-        </ion-card-content>
-      </ion-card>
+            </ion-fab>
+            <img [src]="imageURL[event.eventName]" style="height:300px;" />
+            <ion-card-content>
+              <ion-card-title text-center>
+                {{ event.eventName }}
+              </ion-card-title>
+            </ion-card-content>
+          </ion-card>
+        </div>
+
+        <div class="flash-card-back" style="vertical-align: middle;">
+          <ion-card style="width:300px; vertical-align: middle;">
+            <ion-card-content style="width:300px;">
+              <ion-card-title text-center>
+                {{ event.eventName }}
+              </ion-card-title>
+              <p text-center>{{ event.eventInfo }}</p>
+              <p text-center style="background-color:rgb(213, 240, 240);">
+                Date: 2019-05-12
+              </p>
+              <p text-center>{{ event.location }}</p>
+            </ion-card-content>
+            <ion-row text-center>
+              <ion-col>
+                <button
+                  ion-button
+                  style="background-color:powderblue; width: 120px"
+                  (click)="showLocation(event)"
+                >
+                  Location
+                </button>
+              </ion-col>
+            </ion-row>
+            <ion-row text-center>
+              <ion-col>
+                <button
+                  ion-button
+                  style="background-color:powderblue; width: 120px"
+                >
+                  Cancel RSVP
+                </button>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </div>
+      </flash-card>
+
+      <!--
+        <ion-card>
+          <img src="../../assets/imgs/newsfeed/pool-poodle.jpg" style="height:285px;"/>
+          <ion-card-content>
+            <p text-center style="font-size: 21px">
+              Summer Pup Pool Party
+            </p>
+            <p style="font-size: 15px">
+              Date:
+            </p>
+            <p style="font-size: 15px">
+              Location:
+            </p>
+            <p style="width:250px; text-overflow:ellipsis; overflow: hidden; white-space: nowrap; ">
+              Info: Inflatable pools and fun activities!
+            </p>
+          </ion-card-content>
+        </ion-card>
+      -->
     </ion-list>
   </div>
 </ion-content>

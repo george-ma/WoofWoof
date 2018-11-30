@@ -36,6 +36,21 @@ public class EventRepositoryImpl implements EventRepository {
     }
 
     @Override
+    public List<Event> getAllHosted(String username) {
+        Query query = new Query().addCriteria(Criteria.where("host").is(username));
+        return mongoTemplate.find(query, Event.class);
+    }
+
+    @Override
+    public Event findByPlaceEventName(String geocode, String eventName) {
+        Query query = new Query()
+                .addCriteria(Criteria.where("location").is(geocode))
+                .addCriteria(Criteria.where("eventName").is(eventName));
+
+        return mongoTemplate.findOne(query, Event.class);
+    }
+
+    @Override
     public List<Event> getAllEvents() {
         return mongoTemplate.findAll(Event.class);
     }

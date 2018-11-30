@@ -5,23 +5,21 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>Event Details</ion-title>
-  </ion-navbar>
-
+  <ion-navbar> <ion-title>Event Details</ion-title> </ion-navbar>
 </ion-header>
-
 
 <ion-content padding>
   <flash-card>
-
     <div class="flash-card-front">
       <ion-card>
-        <img [src]="pictureURI" style="height:250px;" *ngIf="pictureURI" />
+        <img
+          [src]="pictureURI['event']"
+          style="height:250px;"
+          *ngIf="pictureURI && pictureURI['event']"
+        />
         <ion-card-content>
           <ion-card-title text-center *ngIf="title">
-            {{title}}
+            {{ title }}
           </ion-card-title>
         </ion-card-content>
       </ion-card>
@@ -30,15 +28,17 @@
     <div class="flash-card-back" style="vertical-align: middle;">
       <ion-card style="width:320px; vertical-align: middle;">
         <ion-card-content style="width:320px;">
-          <p text-center *ngIf="description">{{description}}</p>
-          <p text-center style="background-color:rgb(213, 240, 240);">Date: 2019-05-12</p>
+          <p text-center *ngIf="description">{{ description }}</p>
+          <p text-center style="background-color:rgb(213, 240, 240);">
+            Date: 2019-05-12
+          </p>
         </ion-card-content>
         <ion-row text-center>
           <ion-col>
-            <button ion-button style="background-color:powderblue;">
+            <button *ngIf="going" (click)="notGo()" ion-button style="background-color:powderblue;">
               Cancel
             </button>
-            <button ion-button style="background-color:powderblue;">
+            <button *ngIf="!going" (click)="go()"  ion-button style="background-color:powderblue;">
               RSVP
             </button>
           </ion-col>
@@ -48,13 +48,16 @@
   </flash-card>
   <ion-list>
     <ion-item>
-      Person 1
+      <h1>Going</h1>
     </ion-item>
-    <ion-item>
-      Person 2
-    </ion-item>
-    <ion-item>
-      Person 3
+    <ion-item *ngFor="let person of attending">
+      <ion-avatar item-start>
+        <img
+          src="{{pictureURI[person]}}"
+          *ngIf="pictureURI && pictureURI[person]"
+        />
+      </ion-avatar>
+      {{ person }}
     </ion-item>
   </ion-list>
 </ion-content>

@@ -51,13 +51,13 @@ export class MapPage {
   ) {
     this.rsvpButtonColour = 'primary';
   }
-  
+
   ionViewDidLoad() {
     this.allDogParks = [];
     this.autocompleteItems = [];
     this.currentLocationName = '';
     this.eventProvider.getAllEvents().subscribe((result: any[]) => {
-      this.parkEvents = result.filter(event => event.isPublic);
+      this.parkEvents = result // .filter(event => event.isPublic);
       this.origEvents = this.parkEvents;
       console.log(this.parkEvents);
     })

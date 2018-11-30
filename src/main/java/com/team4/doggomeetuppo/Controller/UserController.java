@@ -29,16 +29,19 @@ public class UserController {
         return userRepository.findByUserName(userName);
     }
 
+    @CrossOrigin
     @GetMapping(value = "/allUsers")
     public List<User> getAllUsers() {
         return userRepository.getAllUsers();
     }
 
+    @CrossOrigin
     @PostMapping(value = "/save")
     public void saveUser(@RequestBody User user) {
         userRepository.saveUser(user);
     }
 
+    @CrossOrigin
     @PostMapping(value = "/verifyLogin")
     public boolean verifyLogin(
             @RequestParam(value = "userName") String userName,
@@ -49,6 +52,7 @@ public class UserController {
                 .anyMatch(user -> user.getUserName().equals(userName) && user.getPassword().equals(password));
     }
 
+    @CrossOrigin
     @PostMapping(value = "/saveProfilePic")
     public ResponseEntity saveProfilePic(
             @RequestParam(value = "profilePic") MultipartFile profilePic,
@@ -61,11 +65,13 @@ public class UserController {
         }
     }
 
+    @CrossOrigin
     @GetMapping(value = "/getProfilePic/{username}", produces = MediaType.IMAGE_JPEG_VALUE)
     public @ResponseBody byte[] getProfilePic(@PathVariable String username) {
         return imageRepository.getProfilePic(username);
     }
 
+    @CrossOrigin
     @PostMapping(value = "/saveDogPic", consumes = "multipart/form-data")
     public ResponseEntity saveDogPic(
         @RequestParam(value = "profilePic") MultipartFile profilePic,
@@ -81,17 +87,20 @@ public class UserController {
         }
     }
 
+    @CrossOrigin
     @GetMapping(value = "/getDogPic/{username}/{dogname}", produces = MediaType.IMAGE_JPEG_VALUE)
     public @ResponseBody byte[] getDogPic(@PathVariable("username") String username,@PathVariable("dogname") String dogname) {
         return imageRepository.getDogPic(username,dogname);
     }
 
+    @CrossOrigin
     @GetMapping(value = "/getLocation/{username}")
-    public String getLocation(@PathVariable("username") String userName){
+    public @ResponseBody String getLocation(@PathVariable("username") String userName){
          User user = userRepository.findByUserName(userName);
          return user.getGeocode();
     }
 
+    @CrossOrigin
     @PostMapping(value = "/checkIn/{username}")
     public void checkIn(@PathVariable("username") String userName, @RequestParam(value = "geocode") String geocode){
         User user = userRepository.findByUserName(userName);
@@ -99,15 +108,9 @@ public class UserController {
         userRepository.saveUser(user);
     }
 
+    @CrossOrigin
     @PostMapping(value = "/allUsersAtPark")
-    public List<User> getAllUsersAtPark(@RequestParam(value = "geocode") String geocode) {
-        return userRepository.getAllUsers()
-                .stream()
-                .filter(user -> user.getGeocode().equals(geocode))
-                .collect(Collectors.toList());
+    public @ResponseBody List<String> getAllUsersAtPark(@RequestParam(value = "geocode") String geocode) {
+        return userRepository.findUserByLocation(geocode).stream().map(User::getUserName).collect(Collectors.toList());
     }
-
-//    <img [src]="'data:image/JPEG;base64,' + result.arrayofbytes" />
-    // display images
-
 }
