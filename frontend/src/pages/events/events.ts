@@ -27,30 +27,32 @@ export class EventsPage {
     public eventProvider: EventProvider,
     public storage: Storage
   ) {
-    this.eventProvider.getAllEvents().subscribe((result: any[]) => {
-      this.parkEvents = result.filter(event => event.isPublic);
-      this.origEvents = this.parkEvents;
-      console.log("new events");
-    });
+    // this.eventProvider.getAllEvents().subscribe((result: any[]) => {
+    //   this.parkEvents = result.filter(event => event.isPublic);
+    //   this.origEvents = this.parkEvents;
+    //   console.log("new events");
+    // });
     this.rsvpButtonColour = "primary";
     this.events = "Going";
   }
 
   ionViewDidLoad() {
-    this.storage.get("user").then(res => {
-      this.eventProvider
-        .getAllAttendedEvents(res)
-        .subscribe((result: any[]) => {
-          this.attendedEvents = result;
-          this.attendedEvents.forEach(ev => {
-            this.eventProvider
-              .getEventPhoto(ev.location, ev.eventName)
-              .subscribe(res => {
-                this.createImageFromBlob(res, ev.eventName);
-              });
-          });
+    // this.storage.get("user").then(res => {
+    this.eventProvider
+      .getAllAttendedEvents("amy4reals")
+      .subscribe((result: any[]) => {
+        this.attendedEvents = result;
+        this.attendedEvents.forEach(ev => {
+          this.eventProvider
+            .getEventPhoto(ev.location, ev.eventName)
+            .subscribe(res => {
+              this.createImageFromBlob(res, ev.eventName);
+            });
         });
-      this.eventProvider.getAllHostedEvents(res).subscribe((result: any[]) => {
+      });
+    this.eventProvider
+      .getAllHostedEvents("amy4reals")
+      .subscribe((result: any[]) => {
         this.hostedEvents = result;
         this.hostedEvents.forEach(ev => {
           this.eventProvider
@@ -60,7 +62,11 @@ export class EventsPage {
             });
         });
       });
-    });
+    // });
+  }
+
+  showLocation(event) {
+    this.navCtrl.push(ParkLocationPage, { event: event });
   }
 
   initializeEvents() {
@@ -107,7 +113,13 @@ export class EventsPage {
 
   goToEdit(event) {
     console.log(event);
-    this.navCtrl.push(EditEventPage, { parkName: event.parkName });
+    console.log(this.imageURL);
+    this.navCtrl.push(EditEventPage, {
+      parkName: event.location,
+      imageUrl: this.imageURL[event.eventName],
+      eventName: event.eventName,
+      description: event.eventInfo
+    });
   }
 
   buttonClicked(currButton) {

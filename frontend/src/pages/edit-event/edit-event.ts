@@ -44,7 +44,7 @@ export class EditEventPage {
   myDate: String = new Date().toISOString();
   pushMyDate;
   park;
-  parkName;
+  parkName = "";
   parkAddress;
   lastImage: string = null;
   loading: Loading;
@@ -57,6 +57,7 @@ export class EditEventPage {
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE
   };
+  eventInfo: any;
 
   constructor(
     private actionSheetCtrl: ActionSheetController,
@@ -205,7 +206,7 @@ export class EditEventPage {
       eventName: this.eventForm.value.eventName,
       location: this.eventForm.value.location,
       eventInfo: this.eventForm.value.description,
-      isPublic: true
+      attending: []
     };
 
     this.eventProvider.addEvent(newEvent).subscribe(result => {});
@@ -217,11 +218,14 @@ export class EditEventPage {
   ionViewDidLoad() {
     //this.parkPictures = this.navParams.get('parkPictures');
     //console.log(this.navParams.get('park'));
+    console.log(this.navParams);
     console.log(this.navParams.get("parkPictures"));
     this.park = this.navParams.get("park");
     this.parkName = this.navParams.get("parkName");
     this.parkAddress = this.navParams.get("parkAddress");
-    this.imgUrl = this.navParams.get("imgUrl");
+    this.imgUrl = this.navParams.get("imageUrl");
+    this.eventInfo = this.navParams.get("description");
+    this.eventName = this.navParams.get("eventName")
     console.log("imgurl: " + this.imgUrl);
 
     console.log("park: " + this.park);
