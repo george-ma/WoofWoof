@@ -1,66 +1,63 @@
-# YOUR PRODUCT/TEAM NAME
+# WoofWoof - Team 4
 
- > _Note:_ This document is meant to be written during (or shortly after) your review meeting, which should happen fairly close to the due date.      
- >      
- > _Suggestion:_ Have your review meeting a day or two before the due date. This way you will have some time to go over (and edit) this document, and all team members should have a chance to make their contribution.
+> _Note:_ This document is meant to be written during (or shortly after) your review meeting, which should happen fairly close to the due date.
+>
+> _Suggestion:_ Have your review meeting a day or two before the due date. This way you will have some time to go over (and edit) this document, and all team members should have a chance to make their contribution.
 
+## Iteration 3 - Review & Retrospect
 
-## Iteration XX - Review & Retrospect
-
- * When: FILL IN THE DATE WHEN YOU ACTUALLY HAD YOUR REVIEW MEETING
- * Where: PHYSICAL LOCATION AND/OR ONLINE
-
-## Process - Reflection
-
-(Optional) Short introduction
+- When: Nov 30
+- Where: BA 3200
 
 #### Decisions that turned out well
 
-List process-related (i.e. team organization) decisions that, in retrospect, turned out to be successful.
-
-
- * 2 - 4 decisions.
- * Ordered from most to least important.
- * Explain why (i.e. give a supporting argument) you consider a decision to be successful.
- * Feel free to refer/link to process artifact(s).
+- Pair Programming
+  - After we all had a chance to work on the pair programming assigment, we decided working this way would help improve productivity.
+  - This way, tasks could be assigned to pairs such that each task would have one expert working on it.
+- Switching app to be a native mobile app.
+  - We wanted to take advantage of the native features of the phone and using cordova was the easiest way to do it.
+  - We now are able to use the camera and the photo library of the phone to upload photos for our app.
 
 #### Decisions that did not turn out as well as we hoped
 
-List process-related (i.e. team organization) decisions that, in retrospect, were not as successful as you thought they would be.
-
- * 2 - 4 decisions.
- * Ordered from most to least important.
- * Feel free to refer/link to process artifact(s).
-
+- Roles and Responsibilities
+  - Instead of splitting roles by front end and backend, we should have split roles by individual views.
+  - This way progress on getting funtional views would not be slowed down by miscommunication with the backend.
+- Using Springboot
+  - It turns out we could have used a lighter and simpler webserver such as flask or node.
+  - This way data persistance and loading would be simpler between the front end and database.
+  - This proved to be very difficult in our existing roles as backend and frontend since the backend people were expecting the data to come in a different form.
 
 #### Planned changes
 
 List any process-related changes you are planning to make (if there are any)
 
- * Ordered from most to least important.
- * Explain why you are making a change.
-
+- Migrate this app over to ionic 4.
+  > Ionic 4 has many new features that take advantage of the existing features of angular which it is built on. (routing, lifecycle hooks, etc)
+- Create tests
+  > We realized that more bugs were showing up the bigger our app gets. We were also reusing older components which started to expose many bugs we didn't see before. This could be solved by writing tests.
+  - e2e tests
+  - unit tests
+  - integration tests
 
 ## Product - Review
 
 #### Goals and/or tasks that were met/completed:
 
- * From most to least important.
- * Refer/link to artifact(s) that show that a goal/task was met/completed.
- * If a goal/task was not part of the original iteration plan, please mention it.
+- Allowed user to add new dog and upload picture of dog from camera/photo library.
+- Allowed user to modify events they are hosting.
+- Show all events user is rsvp/hosting (not part of original plan)
+- Implimented the skeleton for a newsfeed/forum section for our app (not part of original plan)
 
 #### Goals and/or tasks that were planned but not met/completed:
 
- * From most to least important.
- * For each goal/task, explain why it was not met/completed.      
-   e.g. Did you change your mind, or did you just not get to it yet?
+- Did not get to impliment invite other guests to events.
+    - This was a low priority task that could only be done after we finished all the other tasks.
+    - Since we cut it late, we just didn't get to impliment this feature.
 
 ## Meeting Highlights
 
 Going into the next iteration, our main insights are:
 
- * 2 - 4 items
- * Short (no more than one short paragraph per item)
- * High-level concepts that should guide your work for the next iteration.
- * These concepts should help you decide on where to focus your efforts.
- * Can be related to product and/or process.
+- Allow users to invite other users to events.
+- Impliment a newsfeed/forum that users can use to interact with each other.
