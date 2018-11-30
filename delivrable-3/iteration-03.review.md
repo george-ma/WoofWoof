@@ -1,9 +1,5 @@
 # WoofWoof - Team 4
 
-> _Note:_ This document is meant to be written during (or shortly after) your review meeting, which should happen fairly close to the due date.
->
-> _Suggestion:_ Have your review meeting a day or two before the due date. This way you will have some time to go over (and edit) this document, and all team members should have a chance to make their contribution.
-
 ## Iteration 3 - Review & Retrospect
 
 - When: Nov 30
@@ -46,18 +42,18 @@ List any process-related changes you are planning to make (if there are any)
 
 - Allowed user to add new dog and upload picture of dog from camera/photo library.
 - Allowed user to modify events they are hosting.
-- Show all events user is rsvp/hosting (not part of original plan)
-- Implimented the skeleton for a newsfeed/forum section for our app (not part of original plan)
+- Show all events user is attending/hosting (not part of original plan)
+- Implemented the skeleton for a newsfeed/forum section for our app (not part of original plan)
 
 #### Goals and/or tasks that were planned but not met/completed:
 
-- Did not get to impliment invite other guests to events.
+- Did not get to implement invite other guests to events.
     - This was a low priority task that could only be done after we finished all the other tasks.
-    - Since we cut it late, we just didn't get to impliment this feature.
+    - Since we cut it late, we just didn't get to implement this feature.
 
 ## Meeting Highlights
 
 Going into the next iteration, our main insights are:
 
 - Allow users to invite other users to events.
-- Impliment a newsfeed/forum that users can use to interact with each other.
+- Implement a newsfeed/forum that users can use to interact with each other.
