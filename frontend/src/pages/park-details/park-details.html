@@ -5,7 +5,9 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar> <ion-title>Park Details</ion-title> </ion-navbar>
+  <ion-navbar>
+    <ion-title>{{ parkName }}</ion-title>
+  </ion-navbar>
 </ion-header>
 
 <ion-content padding>
@@ -15,8 +17,10 @@
         <img [src]="picture" />
         <!-- style="width: 500px; height: 500px;"> -->
       </ion-slide>
-      <ion-fab right top>
-        <button ion-fab><ion-icon name="link"></ion-icon></button>
+      <!-- <ion-fab right top>
+        <button ion-fab>
+          <ion-icon name="link"></ion-icon>
+        </button>
         <ion-fab-list side="bottom">
           <button ion-fab (click)="newEvent()">
             <ion-icon name="calendar"></ion-icon>
@@ -28,22 +32,48 @@
             <ion-icon name="person-add"></ion-icon>
           </button>
         </ion-fab-list>
-      </ion-fab>
+      </ion-fab> -->
     </ion-slides>
   </ion-card>
+
   <ion-list>
-    <ion-item>
-      <ion-icon name="navigate" item-start large></ion-icon>
-      <h2>{{ parkName }}</h2>
-      <p>{{ parkAddress }}</p>
-    </ion-item>
-    <ion-list-header>Current Event</ion-list-header>
+    <!-- <ion-item> -->
+    <ion-row>
+      <ion-col>
+        <button #check ion-button icon-start color="primary" (click)="checkIn(check)">
+          <ion-icon name="person-add"></ion-icon>
+          Check-in
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-start (click)="usersCheckedIn()">
+          <ion-icon name="people"></ion-icon>
+          People Here
+        </button>
+      </ion-col>
+    </ion-row>
+    <!-- </ion-item> -->
+    <ion-list-header style="font-size: 18px; font-weight:bold">Current Event</ion-list-header>
     <ion-item *ngFor="let event of currentEvents" (click)="showEvent(event)">
       {{ event.eventName }}
     </ion-item>
-    <ion-list-header> Upcoming Events </ion-list-header>
-    <ion-item *ngFor="let event of upcomingEvents" (click)="showEvent(event)">
-      {{ event.eventName }}
+    <ion-row no-padding>
+      <ion-col no-padding>
+        <ion-list-header style="font-size: 18px; font-weight:bold" no-margin>
+          Upcoming Events
+        </ion-list-header>
+      </ion-col>
+      <ion-col col-3 no-padding>
+        <button mini ion-fab (click)="newEvent()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-item *ngFor="let event of upcomingEvents">
+      <p (click)="showEvent(event)">
+        {{event.eventName}}
+      </p>
     </ion-item>
   </ion-list>
+
 </ion-content>
