@@ -40,7 +40,7 @@
     <!-- <ion-item> -->
     <ion-row>
       <ion-col>
-        <button ion-button icon-start (click)="checkIn()" [color]="checkin">
+        <button #check ion-button icon-start color="primary" (click)="checkIn(check)">
           <ion-icon name="person-add"></ion-icon>
           Check-in
         </button>
@@ -53,23 +53,22 @@
       </ion-col>
     </ion-row>
     <!-- </ion-item> -->
-    <ion-list-header>Current Event</ion-list-header>
+    <ion-list-header style="font-size: 18px; font-weight:bold">Current Event</ion-list-header>
     <ion-item *ngFor="let event of currentEvents" (click)="showEvent(event)">
       {{ event.eventName }}
     </ion-item>
-    <ion-row>
-      <ion-col>
-        <ion-list-header>
+    <ion-row no-padding>
+      <ion-col no-padding>
+        <ion-list-header style="font-size: 18px; font-weight:bold" no-margin>
           Upcoming Events
         </ion-list-header>
       </ion-col>
-      <ion-col col-3>
+      <ion-col col-3 no-padding>
         <button mini ion-fab (click)="newEvent()">
           <ion-icon name="add"></ion-icon>
         </button>
       </ion-col>
     </ion-row>
-
     <ion-item *ngFor="let event of upcomingEvents">
       <p (click)="showEvent(event)">
         {{event.eventName}}

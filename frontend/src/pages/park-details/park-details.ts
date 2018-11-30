@@ -83,15 +83,14 @@ export class ParkDetailsPage {
     // this.navParams.get('parentNav').popToRoot();
   }
 
-  checkIn() {
-    this.storage.get('user').then(val => {
-      console.log(val);
-      this.userProvider.userCheckin(val, this.parkName).subscribe(_ => {
-        this.checkin = "primary";
-      });
-    });
+  checkIn(check) {
+    // this.storage.get('user').then(val => {
+      // console.log(val);
+      // this.userProvider.userCheckin(val, this.parkName).subscribe(_ => {
+        check.color = "secondary";
+      // });
+    // });
   }
-
   usersCheckedIn() {
     this.navCtrl.push(AllUsersPage, { park: this.parkName })
     console.log("all checked in users");
