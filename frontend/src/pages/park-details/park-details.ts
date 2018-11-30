@@ -103,4 +103,6 @@ export class ParkDetailsPage {
   showEvent(event) {
     this.navCtrl.push(EventDetailsPage, { event: event });
   }
+		
+
 }

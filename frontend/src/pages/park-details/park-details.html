@@ -37,6 +37,7 @@
       </ion-fab>
     </ion-slides>
   </ion-card>
+
   <ion-list>
     <ion-item>
       <ion-icon name="navigate" item-start large></ion-icon>
@@ -47,9 +48,19 @@
     <ion-item *ngFor="let event of currentEvents" (click)="showEvent(event)">
       {{event.eventName}}
     </ion-item>
-    <ion-list-header>
-      Upcoming Events
-    </ion-list-header>
+    <ion-row>
+      <ion-col>
+        <ion-list-header>
+          Upcoming Events
+        </ion-list-header>
+      </ion-col>
+      <ion-col col-3>
+        <button mini ion-fab (click)="newEvent()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+
     <ion-item *ngFor="let event of upcomingEvents">
       <p (click)="showEvent(event)">
         {{event.eventName}}
