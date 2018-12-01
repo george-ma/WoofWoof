@@ -13,21 +13,21 @@
   * Now we have the core of our code base setup. We are going to have more formal code reviews and a weekly code cutoff for anything to be merged to master.
 
 * We will be using pair programming to keep each other accountable for our responsibilities.
-  * We saw this worked really effectively with the pair programming assignment.
+  * We saw this worked really effectively with the pair programming assignment and are going to implement it for this project going forward.
 
 #### Roles & responsibilities
 
-The team kept the same roles same as before with Malavan, Tiger, and George on the back-end and Rohan, Grace, and Matthew on the front end.
+The team will keep the same roles same as before with Malavan, Tiger, and George on the back-end and Rohan, Grace, and Matthew on the front end.
 
-In addition to our assigned roles, there were times when someone who was working on the frontend would help out someone working on the back-end and vice versa. This was necessary for times when individuals came across blockers they could not get through on there own.
+In addition to our assigned roles, there will be times when someone working on the frontend will need to help out on the back-end, and vice versa. This will be necessary for times when individuals come across mental blocks that they cannot get through on there own.
 
 #### Events
 
 Tutorial Meetings (Monday)
 
 * Review what everyone has accomplished over the weekend.
-* Address blockers anyone might have.
-* Hear feedback from TA and see how to apply this to the upcoming sprint.
+* Address mental blocks anyone might have.
+* Receive feedback from the TA and see how to apply this to the upcoming sprint.
 
 Prepare for Weekend Meetings (Thursday)
 
@@ -35,16 +35,16 @@ Prepare for Weekend Meetings (Thursday)
   * Assign tasks accordingly.
 * Address blockers anyone might have with tasks assigned.
 * Review any major changes/direction of the app.
-* Reprioritize tasks according to any changes/discussion we have during this meeting.
+* Re-prioritize tasks according to any changes/discussion we have during this meeting.
 
 #### Artifacts
- * Task board on github that keeps track of tasks that need to be done, are currently being worked on and by whom, and completed tasks
- * Group members can assign themselves to tasks after we create and update the tasks after the weekly meeetings.
+ * Task board on Github that keeps track of tasks that need to be done, tasks that are currently being worked on and by whom, and completed tasks
+ * Group members can assign themselves to tasks after each group meeting, and update their status as they complete tasks.
 
 #### Git / GitHub workflow
-For each task we create a branch named after that task, once that task is complete a pull request is created to merge that branch with master. The code is reviewed by other teammates to ensure it is working and that it does not create other issues before being merged with master.   
+For each task, we will create a branch named after that task (for instance: 'adding-image-upload'). Once that task is complete, a pull request is created to merge that branch with master. The code is reviewed first by the person issuing the pull request, and by the other teammates to ensure that the code does not conflict with any changes they have not yet pushed. Once these reviews have taken place, the branch will be successfully merged with master.  
 
-We chose this workflow as it allows each group member to complete their assigned tasks independently at their own pace without having to worry about the progress of other group members. Then the completed tasks can be combined via pull requests into the master branch to build the completed thing.
+We chose this workflow as it allows each group member to complete their assigned tasks independently at their own pace without having to worry about the progress of other group members. Then the completed tasks can be combined via pull requests into the master branch to build the completed product.
 
 ## Product
 
