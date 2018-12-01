@@ -1,66 +1,60 @@
-# YOUR PRODUCT/TEAM NAME
+# WoofWoof - Team 4
 
- > _Note:_ This document is meant to be written during (or shortly after) your review meeting, which should happen fairly close to the due date.      
- >      
- > _Suggestion:_ Have your review meeting a day or two before the due date. This way you will have some time to go over (and edit) this document, and all team members should have a chance to make their contribution.
+## Iteration 3 - Review & Retrospect
 
-
-## Iteration XX - Review & Retrospect
-
- * When: FILL IN THE DATE WHEN YOU ACTUALLY HAD YOUR REVIEW MEETING
- * Where: PHYSICAL LOCATION AND/OR ONLINE
-
-## Process - Reflection
-
-(Optional) Short introduction
+- When: Nov 30
+- Where: BA 3200
 
 #### Decisions that turned out well
 
-List process-related (i.e. team organization) decisions that, in retrospect, turned out to be successful.
-
-
- * 2 - 4 decisions.
- * Ordered from most to least important.
- * Explain why (i.e. give a supporting argument) you consider a decision to be successful.
- * Feel free to refer/link to process artifact(s).
+- Pair Programming
+  - After we all had a chance to work on the pair programming assignment, we decided working this way would help improve productivity.
+  - Tasks could be assigned to pairs such that each task would have one expert working on it. For instance, we had paired programming sessions that helped guide the backend team to make meaningful contributions to the frontend.
+- Switching app to be a native mobile app.
+  - We wanted to take advantage of the native features of the phone and using cordova was the easiest way to do it.
+  - We are now able to use the camera and the photo library of the phone to upload photos for the "Add New Dog" and "Create New Event" forms.
 
 #### Decisions that did not turn out as well as we hoped
 
-List process-related (i.e. team organization) decisions that, in retrospect, were not as successful as you thought they would be.
-
- * 2 - 4 decisions.
- * Ordered from most to least important.
- * Feel free to refer/link to process artifact(s).
+- Roles and Responsibilities
+  - Reflecting on our experience after 2 deliverables, we realized that it would have been easier to have split roles by individual views, instead of splitting roles by front end and backend.
+  - This way, progress on getting functional views would not be slowed down by miscommunication with the backend.
+  - By allowing people to work on individual views, this would allow each person to take sole responsibility of the functionality of each page, and allow them to make sure for instance, that end points were connected and communicating properly with the frontend.
+- Using Spring-Boot
+  - It turns out we could have used a lighter and simpler webserver such as flask or node.
+  - This way data persistance and loading could have been implemented much simpler between the front end and database.
 
 
 #### Planned changes
 
 List any process-related changes you are planning to make (if there are any)
 
- * Ordered from most to least important.
- * Explain why you are making a change.
-
+- Migrate this app over to ionic 4.
+  > Ionic 4 has many new features that take advantage of the existing features of angular which it is built on. (routing, lifecycle hooks, etc)
+- Create tests
+  > We realized that more bugs were showing up the bigger our app gets. We were also reusing older components which started to expose many bugs we didn't see before. This could be solved by writing tests.
+  - e2e tests
+  - unit tests
+  - integration tests
 
 ## Product - Review
 
 #### Goals and/or tasks that were met/completed:
 
- * From most to least important.
- * Refer/link to artifact(s) that show that a goal/task was met/completed.
- * If a goal/task was not part of the original iteration plan, please mention it.
+- Allowed users to add new dogs and upload picture of their dog from either the camera or photo library.
+- Allowed users to modify events they are hosting.
+- Show all events user is attending/hosting (not part of original plan)
+- Implemented the skeleton for a newsfeed/forum section for our app (not part of original plan)
 
 #### Goals and/or tasks that were planned but not met/completed:
 
- * From most to least important.
- * For each goal/task, explain why it was not met/completed.      
-   e.g. Did you change your mind, or did you just not get to it yet?
+- Did not get to implement invite other guests to events.
+    - This was a low priority task that could only be done after we finished all the other tasks.
+    - Since we cut it late, we just didn't get to implement this feature.
 
 ## Meeting Highlights
 
 Going into the next iteration, our main insights are:
 
- * 2 - 4 items
- * Short (no more than one short paragraph per item)
- * High-level concepts that should guide your work for the next iteration.
- * These concepts should help you decide on where to focus your efforts.
- * Can be related to product and/or process.
+- Allow users to invite other users to events.
+- Implement a newsfeed/forum that will act like the 'discover' page on websites like Twitter and Instagram. This will allow users to interact with their community at large and explore events they may not normally have seen.
