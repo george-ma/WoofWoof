@@ -8,21 +8,21 @@
 #### Decisions that turned out well
 
 - Pair Programming
-  - After we all had a chance to work on the pair programming assigment, we decided working this way would help improve productivity.
-  - This way, tasks could be assigned to pairs such that each task would have one expert working on it.
+  - After we all had a chance to work on the pair programming assignment, we decided working this way would help improve productivity.
+  - Tasks could be assigned to pairs such that each task would have one expert working on it. For instance, we had paired programming sessions that helped guide the backend team to make meaningful contributions to the frontend.
 - Switching app to be a native mobile app.
   - We wanted to take advantage of the native features of the phone and using cordova was the easiest way to do it.
-  - We now are able to use the camera and the photo library of the phone to upload photos for our app.
+  - We are now able to use the camera and the photo library of the phone to upload photos for the "Add New Dog" and "Create New Event" forms.
 
 #### Decisions that did not turn out as well as we hoped
 
 - Roles and Responsibilities
-  - Instead of splitting roles by front end and backend, we should have split roles by individual views.
-  - This way progress on getting funtional views would not be slowed down by miscommunication with the backend.
-- Using Springboot
+  - Reflecting on our experience after 2 deliverables, we realized that it would have been easier to have split roles by individual views, instead of splitting roles by front end and backend.
+  - This way progress on getting functional views would not be slowed down by miscommunication with the backend.
+- Using Spring-Boot
   - It turns out we could have used a lighter and simpler webserver such as flask or node.
-  - This way data persistance and loading would be simpler between the front end and database.
-  - This proved to be very difficult in our existing roles as backend and frontend since the backend people were expecting the data to come in a different form.
+  - This way implementation of data persistance and loading could be done much simpler between the front end and database.
+  - Using Spring-Boot proved to be very difficult in our existing roles as backend and frontend, since the frontend people were expecting the data to come in a different form.
 
 #### Planned changes
 
@@ -40,8 +40,8 @@ List any process-related changes you are planning to make (if there are any)
 
 #### Goals and/or tasks that were met/completed:
 
-- Allowed user to add new dog and upload picture of dog from camera/photo library.
-- Allowed user to modify events they are hosting.
+- Allowed users to add new dogs and upload picture of their dog from either the camera or photo library.
+- Allowed users to modify events they are hosting.
 - Show all events user is attending/hosting (not part of original plan)
 - Implemented the skeleton for a newsfeed/forum section for our app (not part of original plan)
 
