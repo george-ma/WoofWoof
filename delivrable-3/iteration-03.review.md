@@ -18,11 +18,12 @@
 
 - Roles and Responsibilities
   - Reflecting on our experience after 2 deliverables, we realized that it would have been easier to have split roles by individual views, instead of splitting roles by front end and backend.
-  - This way progress on getting functional views would not be slowed down by miscommunication with the backend.
+  - This way, progress on getting functional views would not be slowed down by miscommunication with the backend.
+  - By allowing people to work on individual views, this would allow each person to take sole responsibility of the functionality of each page, and allow them to make sure for instance, that end points were connected and communicating properly with the frontend.
 - Using Spring-Boot
   - It turns out we could have used a lighter and simpler webserver such as flask or node.
-  - This way implementation of data persistance and loading could be done much simpler between the front end and database.
-  - Using Spring-Boot proved to be very difficult in our existing roles as backend and frontend, since the frontend people were expecting the data to come in a different form.
+  - This way data persistance and loading could have been implemented much simpler between the front end and database.
+
 
 #### Planned changes
 
@@ -56,4 +57,4 @@ List any process-related changes you are planning to make (if there are any)
 Going into the next iteration, our main insights are:
 
 - Allow users to invite other users to events.
-- Implement a newsfeed/forum that users can use to interact with each other.
+- Implement a newsfeed/forum that will act like the 'discover' page on websites like Twitter and Instagram. This will allow users to interact with their community at large and explore events they may not normally have seen.
